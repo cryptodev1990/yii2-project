@@ -12,8 +12,6 @@ return [
     Router::get('/', 'site/index'),
     Router::any('me', 'home/me')->name('me'),
 
-    Router::any('closed', 'home/closed'),
-
     // Auth section
     Router::group('/', 'auth')->routes([
         Router::any('login', 'sign/login')->name('login'),

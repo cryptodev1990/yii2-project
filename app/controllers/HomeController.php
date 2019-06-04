@@ -37,13 +37,7 @@ class HomeController extends Controller
         return [
             [
                 'allow' => true,
-                'actions' => ['me'],
                 'roles' => ['@'],
-            ],
-            [
-                'allow' => true,
-                'actions' => ['closed'],
-                'roles' => ['admin']
             ],
         ];
     }
@@ -51,10 +45,5 @@ class HomeController extends Controller
     public function actionMe()
     {
         return view('home');
-    }
-
-    public function actionClosed()
-    {
-        return 'Yes you are an admin!';
     }
 }
