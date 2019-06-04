@@ -1,0 +1,16 @@
+actor_suffix: Tester
+paths:
+  tests: tests
+  output: tests/_output
+  data: tests/_data
+  support: tests/_support
+settings:
+  colors: true
+  bootstrap: ../_bootstrap.php
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
+modules:
+  config:
+    Yii2:
+      configFile: config/codeception/http.php

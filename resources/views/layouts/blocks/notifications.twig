@@ -1,0 +1,21 @@
+{% if session().hasFlash('errors') %}
+    <div>
+        <strong>Errors:</strong>
+        <ul>
+            {% for error in session().getFlash('errors') %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% if session().hasFlash('messages') %}
+    <div>
+        <strong>Messages:</strong>
+        <ul>
+            {% for message in session().getFlash('messages') %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

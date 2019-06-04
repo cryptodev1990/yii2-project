@@ -1,0 +1,16 @@
+{#
+    Usage example:
+    {{ this.render('/layouts/widgets/form-errors', {'form': form}) | raw }}
+#}
+
+{% if form.errors %}
+    <div class="form-group text-left">
+        <div class="card bg-gray">
+            <ul class="text-error">
+                {% for error in form_errors(form) %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,21 @@
+<div class="container">
+    <header class="navbar py-2 bg-gray">
+        <section class="navbar-section">
+            <a href="{{ path(['/']) }}" class="btn btn-link">{{ t('ui', 'label/home') }}</a>
+        </section>
+        <section class="navbar-center">
+            <a href="{{ path(app.homeUrl) }}" class="img-link">
+                <img src="{{ seo().logo }}" class="img-brand" alt="{{ seo().name }}">
+            </a>
+        </section>
+        <section class="navbar-section">
+            {% if user().isGuest %}
+                <a href="{{ path(['@login']) }}" class="btn btn-link">{{ t('ui', 'label/login') }}</a>
+                <a href="{{ path(['@sign-up']) }}" class="btn btn-primary">{{ t('ui', 'label/sign-up') }}</a>
+            {% else %}
+                <a href="{{ path(['@me']) }}" class="btn btn-link">{{ t('ui', 'label/profile') }}</a>
+                <a href="{{ path(['@logout']) }}" class="btn btn-link">{{ t('ui', 'label/logout') }}</a>
+            {% endif %}
+        </section>
+    </header>
+</div>

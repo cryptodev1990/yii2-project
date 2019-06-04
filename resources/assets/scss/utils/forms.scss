@@ -1,0 +1,18 @@
+/*!
+ * Created by Artyom Manchenkov
+ * artyom@manchenkoff.me
+ * manchenkoff.me © 2019
+ */
+
+// normalize form icon size and position
+.form-icon {
+  font-size: inherit !important;
+}
+
+.bg-gray {
+  .divider[data-content] {
+    &::after {
+      background: $bg-color;
+    }
+  }
+}

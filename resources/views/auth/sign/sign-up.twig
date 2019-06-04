@@ -1,0 +1,80 @@
+{% extends '@layouts/clean.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="p-centered col-xs-12 col-sm-6 col-md-5 col-3 mt-4">
+            <h1 class="text-center">
+                {{ t('ui', 'label/sign-up') }}
+            </h1>
+
+            <form action="{{ path(['@sign-up']) }}" method="post">
+                {{ csrf() | raw }}
+
+                {{ this.render('/layouts/widgets/form-errors', {'form': form}) | raw }}
+
+                <div class="form-group {{ form.errors.email ? 'has-error' : '' }}">
+                    <div class="has-icon-left">
+                        <input class="form-input"
+                               type="text"
+                               placeholder="{{ form_label(form, 'email') }}"
+                               id="input-login"
+                               name="{{ form_field(form, 'email') }}"
+                               value="{{ form.email }}"
+                               autocomplete="off">
+                        <i class="form-icon material-icons">alternate_email</i>
+                    </div>
+                </div>
+
+                <div class="form-group {{ form.errors.password ? 'has-error' : '' }}">
+                    <div class="has-icon-left">
+                        <input class="form-input"
+                               type="password"
+                               placeholder="{{ form_label(form, 'password') }}"
+                               id="input-password"
+                               name="{{ form_field(form, 'password') }}"
+                               value="{{ form.password }}"
+                               autocomplete="off">
+                        <i class="form-icon material-icons">lock</i>
+                    </div>
+                </div>
+
+                <div class="form-group {{ form.errors.firstName ? 'has-error' : '' }}">
+                    <div class="has-icon-left">
+                        <input class="form-input"
+                               type="text"
+                               placeholder="{{ form_label(form, 'firstName') }}"
+                               id="input-firstname"
+                               name="{{ form_field(form, 'firstName') }}"
+                               value="{{ form.firstName }}"
+                               autocomplete="off">
+                        <i class="form-icon material-icons">person</i>
+                    </div>
+                </div>
+
+                <div class="form-group {{ form.errors.firstName ? 'has-error' : '' }}">
+                    <div class="has-icon-left">
+                        <input class="form-input"
+                               type="text"
+                               placeholder="{{ form_label(form, 'lastName') }}"
+                               id="input-lastName"
+                               name="{{ form_field(form, 'lastName') }}"
+                               value="{{ form.lastName }}"
+                               autocomplete="off">
+                        <i class="form-icon material-icons">person</i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="form-input mt-3 btn btn-primary">
+                        {{ t('ui', 'label/continue') }}
+                    </button>
+                </div>
+            </form>
+
+            <div class="divider text-center my-3" data-content="{{ t('ui', 'label/OR') }}"></div>
+
+            {% include '@layouts/blocks/social-login.twig' %}
+
+        </div>
+    </div>
+{% endblock %}

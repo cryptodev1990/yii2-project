@@ -1,0 +1,31 @@
+/*!
+ * Created by Artyom Manchenkov
+ * artyom@manchenkoff.me
+ * manchenkoff.me © 2019
+ */
+
+.img-brand {
+  height: 32px;
+}
+
+.error-empty {
+  margin-top: 40px;
+}
+
+.social-login {
+  padding: 7px 0;
+
+  :first-child {
+    margin-left: 0;
+  }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0 7px;
+
+    img {
+      width: 32px;
+    }
+  }
+}

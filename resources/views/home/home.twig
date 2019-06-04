@@ -1,0 +1,19 @@
+{% extends '@layouts/main.twig' %}
+
+{% block content %}
+    <h1>Home</h1>
+
+    <ul>
+        {% if is_granted('admin') %}
+            <li>Role: admin</li>
+        {% else %}
+            <li>Role: user</li>
+        {% endif %}
+
+        {% if is_granted('confirmed') %}
+            <li>Status: active</li>
+        {% else %}
+            <li>Status: inactive</li>
+        {% endif %}
+    </ul>
+{% endblock %}

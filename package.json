@@ -1,0 +1,36 @@
+{
+  "name": "yii2-project",
+  "version": "1.0.0",
+  "description": "Yii 2 project with Webpack & Laravel mix integration",
+  "scripts": {
+    "dev": "npm run development",
+    "prod": "npm run production",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manchenkoff/yii2-project.git"
+  },
+  "keywords": [],
+  "author": "Artyom Manchenkov <artyom@manchenkoff.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manchenkoff/yii2-project/issues"
+  },
+  "homepage": "https://github.com/manchenkoff/yii2-project#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.2",
+    "cross-env": "^5.2.0",
+    "laravel-mix": "^4.0.15",
+    "moment": "^2.24.0",
+    "resolve-url-loader": "^2.3.2",
+    "sass": "^1.19.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "spectre.css": "^0.5.8"
+  }
+}

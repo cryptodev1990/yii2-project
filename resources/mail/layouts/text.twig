@@ -1,0 +1,11 @@
+{# this \yii\web\View #}
+{# message -> \yii\mail\MessageInterface #}
+{# content -> Mail template rendered string #}
+
+{{ this.beginPage() }}
+{{ this.beginBody() }}
+
+{{ content }}
+
+{{ this.endBody() }}
+{{ this.endPage() }}

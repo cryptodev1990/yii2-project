@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Yii console bootstrap file.
+ */
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+use yii\helpers\ArrayHelper;
+
+// Load environments configuration
+$env = new Dotenv(__DIR__);
+try {
+    $env->load();
+} catch (\Exception $error) {
+    alert("App environment initialization failed");
+    die();
+}
+
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'test');
+
+// Load Yii application requirements
+require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
+require __DIR__ . '/config/common/aliases.php';
+
+$config = require __DIR__ . '/config/codeception/console.php';
+
+// Try to start application
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
+
+exit($exitCode);

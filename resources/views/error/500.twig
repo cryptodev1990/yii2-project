@@ -1,0 +1,21 @@
+{% extends '@layouts/clean.twig' %}
+
+{% block content %}
+    <div class="empty error-empty">
+        <div class="empty-icon">
+            <i class="material-icons md-64">build</i>
+        </div>
+
+        <div class="mt-2 pt-2">
+            <p class="empty-title h1 mt-2">
+                {{ t('errors', '500/title') }}
+            </p>
+
+            <p class="empty-subtitle">
+                {{ t('errors', '500/message') }}
+            </p>
+
+            <p class="h1">👨‍💻</p>
+        </div>
+    </div>
+{% endblock %}
