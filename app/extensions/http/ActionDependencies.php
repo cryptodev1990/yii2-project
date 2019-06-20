@@ -10,7 +10,9 @@ namespace app\extensions\http;
 use Yii;
 use yii\base\InlineAction;
 use yii\base\InvalidConfigException;
+use yii\db\ActiveRecordInterface;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 
 /**
  * Trait ActionDependencies to work with action dependency injection arguments
@@ -25,6 +27,7 @@ trait ActionDependencies
      * @return array
      * @throws BadRequestHttpException
      * @throws \ReflectionException
+     * @throws NotFoundHttpException
      */
     public function bindActionParams($action, $params)
     {
@@ -44,6 +47,18 @@ trait ActionDependencies
 
             // set necessary objects to the named parameters
             foreach ($method->getParameters() as $idx => $parameter) {
+                // find ActiveRecord instance by PK
+                if ($injectedParams[$idx] instanceof ActiveRecordInterface) {
+                    /** @var ActiveRecordInterface $activeRecord */
+                    $activeRecord = $injectedParams[$idx];
+
+                    $injectedParams[$idx] = $activeRecord::findOne($params[$parameter->name]);
+
+                    if (!$injectedParams[$idx]) {
+                        throw new NotFoundHttpException();
+                    }
+                }
+
                 $params[$parameter->name] = $injectedParams[$idx];
             }
         } catch (InvalidConfigException $exception) {
