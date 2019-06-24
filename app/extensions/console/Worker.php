@@ -7,6 +7,8 @@
 
 namespace app\extensions\console;
 
+use yii\base\InvalidConfigException;
+
 /**
  * Class Worker for quickly developing daemon components
  *
@@ -75,7 +77,7 @@ abstract class Worker extends Command
     /**
      * Format 'sleepTime' as time duration
      * @return string
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function getWaitingTime()
     {

@@ -8,6 +8,7 @@
 namespace app\core\rules;
 
 use app\models\auth\User;
+use yii\rbac\Item;
 use yii\rbac\Rule;
 
 class ConfirmedRule extends Rule
@@ -18,7 +19,7 @@ class ConfirmedRule extends Rule
      * Determines user confirmation status
      *
      * @param int|string $user
-     * @param \yii\rbac\Item $item
+     * @param Item $item
      * @param array $params
      *
      * @return bool

@@ -10,6 +10,7 @@ namespace app\forms\auth;
 use app\core\interfaces\Sender;
 use app\mail\auth\UserRegistrationMail;
 use app\models\auth\User;
+use yii\base\Exception;
 use yii\base\Model;
 
 class SignUpForm extends Model
@@ -61,7 +62,7 @@ class SignUpForm extends Model
      * @param Sender $mailer
      *
      * @return User|null
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function handle(Sender $mailer)
     {

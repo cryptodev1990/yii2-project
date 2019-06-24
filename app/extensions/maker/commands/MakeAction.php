@@ -36,21 +36,25 @@ abstract class MakeAction extends Action
 
     /**
      * Shows error message
+     *
      * @param string $message
      */
     public function error(string $message)
     {
         $this->controller->error($message);
+
         return;
     }
 
     /**
      * Shows info message
+     *
      * @param string $message
      */
     public function info(string $message)
     {
         $this->controller->info($message);
+
         return;
     }
 

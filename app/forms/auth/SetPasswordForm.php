@@ -8,6 +8,7 @@
 namespace app\forms\auth;
 
 use app\models\auth\User;
+use yii\base\Exception;
 use yii\base\Model;
 
 class SetPasswordForm extends Model
@@ -45,7 +46,7 @@ class SetPasswordForm extends Model
      * @param User $user
      *
      * @return bool
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function handle(User $user)
     {

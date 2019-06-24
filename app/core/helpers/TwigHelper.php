@@ -7,6 +7,7 @@
 
 namespace app\core\helpers;
 
+use Closure;
 use Manchenkov\Yii\Recaptcha\ReCaptchaWidget;
 use yii\base\BaseObject;
 use yii\base\Model;
@@ -42,7 +43,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Helper to work with CSRF token
-     * @return \Closure
+     * @return Closure
      */
     private static function csrf()
     {
@@ -63,7 +64,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Generates a name for a model form attribute
-     * @return \Closure
+     * @return Closure
      */
     private static function form_field()
     {
@@ -76,7 +77,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Returns a label for a model form attribute
-     * @return \Closure
+     * @return Closure
      */
     private static function form_label()
     {
@@ -87,7 +88,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Returns an error messages of the form
-     * @return \Closure
+     * @return Closure
      */
     private static function form_errors()
     {
@@ -104,7 +105,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Returns an error message for $attribute of the $model form
-     * @return \Closure
+     * @return Closure
      */
     private static function form_error()
     {
@@ -115,7 +116,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Returns Google reCAPTCHA v3 hidden input
-     * @return \Closure
+     * @return Closure
      */
     public static function reCaptcha()
     {
@@ -131,7 +132,7 @@ class TwigHelper extends BaseObject
 
     /**
      * Checks current user permissions and returns true|false
-     * @return \Closure
+     * @return Closure
      */
     private static function is_granted()
     {

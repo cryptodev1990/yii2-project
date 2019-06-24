@@ -15,8 +15,10 @@ use app\forms\auth\LoginForm;
 use app\forms\auth\SignUpForm;
 use app\models\auth\AuthClient;
 use app\models\auth\User;
+use Exception;
 use yii\authclient\AuthAction;
 use yii\authclient\ClientInterface;
+use yii\web\Response;
 
 class SignController extends Controller
 {
@@ -68,7 +70,7 @@ class SignController extends Controller
 
     /**
      * "Sign in" user action
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionLogin()
     {
@@ -96,9 +98,9 @@ class SignController extends Controller
      *
      * @param Sender $mailer
      *
-     * @return string|\yii\console\Response|\yii\web\Response
+     * @return string|\yii\console\Response|Response
      * @throws \yii\base\Exception
-     * @throws \Exception
+     * @throws Exception
      */
     public function actionSignUp(Sender $mailer)
     {
@@ -136,7 +138,7 @@ class SignController extends Controller
      *
      * @param string $token
      *
-     * @return \yii\web\Response
+     * @return Response
      * @throws \yii\base\Exception
      */
     public function actionActivate(string $token)
@@ -167,7 +169,7 @@ class SignController extends Controller
 
     /**
      * "Sign out" user action
-     * @return \yii\web\Response
+     * @return Response
      */
     public function actionLogout()
     {
@@ -181,9 +183,9 @@ class SignController extends Controller
      *
      * @param ClientInterface $client
      *
-     * @return \yii\web\Response|null
+     * @return Response|null
      * @throws \yii\base\Exception
-     * @throws \Exception
+     * @throws Exception
      */
     public function handleSocialAuth(ClientInterface $client)
     {

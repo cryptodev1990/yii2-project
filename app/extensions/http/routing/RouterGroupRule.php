@@ -7,6 +7,7 @@
 
 namespace app\extensions\http\routing;
 
+use yii\base\InvalidConfigException;
 use yii\web\GroupUrlRule;
 
 class RouterGroupRule extends GroupUrlRule
@@ -37,7 +38,7 @@ class RouterGroupRule extends GroupUrlRule
 
     /**
      * Builds group rules
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function build()
     {

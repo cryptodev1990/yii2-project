@@ -9,6 +9,7 @@ namespace app\database\seeders;
 
 use app\extensions\console\Command;
 use app\models\auth\User;
+use Exception;
 use yii\base\Action;
 
 /**
@@ -41,7 +42,7 @@ class UserSeeder extends Action
             } else {
                 $this->controller->error("An error occurred while creating a user");
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->controller->error($exception->getMessage());
         }
     }

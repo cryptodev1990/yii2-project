@@ -26,6 +26,8 @@ use app\extensions\maker\actions\SeedAction;
 use app\extensions\maker\actions\ServiceAction;
 use app\extensions\maker\actions\ViewAction;
 use app\extensions\maker\actions\WorkerAction;
+use yii\base\Exception;
+use yii\base\InvalidRouteException;
 use yii\helpers\FileHelper;
 
 class MakeController extends Command
@@ -75,7 +77,7 @@ class MakeController extends Command
      * @param array $params
      *
      * @return int
-     * @throws \yii\base\InvalidRouteException
+     * @throws InvalidRouteException
      * @throws \yii\console\Exception
      */
     public function runAction($id, $params = [])
@@ -85,7 +87,7 @@ class MakeController extends Command
 
     /**
      * Generates new files
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function process()
     {

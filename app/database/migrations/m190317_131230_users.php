@@ -37,9 +37,9 @@ class m190317_131230_users extends Migration
     }
 
     /**
-    * Rollback migration
-    * @return bool|void
-    */
+     * Rollback migration
+     * @return bool|void
+     */
     public function down()
     {
         $this->dropTable('user');

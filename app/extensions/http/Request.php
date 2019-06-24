@@ -7,6 +7,7 @@
 
 namespace app\extensions\http;
 
+use yii\base\InvalidConfigException;
 use yii\web\Cookie;
 use yii\web\Request as BaseRequest;
 
@@ -47,7 +48,7 @@ class Request extends BaseRequest
      * Requested URL processing
      *
      * @return bool|string
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     protected function resolveRequestUri()
     {

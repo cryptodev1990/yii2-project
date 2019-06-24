@@ -9,8 +9,11 @@ namespace app\models\auth;
 
 use app\extensions\database\ActiveRecord;
 use app\extensions\database\traits\SoftDelete;
+use yii\base\Exception;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\web\IdentityInterface;
+use yii\web\Response;
 
 /**
  * Class User
@@ -166,7 +169,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @param string $value
      *
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function setPassword(string $value)
     {
@@ -187,7 +190,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates a new token for current user
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function generateToken()
     {
@@ -198,7 +201,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $newPassword
      *
      * @return bool
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function updatePassword(string $newPassword)
     {
@@ -213,7 +216,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @param bool $currentSession
      *
-     * @return \yii\console\Response|\yii\web\Response
+     * @return \yii\console\Response|Response
      */
     public function login(bool $currentSession = false)
     {
@@ -235,7 +238,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Returns all of the current user social auth clients
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getAuthClients()
     {

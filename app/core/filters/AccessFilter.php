@@ -8,6 +8,8 @@
 namespace app\core\filters;
 
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+use yii\web\Response;
 use yii\web\User;
 
 /**
@@ -19,10 +21,10 @@ class AccessFilter extends AccessControl
     /**
      * Handles redirect
      *
-     * @param false|\yii\web\User $user
+     * @param false|User $user
      *
-     * @return \yii\console\Response|\yii\web\Response
-     * @throws \yii\web\ForbiddenHttpException
+     * @return \yii\console\Response|Response
+     * @throws ForbiddenHttpException
      */
     protected function denyAccess($user)
     {

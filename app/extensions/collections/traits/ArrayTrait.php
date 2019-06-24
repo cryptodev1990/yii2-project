@@ -7,6 +7,7 @@
 
 namespace app\extensions\collections\traits;
 
+use ArrayIterator;
 use Traversable;
 use yii\db\ActiveRecordInterface;
 
@@ -18,11 +19,11 @@ trait ArrayTrait
 {
     /**
      * Retrieve an external iterator
-     * @return \ArrayIterator|Traversable
+     * @return ArrayIterator|Traversable
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->elements);
+        return new ArrayIterator($this->elements);
     }
 
     /**

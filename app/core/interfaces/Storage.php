@@ -7,6 +7,9 @@
 
 namespace app\core\interfaces;
 
+use SplFileInfo;
+use yii\base\ErrorException;
+use yii\base\Exception;
 use yii\web\UploadedFile;
 
 interface Storage
@@ -17,7 +20,7 @@ interface Storage
      * @param string $path
      *
      * @return bool
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function createDirectory(string $path): bool;
 
@@ -26,7 +29,7 @@ interface Storage
      *
      * @param string $path
      *
-     * @throws \yii\base\ErrorException
+     * @throws ErrorException
      */
     public function deleteDirectory(string $path);
 
@@ -36,8 +39,8 @@ interface Storage
      * @param string $path
      *
      * @return bool
-     * @throws \yii\base\ErrorException
-     * @throws \yii\base\Exception
+     * @throws ErrorException
+     * @throws Exception
      */
     public function clearDirectory(string $path): bool;
 
@@ -106,9 +109,9 @@ interface Storage
      *
      * @param string $filename
      *
-     * @return \SplFileInfo
+     * @return SplFileInfo
      */
-    public function fileInfo(string $filename): \SplFileInfo;
+    public function fileInfo(string $filename): SplFileInfo;
 
     /**
      * Returns array with 'directories' and 'files' keys which contains founded items

@@ -14,6 +14,7 @@ class ResourceAction extends MakeAction
 {
     /**
      * Generates files for a new resource: migration, model, controller
+     *
      * @param string $name
      */
     public function run(string $name)

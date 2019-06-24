@@ -7,6 +7,7 @@
 
 namespace app\extensions\http\routing;
 
+use yii\base\InvalidConfigException;
 use yii\web\UrlRule;
 
 class RouterRule extends UrlRule
@@ -63,7 +64,7 @@ class RouterRule extends UrlRule
 
     /**
      * Registers route
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function build()
     {

@@ -7,7 +7,10 @@
 
 namespace app\extensions\http;
 
+use ReflectionException;
+use ReflectionMethod;
 use Yii;
+use yii\base\Action;
 use yii\base\InlineAction;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveRecordInterface;
@@ -21,12 +24,12 @@ use yii\web\NotFoundHttpException;
 trait ActionDependencies
 {
     /**
-     * @param \yii\base\Action $action
+     * @param Action $action
      * @param array $params
      *
      * @return array
      * @throws BadRequestHttpException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws NotFoundHttpException
      */
     public function bindActionParams($action, $params)
@@ -39,7 +42,7 @@ trait ActionDependencies
         }
 
         // get an instance of a requested controller method
-        $method = new \ReflectionMethod(...$callable);
+        $method = new ReflectionMethod(...$callable);
 
         // resolving dependencies with Yii container
         try {

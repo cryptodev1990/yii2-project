@@ -50,7 +50,7 @@ class Router extends UrlManager
 
     /**
      * Router configuration files loading
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function init()
     {

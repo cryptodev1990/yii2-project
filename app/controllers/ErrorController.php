@@ -10,6 +10,7 @@ namespace app\controllers;
 use app\extensions\http\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * Class ErrorController to handle runtime errors
@@ -17,7 +18,7 @@ use yii\web\NotFoundHttpException;
 class ErrorController extends Controller
 {
     /**
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionIndex()
     {

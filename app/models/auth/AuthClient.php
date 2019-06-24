@@ -9,6 +9,7 @@ namespace app\models\auth;
 
 use app\extensions\database\ActiveRecord;
 use yii\authclient\ClientInterface;
+use yii\db\ActiveQuery;
 
 /**
  * Class AuthClient to store social auth clients data
@@ -37,7 +38,7 @@ class AuthClient extends ActiveRecord
 
     /**
      * Returns user of current client
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getUser()
     {

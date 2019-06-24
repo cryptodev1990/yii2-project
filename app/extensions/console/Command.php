@@ -8,7 +8,10 @@
 namespace app\extensions\console;
 
 use Exception;
+use ReflectionException;
+use ReflectionMethod;
 use Yii;
+use yii\base\Action;
 use yii\base\InlineAction;
 use yii\console\Controller as BaseController;
 use yii\helpers\Console;
@@ -83,11 +86,11 @@ abstract class Command extends BaseController
     }
 
     /**
-     * @param \yii\base\Action $action
+     * @param Action $action
      * @param array $params
      *
      * @return array
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws Exception
      */
     public function bindActionParams($action, $params)
@@ -100,7 +103,7 @@ abstract class Command extends BaseController
         }
 
         // get an instance of a requested controller method
-        $method = new \ReflectionMethod(...$callable);
+        $method = new ReflectionMethod(...$callable);
 
         // resolving dependencies with Yii container
         $injectedParams = Yii::$container->resolveCallableDependencies($callable, $params);

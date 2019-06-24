@@ -9,6 +9,8 @@ namespace app\core\services;
 
 use app\core\interfaces\Storage;
 use SplFileInfo;
+use yii\base\ErrorException;
+use yii\base\Exception;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 
@@ -64,7 +66,7 @@ class StorageService implements Storage
      * @param string $path
      *
      * @return bool
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function createDirectory(string $path): bool
     {
@@ -78,7 +80,7 @@ class StorageService implements Storage
      *
      * @param string $path
      *
-     * @throws \yii\base\ErrorException
+     * @throws ErrorException
      */
     public function deleteDirectory(string $path)
     {
@@ -93,8 +95,8 @@ class StorageService implements Storage
      * @param string $path
      *
      * @return bool
-     * @throws \yii\base\ErrorException
-     * @throws \yii\base\Exception
+     * @throws ErrorException
+     * @throws Exception
      */
     public function clearDirectory(string $path): bool
     {

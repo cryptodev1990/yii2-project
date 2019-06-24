@@ -8,6 +8,7 @@
 namespace app\extensions\http;
 
 use yii\web\Controller as BaseController;
+use yii\web\Response;
 
 /**
  * Base Http Controller class with Action DI support and SEO helper component
@@ -26,7 +27,7 @@ abstract class Controller extends BaseController
      * @param $key string
      * @param mixed $value
      *
-     * @return \yii\web\Response
+     * @return Response
      */
     public function redirectFlash($url, string $key, $value)
     {
@@ -40,7 +41,7 @@ abstract class Controller extends BaseController
      *
      * @param $url
      *
-     * @return \yii\web\Response
+     * @return Response
      */
     public function redirectQuery($url)
     {

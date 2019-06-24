@@ -12,6 +12,8 @@ use app\extensions\http\Controller;
 use app\forms\auth\ResetPasswordForm;
 use app\forms\auth\SetPasswordForm;
 use app\models\auth\User;
+use yii\base\Exception;
+use yii\web\Response;
 
 class PasswordController extends Controller
 {
@@ -41,8 +43,8 @@ class PasswordController extends Controller
      *
      * @param string $token
      *
-     * @return string|\yii\web\Response
-     * @throws \yii\base\Exception
+     * @return string|Response
+     * @throws Exception
      */
     public function actionSetPassword(string $token)
     {

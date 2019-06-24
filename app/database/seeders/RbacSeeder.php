@@ -4,6 +4,7 @@ namespace app\database\seeders;
 
 use app\core\rules\ConfirmedRule;
 use app\extensions\console\Command;
+use Exception;
 use yii\base\Action;
 use yii\rbac\ManagerInterface;
 
@@ -17,7 +18,7 @@ class RbacSeeder extends Action
 {
     /**
      * Creates basic RBAC configuration
-     * @throws \Exception
+     * @throws Exception
      */
     public function run()
     {
@@ -33,7 +34,7 @@ class RbacSeeder extends Action
      * @param ManagerInterface $manager
      *
      * @throws \yii\base\Exception
-     * @throws \Exception
+     * @throws Exception
      */
     public function baseRoles(ManagerInterface $manager)
     {
@@ -51,7 +52,7 @@ class RbacSeeder extends Action
     /**
      * @param ManagerInterface $manager
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function confirmedRule(ManagerInterface $manager)
     {

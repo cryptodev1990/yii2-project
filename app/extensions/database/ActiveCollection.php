@@ -8,7 +8,10 @@
 namespace app\extensions\database;
 
 use app\extensions\collections\BaseCollection;
-use Yii;
+use InvalidArgumentException;
+use yii\base\InvalidConfigException;
+use yii\base\NotSupportedException;
+use yii\db\Exception;
 
 /**
  * ActiveCollection component to work with strict type set of items
@@ -21,7 +24,7 @@ class ActiveCollection extends BaseCollection
     private function checkElementType($element)
     {
         if (!$element instanceof $this->_itemClass) {
-            throw new \InvalidArgumentException("All of the collection items must be an instance of the same class");
+            throw new InvalidArgumentException("All of the collection items must be an instance of the same class");
         }
     }
 
@@ -270,9 +273,9 @@ class ActiveCollection extends BaseCollection
 
     /**
      * @return bool
-     * @throws \yii\base\InvalidConfigException
-     * @throws \yii\base\NotSupportedException
-     * @throws \yii\db\Exception
+     * @throws InvalidConfigException
+     * @throws NotSupportedException
+     * @throws Exception
      */
     public function save()
     {
@@ -298,9 +301,9 @@ class ActiveCollection extends BaseCollection
 
     /**
      * @return bool
-     * @throws \yii\base\InvalidConfigException
-     * @throws \yii\base\NotSupportedException
-     * @throws \yii\db\Exception
+     * @throws InvalidConfigException
+     * @throws NotSupportedException
+     * @throws Exception
      */
     public function delete()
     {
