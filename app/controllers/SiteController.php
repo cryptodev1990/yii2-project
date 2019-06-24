@@ -13,7 +13,7 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        $this->seo->title = 'Home page';
+        seo()->title = 'Home page';
 
         return view('index');
     }
