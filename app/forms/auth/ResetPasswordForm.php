@@ -29,7 +29,7 @@ class ResetPasswordForm extends Model
         return [
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'exist', 'targetClass' => User::class, 'message' => t('errors', 'password/user-not-found')],
+            ['email', 'exist', 'targetClass' => User::class, 'message' => t('errors', 'password.user-not-found')],
         ];
     }
 
@@ -40,7 +40,7 @@ class ResetPasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => t('models', 'label/email'),
+            'email' => t('models', 'label.email'),
         ];
     }
 

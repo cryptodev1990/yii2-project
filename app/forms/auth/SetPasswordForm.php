@@ -38,7 +38,7 @@ class SetPasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'password' => t('models', 'label/new-password'),
+            'password' => t('models', 'label.new-password'),
         ];
     }
 

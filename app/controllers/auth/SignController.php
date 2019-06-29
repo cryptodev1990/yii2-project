@@ -124,7 +124,7 @@ class SignController extends Controller
                     // set error if register wasn't success
                     session()->addFlash(
                         'errors',
-                        t('errors', 'auth/register-error')
+                        t('errors', 'auth.register-error')
                     );
                 }
             }
@@ -210,7 +210,7 @@ class SignController extends Controller
                 if ($user) {
                     // email already registered without social networks
                     session()->addFlash(
-                        'errors', t('errors', 'auth/user-already-exists')
+                        'errors', t('errors', 'auth.user-already-exists')
                     );
                 } else {
                     $user = new User([
@@ -246,7 +246,7 @@ class SignController extends Controller
                         } else {
                             // some error from auth client
                             session()->addFlash(
-                                'errors', t('errors', 'auth/auth-client-error')
+                                'errors', t('errors', 'auth.auth-client-error')
                             );
 
                             return $this->redirect(['/login']);
@@ -254,7 +254,7 @@ class SignController extends Controller
                     } else {
                         // some error from user
                         session()->addFlash(
-                            'errors', t('errors', 'auth/auth-client-error')
+                            'errors', t('errors', 'auth.auth-client-error')
                         );
 
                         return $this->redirect(['/login']);

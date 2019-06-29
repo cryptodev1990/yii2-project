@@ -10,6 +10,7 @@ namespace app\models\auth;
 use app\extensions\database\ActiveRecord;
 use app\extensions\database\traits\SoftDelete;
 use yii\base\Exception;
+use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\web\IdentityInterface;
@@ -90,16 +91,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id' => '#',
-            'email' => t('models', 'label/email'),
-            'password' => t('models', 'label/password'),
-            'token' => t('models', 'label/token'),
-            'is_active' => t('models', 'label/is_active'),
-            'first_name' => t('models', 'label/first_name'),
-            'last_name' => t('models', 'label/last_name'),
-            'created_at' => t('models', 'label/registered_at'),
-            'updated_at' => t('models', 'label/updated_at'),
-            'deleted_at' => t('models', 'label/deleted_at'),
-            'data' => t('models', 'label/data'),
+            'email' => t('models', 'label.email'),
+            'password' => t('models', 'label.password'),
+            'token' => t('models', 'label.token'),
+            'is_active' => t('models', 'label.is_active'),
+            'first_name' => t('models', 'label.first_name'),
+            'last_name' => t('models', 'label.last_name'),
+            'created_at' => t('models', 'label.registered_at'),
+            'updated_at' => t('models', 'label.updated_at'),
+            'deleted_at' => t('models', 'label.deleted_at'),
+            'data' => t('models', 'label.data'),
         ];
     }
 
@@ -129,6 +130,42 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentityByEmail(string $email)
     {
         return self::findOne(['email' => $email]);
+    }
+
+    /**
+     * Log in as user with passed ID
+     *
+     * @param int $id
+     *
+     * @return bool|\yii\console\Response|Response
+     */
+    public static function loginById(int $id)
+    {
+        $user = self::findOne($id);
+
+        if ($user) {
+            return $user->login();
+        } else {
+            throw new InvalidArgumentException(t('errors', 'user.not-found'));
+        }
+    }
+
+    /**
+     * Simple login as user with passed $id without redirect
+     *
+     * @param int $id
+     *
+     * @return bool
+     */
+    public static function loginAs(int $id)
+    {
+        $user = self::findOne($id);
+
+        if ($user) {
+            return user()->login($user);
+        } else {
+            throw new InvalidArgumentException(t('errors', 'user.not-found'));
+        }
     }
 
     /**

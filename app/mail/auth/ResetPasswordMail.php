@@ -41,7 +41,7 @@ class ResetPasswordMail extends BaseObject implements Mailable
 
     public function subject(): string
     {
-        return t('mail', 'auth/reset/subject');
+        return t('mail', 'auth.reset.subject');
     }
 
     public function view(): string

@@ -51,8 +51,8 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => t('models', 'label/email'),
-            'password' => t('models', 'label/password'),
+            'email' => t('models', 'label.email'),
+            'password' => t('models', 'label.password'),
         ];
     }
 
@@ -70,12 +70,12 @@ class LoginForm extends Model
                     return $user;
                 }
             } else {
-                $this->addError('email', t('errors', 'auth/user-is-not-active'));
+                $this->addError('email', t('errors', 'auth.user-is-not-active'));
             }
         }
 
         if (!$this->hasErrors()) {
-            $this->addError('email', t('errors', 'auth/invalid-credentials'));
+            $this->addError('email', t('errors', 'auth.invalid-credentials'));
         }
 
         return null;

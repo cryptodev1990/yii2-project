@@ -37,7 +37,7 @@ class SignUpForm extends Model
             [['email', 'password', 'firstName', 'lastName'], 'required'],
             [['firstName', 'lastName'], 'string', 'min' => 2],
 
-            ['email', 'unique', 'targetClass' => User::class, 'message' => t('errors', 'auth/user-already-exists')],
+            ['email', 'unique', 'targetClass' => User::class, 'message' => t('errors', 'auth.user-already-exists')],
             ['email', 'email'],
 
             ['password', 'string', 'min' => 8, 'max' => 32],
@@ -51,10 +51,10 @@ class SignUpForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => t('models', 'label/email'),
-            'password' => t('models', 'label/password'),
-            'firstName' => t('models', 'label/first_name'),
-            'lastName' => t('models', 'label/last_name'),
+            'email' => t('models', 'label.email'),
+            'password' => t('models', 'label.password'),
+            'firstName' => t('models', 'label.first_name'),
+            'lastName' => t('models', 'label.last_name'),
         ];
     }
 

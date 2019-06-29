@@ -41,7 +41,7 @@ class UserRegistrationMail extends BaseObject implements Mailable
 
     public function subject(): string
     {
-        return t('mail', 'auth/subject');
+        return t('mail', 'auth.subject');
     }
 
     public function view(): string
