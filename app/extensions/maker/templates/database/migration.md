@@ -5,7 +5,7 @@ use yii\db\Migration;
 class {{class}} extends Migration
 {
     // TODO: change the table name
-    private $tableName = "TABLE_NAME"
+    private $tableName = "TABLE_NAME";
 
     /**
      * Setup migration
