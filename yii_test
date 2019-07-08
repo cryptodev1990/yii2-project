@@ -26,7 +26,7 @@ defined('YII_ENV') or define('YII_ENV', 'test');
 require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
 require __DIR__ . '/config/common/aliases.php';
 
-$config = require __DIR__ . '/config/codeception/console.php';
+$config = require __DIR__ . '/config/test/console.php';
 
 // Try to start application
 $application = new yii\console\Application($config);

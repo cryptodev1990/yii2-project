@@ -10,7 +10,3 @@ settings:
 extensions:
   enabled:
     - Codeception\Extension\RunFailed
-modules:
-  config:
-    Yii2:
-      configFile: config/codeception/http.php

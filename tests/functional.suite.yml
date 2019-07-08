@@ -9,4 +9,5 @@ actor: FunctionalTester
 modules:
     enabled:
         - \Helper\Functional
+        - Yii2
     step_decorators: ~
