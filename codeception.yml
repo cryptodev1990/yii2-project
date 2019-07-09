@@ -1,3 +1,4 @@
+namespace: tests
 actor_suffix: Tester
 paths:
   tests: tests
@@ -10,3 +11,7 @@ settings:
 extensions:
   enabled:
     - Codeception\Extension\RunFailed
+modules:
+  config:
+    Yii2:
+      configFile: config/test/http.php
