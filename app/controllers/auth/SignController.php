@@ -13,6 +13,7 @@ use app\core\interfaces\Sender;
 use app\extensions\http\Controller;
 use app\forms\auth\LoginForm;
 use app\forms\auth\SignUpForm;
+use app\mail\auth\UserRegistrationMail;
 use app\models\auth\AuthClient;
 use app\models\auth\User;
 use Exception;
@@ -112,7 +113,16 @@ class SignController extends Controller
             // form validation
             if ($form->validate()) {
                 // try to register a user
-                if ($user = $form->handle($mailer)) {
+                if ($user = $form->handle()) {
+                    // create an activation email
+                    $registrationEmail = new UserRegistrationMail([
+                        'email' => $form->email,
+                        'password' => $form->password,
+                        'token' => $user->token,
+                    ]);
+
+                    $mailer->send($registrationEmail);
+
                     // assign base RBAC role
                     auth()->assign(
                         auth()->getRole('user'),

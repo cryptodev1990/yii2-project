@@ -8,7 +8,6 @@
 namespace app\forms\auth;
 
 use app\core\interfaces\Sender;
-use app\mail\auth\UserRegistrationMail;
 use app\models\auth\User;
 use yii\base\Exception;
 use yii\base\Model;
@@ -59,12 +58,10 @@ class SignUpForm extends Model
     }
 
     /**
-     * @param Sender $mailer
-     *
      * @return User|null
      * @throws Exception
      */
-    public function handle(Sender $mailer)
+    public function handle()
     {
         // create a new user record
         $user = new User([
@@ -77,16 +74,7 @@ class SignUpForm extends Model
         $user->password = $this->password;
         $user->generateToken();
 
-        // create an activation email
-        $registrationEmail = new UserRegistrationMail([
-            'email' => $this->email,
-            'password' => $this->password,
-            'token' => $user->token,
-        ]);
-
         if ($user->save()) {
-            $mailer->send($registrationEmail);
-
             return $user;
         } else {
             return null;

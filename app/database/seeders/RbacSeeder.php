@@ -64,6 +64,7 @@ class RbacSeeder extends Action
         $confirmed = $manager->createPermission('confirmed');
         $confirmed->description = 'User is active';
         $confirmed->ruleName = $userConfirmedRule->name;
+
         $manager->add($confirmed);
 
         $manager->addChild(
