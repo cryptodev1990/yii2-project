@@ -5,7 +5,7 @@
         <div class="p-centered col-xs-12 col-sm-6 col-md-5 col-3 mt-4">
             {% include '@layouts/blocks/social-login.twig' %}
 
-            <div class="divider text-center mb-3" data-content="{{ t('ui', 'label/OR') }}"></div>
+            <div class="divider text-center mb-3" data-content="{{ t('ui', 'label.OR') }}"></div>
 
             <form action="{{ path(['@login']) }}" method="post">
                 {{ csrf() | raw }}
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-input-hint">
                         <a href="{{ path(['@reset-password']) }}" class="my-2">
-                            {{ t('ui', 'label/reset-password') }}
+                            {{ t('ui', 'label.reset-password') }}
                         </a>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="form-input mt-3 btn btn-primary">
-                        {{ t('ui', 'label/login') }}
+                        {{ t('ui', 'label.login') }}
                     </button>
                 </div>
 
