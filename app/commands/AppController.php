@@ -8,6 +8,8 @@
 namespace app\commands;
 
 use app\extensions\console\Command;
+use yii\base\InvalidRouteException;
+use yii\console\Exception;
 
 /**
  * App state management controller
@@ -28,7 +30,13 @@ class AppController extends Command
             $command = $action[0];
             $params = $action[1] ?? [];
 
-            app()->runAction($command, $params);
+            try {
+                app()->runAction($command, $params);
+            } catch (InvalidRouteException $e) {
+                $this->error("Invalid route");
+            } catch (Exception $e) {
+                $this->error("Error: {$e->getMessage()}");
+            }
         }
     }
 

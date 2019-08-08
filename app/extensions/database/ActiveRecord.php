@@ -7,6 +7,7 @@
 
 namespace app\extensions\database;
 
+use app\extensions\components\Printable;
 use yii\db\ActiveRecord as AR;
 use yii\web\NotFoundHttpException;
 
@@ -15,6 +16,8 @@ use yii\web\NotFoundHttpException;
  */
 class ActiveRecord extends AR
 {
+    use Printable;
+
     /**
      * The method with automatic exception throwing when not found a model
      *

@@ -82,3 +82,13 @@ You might use following commands to create new tests quickly:
 - Acceptance (web): `codecept g:cest acceptance {TEST_CLASS_NAME}`
 - Unit (logic): `codecept g:test unit {TEST_CLASS_NAME}`
 - Functional (full scenarios): `codecept g:cest functional {TEST_CLASS_NAME}`
+
+### Useful commands
+
+
+Command                 | Description
+---                     | ---
+npm run dev             | Builds an assets bundle
+codecept run tests      | Starts tests for the whole app
+supervisorctl stop all  | Stops all of the background workers 
+supervisorctl start all | Starts all of the background workers
