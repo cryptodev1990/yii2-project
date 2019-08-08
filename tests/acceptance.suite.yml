@@ -6,13 +6,14 @@
 
 actor: AcceptanceTester
 modules:
-    enabled:
-        - PhpBrowser:
-            url: http://test.dev.local
-        - \Helper\Acceptance
-        - Yii2:
-            part: ORM
-            transaction: false
-            entryScript: index-test.php
-            cleanup: false
-    step_decorators: ~
+  enabled:
+    - PhpBrowser:
+        url: http://test.dev.local
+    - \Helper\Acceptance
+    - Yii2:
+        part: ORM
+        transaction: false
+        entryScript: index-test.php
+        cleanup: false
+        configFile: config/test/http.php
+  step_decorators: ~

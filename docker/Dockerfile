@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Artem Manchenkov <artyom@manchenkoff.me>
 
 ### Update repositories
-RUN apt-get update
+RUN apt-get update && apt-get upgrade -y
 
 ### Install Apache
 RUN apt-get install -y apache2 apache2-utils curl gnupg wget
@@ -16,7 +16,7 @@ ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ### Install Node.js | npm
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
 ### Install Git, Python 3, Perl 5, PHP 7, 'nano' editor

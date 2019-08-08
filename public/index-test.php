@@ -29,7 +29,7 @@ env('HOST', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST']);
 
 // Load Yii applications requirements
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
-require __DIR__ . '/../config/common/aliases.php';
+require __DIR__ . '/../config/aliases.php';
 
 $config = require __DIR__ . '/../config/test/http.php';
 

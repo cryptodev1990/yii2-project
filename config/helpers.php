@@ -23,9 +23,13 @@ function seo()
  */
 function asset(string $filename)
 {
-    $timestamp = @filemtime(alias("@public/{$filename}"));
+    $timestamp = @filemtime(
+        alias("@public/{$filename}")
+    );
 
-    $filename = ($timestamp) ? "{$filename}?v={$timestamp}" : $filename;
+    $filename = ($timestamp)
+        ? "{$filename}?v={$timestamp}"
+        : $filename;
 
     return url($filename);
 }

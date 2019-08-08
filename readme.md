@@ -89,6 +89,8 @@ You might use following commands to create new tests quickly:
 Command                 | Description
 ---                     | ---
 npm run dev             | Builds an assets bundle
+npm run prod            | Builds an assets bundle in production mode (optimized)
+codecept build          | Builds necessary helper classes for the tests actors
 codecept run tests      | Starts tests for the whole app
 supervisorctl stop all  | Stops all of the background workers 
 supervisorctl start all | Starts all of the background workers

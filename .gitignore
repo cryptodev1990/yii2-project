@@ -13,13 +13,10 @@ Thumbs.db
 # Composer files & vendor dir
 composer.phar
 composer.lock
-vendor
-runtime
+/vendor
+/runtime
 
-# Project configuration file
+# Project files
 .env
-
-# Build assets
-public/assets
-node_modules
-package-lock.json
+/node_modules
+/package-lock.json

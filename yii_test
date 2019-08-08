@@ -11,7 +11,7 @@ use Dotenv\Dotenv;
 use yii\helpers\ArrayHelper;
 
 // Load environments configuration
-$env = new Dotenv(__DIR__);
+$env = Dotenv::create(__DIR__);
 try {
     $env->load();
 } catch (\Exception $error) {
@@ -19,12 +19,12 @@ try {
     die();
 }
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'test');
+define('YII_DEBUG', env('APP_DEBUG')); // false
+define('YII_ENV', env('APP_ENV')); // prod
 
 // Load Yii application requirements
 require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
-require __DIR__ . '/config/common/aliases.php';
+require __DIR__ . '/config/aliases.php';
 
 $config = require __DIR__ . '/config/test/console.php';
 

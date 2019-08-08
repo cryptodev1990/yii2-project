@@ -4,9 +4,10 @@
 
 actor: UnitTester
 modules:
-    enabled:
-        - Asserts
-        - \Helper\Unit
-        - Yii2:
-            part: init
-    step_decorators: ~
+  enabled:
+    - Asserts
+    - \Helper\Unit
+    - Yii2:
+        part: init
+        configFile: config/test/console.php
+  step_decorators: ~

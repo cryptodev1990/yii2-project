@@ -20,7 +20,10 @@ $codeception = [
 
         // add suffix '_test' to the database name
         'db' => [
-            'dsn' => env('DB_CONNECTION') . ':host=' . env('DB_HOST') . ';port=' . env('DB_PORT') . ';dbname=' . env('DB_NAME') . '_test',
+            'dsn' => env('DB_CONNECTION')
+                . ':host=' . env('DB_HOST')
+                . ';port=' . env('DB_PORT')
+                . ';dbname=' . env('DB_NAME') . '_test',
         ],
     ],
 ];

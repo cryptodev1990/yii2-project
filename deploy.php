@@ -15,7 +15,7 @@ require __DIR__ . '/vendor/deployer/deployer/recipe/common.php';
 use Dotenv\Dotenv;
 
 // Load environments configuration
-$env = Dotenv::create(dirname(__DIR__));
+$env = Dotenv::create(__DIR__);
 $env->load();
 
 /**
@@ -41,7 +41,7 @@ host('production')
  * Deployment settings
  */
 set('allow_anonymous_stats', false);
-set('application', env('DEPLOY_APPLICATION_NAME'));
+set('application', env('DEPLOY_APPLICATION'));
 set('ssh_multiplexing', true);
 set('keep_releases', 2);
 set('git_tty', true);

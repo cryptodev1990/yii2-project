@@ -6,12 +6,6 @@
  */
 
 /**
- * Created by Artem Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
-
-/**
  * Main CLI application configuration file
  */
 return [
@@ -23,10 +17,15 @@ return [
 
     'controllerNamespace' => 'app\commands',
 
+    'basePath' => '@app',
+    'vendorPath' => '@vendor',
+    'viewPath' => '@resources/views',
+    'runtimePath' => '@runtime',
+
     'controllerMap' => [
         // custom configuration
         'migrate' => [
-            'class' => \yii\console\controllers\MigrateController::class,
+            'class' => yii\console\controllers\MigrateController::class,
             'migrationPath' => [
                 // Application migrations
                 '@app/database/migrations',
@@ -37,77 +36,48 @@ return [
             ],
         ],
         'serve' => [
-            'class' => \yii\console\controllers\ServeController::class,
-            'docroot' => '@public'
+            'class' => yii\console\controllers\ServeController::class,
+            'docroot' => '@public',
         ],
         'make' => [
-            'class' => \app\extensions\maker\commands\MakeController::class,
+            'class' => app\extensions\maker\commands\MakeController::class,
         ],
     ],
-
-    'basePath' => '@app',
-    'vendorPath' => '@vendor',
-    'viewPath' => '@resources/views',
-    'runtimePath' => '@runtime',
 
     /**
      * Components and modules for pre-loading
      */
-    'bootstrap' => [],
+    'bootstrap' => [
+        // components and modules will be here
+    ],
 
     /**
      * Application modules
      */
-    'modules' => [],
+    'modules' => [
+        // modules configuration will be here
+    ],
 
     /**
      * Dependency Injection container
      */
-    'container' => require __DIR__ . '/common/container.php',
-
-    /**
-     * Application components
-     */
-    'components' => [
-        /**
-         * Database connection
-         */
-        'db' => require __DIR__ . '/common/db.php',
-
-        /**
-         * Mailer component
-         */
-        'mailer' => require __DIR__ . '/common/mail.php',
-
-        /**
-         * Application cache component
-         */
-        'cache' => [
-            'class' => \yii\caching\FileCache::class,
-        ],
-
-        /**
-         * Application logger component
-         */
-        'log' => [
-            'targets' => [
-                [
-                    'class' => \yii\log\FileTarget::class,
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-
-        /**
-         * RBAC component settings
-         */
-        'authManager' => [
-            'class' => \yii\rbac\DbManager::class,
-        ],
-    ],
+    'container' => require __DIR__ . '/container.php',
 
     /**
      * Application parameters
      */
-    'params' => require __DIR__ . '/common/params.php',
+    'params' => require __DIR__ . '/params.php',
+
+    /**
+     * Application components
+     */
+    'components' => yii\helpers\ArrayHelper::merge(
+        // common application components
+        require __DIR__ . '/common.php',
+
+        // current application components only
+        [
+            // ...
+        ]
+    ),
 ];

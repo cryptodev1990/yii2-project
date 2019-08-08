@@ -6,7 +6,7 @@
  */
 
 return [
-    'class' => \yii\db\Connection::class,
+    'class' => yii\db\Connection::class,
 
     // connection settings
     'dsn' => env('DB_CONNECTION')

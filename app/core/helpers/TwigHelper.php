@@ -8,7 +8,7 @@
 namespace app\core\helpers;
 
 use Closure;
-use Manchenkov\Yii\Recaptcha\ReCaptchaWidget;
+use manchenkov\yii\recaptcha\ReCaptchaWidget;
 use yii\base\BaseObject;
 use yii\base\Model;
 

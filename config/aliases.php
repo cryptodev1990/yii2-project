@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by Artem Manchenkov
+ * Created by Artyom Manchenkov
  * artyom@manchenkoff.me
  * manchenkoff.me © 2019
  */
@@ -8,7 +8,7 @@
 /**
  * Root directory of the project
  */
-$root = dirname(dirname(__DIR__));
+$root = dirname(__DIR__);
 
 /**
  * Default app aliases, use alias() function to with it

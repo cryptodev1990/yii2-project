@@ -6,7 +6,7 @@
  */
 
 return [
-    'class' => \yii\swiftmailer\Mailer::class,
+    'class' => yii\swiftmailer\Mailer::class,
     'viewPath' => '@resources/mail',
     'useFileTransport' => env('MAIL_DEBUG'),
 
@@ -24,7 +24,7 @@ return [
     ],
 
     'view' => [
-        'class' => \yii\web\View::class,
+        'class' => yii\web\View::class,
         'defaultExtension' => 'twig',
         'renderers' => [
             'twig' => require __DIR__ . '/twig.php',

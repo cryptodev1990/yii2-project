@@ -23,10 +23,10 @@
   "devDependencies": {
     "clean-webpack-plugin": "^2.0.2",
     "cross-env": "^5.2.0",
-    "laravel-mix": "^4.0.15",
+    "laravel-mix": "^4.1.2",
     "moment": "^2.24.0",
     "resolve-url-loader": "^2.3.2",
-    "sass": "^1.19.0",
+    "sass": "^1.22.9",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
   },

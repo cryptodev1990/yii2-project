@@ -18,7 +18,7 @@ $env = Dotenv::create(YII_APP_BASE_PATH);
 
 try {
     $env->load();
-} catch (\Exception $error) {
+} catch (Exception $error) {
     alert("App environment initialization failed");
     die();
 }

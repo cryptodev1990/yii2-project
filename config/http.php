@@ -42,15 +42,119 @@ return [
     /**
      * Dependency Injection container
      */
-    'container' => require __DIR__ . '/common/container.php',
-
-    /**
-     * Application components
-     */
-    'components' => require __DIR__ . '/components.php',
+    'container' => require __DIR__ . '/container.php',
 
     /**
      * Application parameters
      */
-    'params' => require __DIR__ . '/common/params.php',
+    'params' => require __DIR__ . '/params.php',
+
+    /**
+     * Application components
+     */
+    'components' => yii\helpers\ArrayHelper::merge(
+        // common application components
+        require __DIR__ . '/common.php',
+
+        // current application components only
+        [
+            /**
+             * Web Request component
+             */
+            'request' => [
+                'class' => app\extensions\http\Request::class,
+                'baseUrl' => '',
+                'cookieValidationKey' => env('SESSION_KEY'),
+                'csrfParam' => '_csrf',
+                //'languages' => ['ru', 'en'],
+            ],
+
+            /**
+             * User identity component
+             */
+            'user' => [
+                'identityClass' => app\models\auth\User::class,
+                'enableAutoLogin' => true,
+
+                'identityCookie' => [
+                    'name' => '_identity',
+                    'httpOnly' => true,
+                ],
+
+                'loginUrl' => ['auth/sign/login'],
+            ],
+
+            /**
+             * Social Auth component
+             * Default: Facebook, Google, VK, Github
+             */
+            'authClientCollection' => [
+                'class' => yii\authclient\Collection::class,
+                'httpClient' => [
+                    'transport' => yii\httpclient\CurlTransport::class,
+                ],
+                'clients' => [
+                    'google' => [
+                        'class' => yii\authclient\clients\Google::class,
+                        'clientId' => env('GOOGLE_AUTH_CLIENT_ID'),
+                        'clientSecret' => env('GOOGLE_AUTH_CLIENT_SECRET'),
+                        'returnUrl' => env('HOST') . '/social-auth/google',
+                    ],
+                    'facebook' => [
+                        'class' => yii\authclient\clients\Facebook::class,
+                        'clientId' => env('FACEBOOK_AUTH_CLIENT_ID'),
+                        'clientSecret' => env('FACEBOOK_AUTH_CLIENT_SECRET'),
+                        'returnUrl' => env('HOST') . '/social-auth/facebook',
+                    ],
+                    'vk' => [
+                        'class' => yii\authclient\clients\VKontakte::class,
+                        'clientId' => env('VK_AUTH_CLIENT_ID'),
+                        'clientSecret' => env('VK_AUTH_CLIENT_SECRET'),
+                        'returnUrl' => env('HOST') . '/social-auth/vk',
+                        'scope' => ['email'],
+                    ],
+                    'github' => [
+                        'class' => yii\authclient\clients\GitHub::class,
+                        'clientId' => env('GITHUB_AUTH_CLIENT_ID'),
+                        'clientSecret' => env('GITHUB_AUTH_CLIENT_SECRET'),
+                        'returnUrl' => env('HOST') . '/social-auth/github',
+                    ],
+                ],
+            ],
+
+            /**
+             * Global error handler
+             */
+            'errorHandler' => [
+                // ErrorController
+                'errorAction' => 'error/index',
+            ],
+
+            /**
+             * Assets file manager
+             */
+            'assetManager' => [
+                'bundles' => false,
+            ],
+
+            /**
+             * Application view renderer component
+             */
+            'view' => [
+                'class' => yii\web\View::class,
+                'defaultExtension' => 'twig',
+                'renderers' => [
+                    'twig' => require __DIR__ . '/twig.php',
+                ],
+            ],
+
+            /**
+             * SEO helper component
+             */
+            'seo' => [
+                'class' => app\extensions\http\Seo::class,
+                'config' => require __DIR__ . '/seo.php',
+            ],
+        ]
+    ),
 ];
