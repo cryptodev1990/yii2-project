@@ -27,6 +27,7 @@ class TwigHelper extends BaseObject
             'config' => 'config', // Get application config value by $key argument
             'session' => 'session', // Returns session component
             'request' => 'request', // Returns request component
+            'formatter' => 'formatter', // Returns formatter component
 
             // custom TwigHelper functions
             'csrf' => self::csrf(),
