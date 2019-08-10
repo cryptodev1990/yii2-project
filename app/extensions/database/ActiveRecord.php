@@ -28,13 +28,7 @@ class ActiveRecord extends AR
      */
     public static function findOrFail($condition)
     {
-        $model = static::findOne($condition);
-
-        if ($model !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException();
-        }
+        return static::find()->where($condition)->oneOrFail();
     }
 
     /**

@@ -21,50 +21,26 @@ use yii\web\NotFoundHttpException;
 class ActiveQuery extends AQ
 {
     /**
-     * Gets an ActiveRecord primary key name
-     * @return mixed
-     */
-    private function primaryKey()
-    {
-        /** @var ActiveRecord $record */
-        $record = get_class($this->primaryModel);
-
-        return $record::primaryKey()[0] ?? null;
-    }
-
-    /**
      * Gets IDs of result records
      * @return array
      * @throws InvalidConfigException
      */
-    public function ids()
+    public function ids(string $column = 'id')
     {
-        $pk = $this->primaryKey();
-
-        if ($pk) {
-            return $this->select($pk)->column();
-        } else {
-            throw new InvalidConfigException("Primary Key not found");
-        }
+        return $this->select($column)->column();
     }
 
     /**
-     * Filter by PK column
+     * Filter by ID column
      *
      * @param int $id
      *
      * @return ActiveQuery
      * @throws InvalidConfigException
      */
-    public function byID(int $id)
+    public function byID(int $id, string $column = 'id')
     {
-        $pk = $this->primaryKey();
-
-        if ($pk) {
-            return $this->andWhere([$pk => $id]);
-        } else {
-            throw new InvalidConfigException("Primary Key not found");
-        }
+        return $this->andWhere([$column => $id]);
     }
 
     /**
@@ -86,28 +62,37 @@ class ActiveQuery extends AQ
     /**
      * Checks if JSON key contains in a column value
      *
-     * @param string $column
+     * Usage: $query->jsonKeyExists('table_column.some.json.key')
+     *
      * @param $key
      *
      * @return ActiveQuery
      */
-    public function jsonKeyExists(string $column, $key)
+    public function jsonKeyExists(string $key)
     {
-        return $this->jsonWhere($column, $key, 'NULL', 'IS NOT');
+        return $this->jsonWhere($key, 'NULL', 'IS NOT');
     }
 
     /**
      * Search method for JSON columns
      *
-     * @param string $column
+     * Usage:
+     *  $query->jsonWhere('table_column.some.json.key', 'equals_value')
+     *  $query->jsonWhere('table_column.some.json.key', 'lower_value', '>')
+     *
      * @param string $key
      * @param $value
      * @param string $operator
      *
      * @return ActiveQuery
      */
-    public function jsonWhere(string $column, string $key, $value, string $operator = '=')
+    public function jsonWhere(string $key, $value, string $operator = '=')
     {
+        $keys = explode('.', $key);
+
+        $column = array_shift($keys);
+        $key = implode('.', $keys);
+
         if (is_array($value) && $operator == '=') {
             $operator = 'in';
             $value = "(" . implode(',', $value) . ")";
@@ -153,5 +138,53 @@ class ActiveQuery extends AQ
         $data = parent::all($db);
 
         return ($this->asArray) ? $data : $this->collection($data);
+    }
+
+    /**
+     * Returns the first record sorted by column name
+     *
+     * @param string $column
+     *
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    protected function first(string $column = 'created_at')
+    {
+        return $this->orderBy($column . ' asc')->one();
+    }
+
+    /**
+     * Returns the last record sorted by column name
+     *
+     * @param string $column
+     *
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    protected function last(string $column = 'created_at')
+    {
+        return $this->orderBy($column . ' desc')->one();
+    }
+
+    /**
+     * Returns the last record sorted by column name
+     *
+     * @param string $column
+     *
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    protected function newest(string $column = 'created_at')
+    {
+        return $this->last($column);
+    }
+
+    /**
+     * Returns the first record sorted by column name
+     *
+     * @param string $column
+     *
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    protected function oldest(string $column = 'created_at')
+    {
+        return $this->first($column);
     }
 }
