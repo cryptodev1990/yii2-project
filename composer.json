@@ -41,6 +41,7 @@
     "codeception/base": "^3.0",
     "phpunit/phpunit": "~7",
     "guzzlehttp/guzzle": "^6.3",
-    "symfony/event-dispatcher": "4.2.8"
+    "symfony/event-dispatcher": "<=4.2.8",
+    "symfony/browser-kit": ">=2.7 <=4.2.4"
   }
 }
