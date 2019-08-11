@@ -60,13 +60,13 @@ To deploy the last '**master**' commit of the project use following command:
 
 `dep deploy` (if installed globally) 
 or 
-`./vendor/bin/dep deploy` (by Composer)
+`vendor/bin/dep deploy` (by Composer)
 
 Also, for local deploy functions (like npm build, composer install etc) use:
  
 `dep local` 
 or
-`./vendor/bin/dep local`
+`vendor/bin/dep local`
 
 ### Modules
 If you want to create a new application module, just simple run `php yii make/module Name` 
@@ -74,14 +74,15 @@ or `php yii make/api Name` if API-preconfigured module is necessary
 
 ### Tests
 Project contains preconfigured tests directory with necessary modules loading. 
-To start all suites use a command `./vendor/bin/codecept run`
+To start all suites use a command `vendor/bin/codecept run`. Also, you have to create another database with 
+`_test` suffix and apply necessary migrations by executing `php yii_test migrate`
 
 ##### Create new tests
 You might use following commands to create new tests quickly:
 
-- Acceptance (web): `./vendor/bin/codecept g:cest acceptance {TEST_CLASS_NAME}`
-- Unit (logic): `./vendor/bin/codecept g:test unit {TEST_CLASS_NAME}`
-- Functional (http): `./vendor/bin/codecept g:cest functional {TEST_CLASS_NAME}`
+- Acceptance (web): `vendor/bin/codecept g:cest acceptance {TEST_NAME}`
+- Unit (logic): `vendor/bin/codecept g:test unit {TEST_NAME}`
+- Functional (http): `vendor/bin/codecept g:cest functional {TEST_NAME}`
 
 ### Useful commands
 
@@ -90,7 +91,7 @@ Command                              | Description
 ---                                  | ---
 npm run dev                          | Builds an assets bundle
 npm run prod                         | Builds an assets bundle in production mode (optimized)
-./vendor/bin/codecept build          | Builds necessary helper classes for the tests actors
-./vendor/bin/codecept run tests      | Starts tests for the whole app
+vendor/bin/codecept build          | Builds necessary helper classes for the tests actors
+vendor/bin/codecept run tests      | Starts tests for the whole app
 supervisorctl stop all               | Stops all of the background workers 
 supervisorctl start all              | Starts all of the background workers
