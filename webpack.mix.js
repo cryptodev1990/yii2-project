@@ -5,40 +5,16 @@
  */
 
 let mix = require('laravel-mix');
-const cleanPlugin = require('clean-webpack-plugin');
-
-// SVG inline encoding
-class SvgLoader {
-    webpackRules() {
-        return {
-            test: /\.svg/,
-            loaders: [
-                {loader: 'svg-url-loader'}
-            ]
-        }
-    }
-}
-
-// Build directory cleaner
-class Cleaner {
-    webpackPlugins() {
-        return new cleanPlugin();
-    }
-}
+let plugins = require('./resources/assets/mix/plugins');
 
 mix.disableNotifications();
-mix.extend('svg', new SvgLoader());
-mix.extend('clean', new Cleaner());
+mix.extend('svg', new plugins.SvgLoader());
+mix.extend('clean', new plugins.Cleaner());
 
 mix
     .setPublicPath('public/assets')
-
-    // Clean assets build directory
     .clean()
-
-    // SVG URL loader (image/data)
     .svg()
-
     .copyDirectory('resources/assets/static', 'public/assets/static')
 
     // JavaScript files

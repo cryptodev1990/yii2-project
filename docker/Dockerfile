@@ -51,19 +51,19 @@ RUN curl -LO https://deployer.org/deployer.phar && \
 EXPOSE 80 443
 
 ### Set PHP configrations
-ADD ./docker/conf/php/php.ini /etc/php/7.2/apache2/php.ini
-ADD ./docker/conf/php/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
+ADD ./docker/php/php.ini /etc/php/7.2/apache2/php.ini
+ADD ./docker/php/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 
 ### Set Apache configrations
-ADD ./docker/conf/apache/apache2.conf /etc/apache2/apache2.conf
-ADD ./docker/conf/apache/ports.conf /etc/apache2/ports.conf
+ADD ./docker/apache/apache2.conf /etc/apache2/apache2.conf
+ADD ./docker/apache/ports.conf /etc/apache2/ports.conf
 
 ### Set Supervisor configrations
-COPY ./docker/conf/supervisor /etc/supervisor/conf.d
+COPY ./docker/supervisor /etc/supervisor/conf.d
 
 ### Remove previous Apache's hosts files
 RUN rm -R /etc/apache2/sites-enabled/* /etc/apache2/sites-available/* /var/www/*
-COPY ./docker/conf/apache/hosts /etc/apache2/sites-enabled
+COPY ./docker/apache/hosts /etc/apache2/sites-enabled
 
 ### Generate SSL certificate
 RUN mkdir /etc/apache2/ssl
@@ -75,7 +75,7 @@ RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj \
 WORKDIR /var/www
 
 ### Base init command (without overload)
-ADD ./docker/conf/entry.sh /usr/local/bin/start-container
+ADD ./docker/entry.sh /usr/local/bin/start-container
 ENTRYPOINT ["/bin/bash", "/usr/local/bin/start-container"]
 
 ### Base command (with overload)

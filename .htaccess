@@ -6,5 +6,6 @@ RewriteEngine on
 
 # Basic URL routing settings
 RewriteCond %{REQUEST_FILENAME} !-f
+
 # Rewrite all other requests to the 'public' directory
 RewriteRule ^(.+)?$ public/$1 [PT,L]
