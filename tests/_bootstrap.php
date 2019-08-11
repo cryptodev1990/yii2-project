@@ -25,4 +25,4 @@ try {
 
 // Load Yii application requirements
 require YII_APP_BASE_PATH . '/vendor/yiisoft/yii2/Yii.php';
-require YII_APP_BASE_PATH . '/config/common/aliases.php';
+require YII_APP_BASE_PATH . '/config/aliases.php';

@@ -47,10 +47,6 @@ RUN curl -LO https://deployer.org/deployer.phar && \
     mv deployer.phar /usr/local/bin/dep && \
     chmod +x /usr/local/bin/dep
 
-### Codeception test framework (globally installation)
-RUN curl -LsS https://codeception.com/codecept.phar -o /usr/local/bin/codecept && \
-    chmod a+x /usr/local/bin/codecept
-
 ### Expose ports [Apache, Apache HTTPS/SSL]
 EXPOSE 80 443
 

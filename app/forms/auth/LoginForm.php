@@ -8,7 +8,7 @@
 namespace app\forms\auth;
 
 use app\models\auth\User;
-use Manchenkov\Yii\Recaptcha\ReCaptchaValidator;
+use manchenkov\yii\recaptcha\ReCaptchaValidator;
 use yii\base\Model;
 
 class LoginForm extends Model

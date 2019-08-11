@@ -8,6 +8,6 @@ modules:
     - Asserts
     - \Helper\Unit
     - Yii2:
-        part: init
+        part: [orm, email, fixtures]
         configFile: config/test/console.php
   step_decorators: ~

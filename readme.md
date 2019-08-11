@@ -74,23 +74,23 @@ or `php yii make/api Name` if API-preconfigured module is necessary
 
 ### Tests
 Project contains preconfigured tests directory with necessary modules loading. 
-To start all suites use a command `./vendor/bin/codecept run tests` or `codecept run tests` (if installed globally)
+To start all suites use a command `./vendor/bin/codecept run`
 
 ##### Create new tests
 You might use following commands to create new tests quickly:
 
-- Acceptance (web): `codecept g:cest acceptance {TEST_CLASS_NAME}`
-- Unit (logic): `codecept g:test unit {TEST_CLASS_NAME}`
-- Functional (full scenarios): `codecept g:cest functional {TEST_CLASS_NAME}`
+- Acceptance (web): `./vendor/bin/codecept g:cest acceptance {TEST_CLASS_NAME}`
+- Unit (logic): `./vendor/bin/codecept g:test unit {TEST_CLASS_NAME}`
+- Functional (http): `./vendor/bin/codecept g:cest functional {TEST_CLASS_NAME}`
 
 ### Useful commands
 
 
-Command                 | Description
----                     | ---
-npm run dev             | Builds an assets bundle
-npm run prod            | Builds an assets bundle in production mode (optimized)
-codecept build          | Builds necessary helper classes for the tests actors
-codecept run tests      | Starts tests for the whole app
-supervisorctl stop all  | Stops all of the background workers 
-supervisorctl start all | Starts all of the background workers
+Command                              | Description
+---                                  | ---
+npm run dev                          | Builds an assets bundle
+npm run prod                         | Builds an assets bundle in production mode (optimized)
+./vendor/bin/codecept build          | Builds necessary helper classes for the tests actors
+./vendor/bin/codecept run tests      | Starts tests for the whole app
+supervisorctl stop all               | Stops all of the background workers 
+supervisorctl start all              | Starts all of the background workers

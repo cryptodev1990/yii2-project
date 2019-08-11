@@ -11,7 +11,7 @@ modules:
         url: http://test.dev.local
     - \Helper\Acceptance
     - Yii2:
-        part: ORM
+        part: [orm, fixtures]
         transaction: false
         entryScript: index-test.php
         cleanup: false
