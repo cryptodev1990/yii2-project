@@ -4,8 +4,7 @@ services:
   www:
     container_name: yii_server
     build:
-      context: ./
-      dockerfile: ./docker/Dockerfile
+      context: ./server
     ports:
       - 80:80
       - 443:443

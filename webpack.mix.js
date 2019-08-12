@@ -4,18 +4,49 @@
  * manchenkoff.me © 2019
  */
 
-let mix = require('laravel-mix');
-let plugins = require('./resources/assets/mix/plugins');
+const mix = require('./resources/assets/mix/main');
 
-mix.disableNotifications();
-mix.extend('svg', new plugins.SvgLoader());
-mix.extend('clean', new plugins.Cleaner());
+/**
+ * Mix common API
+ *
+ * 1. JavaScript
+ *
+ * mix.js(src, output);
+ * mix.js([src1, src2, ...], output);
+ * mix.extract(['vue', 'jquery']);
+ *
+ * 2. Styles & Preprocessors
+ *
+ * mix.sass(src, output);
+ * mix.less(src, output);
+ * mix.stylus(src, output);
+ * mix.postCss(src, output);
+ *
+ * 3. Files and folders
+ *
+ * mix.combine(files, destination);
+ * mix.copy(from, to);
+ * mix.copyDirectory(fromDir, toDir);
+ * mix.minify(file);
+ *
+ * 4. Webpack API
+ *
+ * mix.autoload({}); <-- Will be passed to Webpack's ProvidePlugin.
+ * mix.webpackConfig({}); <-- Override webpack.config.js, without editing the file directly.
+ * mix.then(function () {}) <-- Will be triggered each time Webpack finishes building.
+ * mix.extend(name, handler) <-- Extend Mix's API with your own components.
+ *
+ * 5. Others
+ *
+ * mix.sourceMaps();
+ * mix.version();
+ * mix.disableNotifications();
+ * mix.setPublicPath('path/to/public');
+ *
+ */
 
 mix
-    .setPublicPath('public/assets')
-    .clean()
-    .svg()
-    .copyDirectory('resources/assets/static', 'public/assets/static')
+    .copy('resources/assets/static', 'public/assets/static')
 
     // JavaScript files
     .js('resources/assets/js/index.js', 'js/app.js')

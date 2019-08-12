@@ -42,28 +42,23 @@ RUN apt-get update && \
 ### PHP Composer, Supervisor
 RUN apt-get install -y composer supervisor
 
-### PHP Deployer extension (globally installation)
-RUN curl -LO https://deployer.org/deployer.phar && \
-    mv deployer.phar /usr/local/bin/dep && \
-    chmod +x /usr/local/bin/dep
-
 ### Expose ports [Apache, Apache HTTPS/SSL]
 EXPOSE 80 443
 
 ### Set PHP configrations
-ADD ./docker/php/php.ini /etc/php/7.2/apache2/php.ini
-ADD ./docker/php/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
+ADD ./php/php.ini /etc/php/7.2/apache2/php.ini
+ADD ./php/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 
 ### Set Apache configrations
-ADD ./docker/apache/apache2.conf /etc/apache2/apache2.conf
-ADD ./docker/apache/ports.conf /etc/apache2/ports.conf
+ADD ./apache/apache2.conf /etc/apache2/apache2.conf
+ADD ./apache/ports.conf /etc/apache2/ports.conf
 
 ### Set Supervisor configrations
-COPY ./docker/supervisor /etc/supervisor/conf.d
+COPY ./supervisor /etc/supervisor/conf.d
 
 ### Remove previous Apache's hosts files
 RUN rm -R /etc/apache2/sites-enabled/* /etc/apache2/sites-available/* /var/www/*
-COPY ./docker/apache/hosts /etc/apache2/sites-enabled
+COPY ./apache/hosts /etc/apache2/sites-enabled
 
 ### Generate SSL certificate
 RUN mkdir /etc/apache2/ssl
@@ -75,7 +70,7 @@ RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj \
 WORKDIR /var/www
 
 ### Base init command (without overload)
-ADD ./docker/entry.sh /usr/local/bin/start-container
+ADD ./entry.sh /usr/local/bin/start-container
 ENTRYPOINT ["/bin/bash", "/usr/local/bin/start-container"]
 
 ### Base command (with overload)
