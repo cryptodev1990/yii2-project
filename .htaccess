@@ -4,8 +4,5 @@ RewriteEngine on
 #RewriteCond %{HTTPS} !=on
 #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Basic URL routing settings
-RewriteCond %{REQUEST_FILENAME} !-f
-
 # Rewrite all other requests to the 'public' directory
 RewriteRule ^(.+)?$ public/$1 [PT,L]
