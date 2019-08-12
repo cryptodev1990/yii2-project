@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 
 // Load environments configuration
 $env = Dotenv::create(__DIR__);
+
 try {
     $env->load();
 } catch (\Exception $error) {

@@ -104,16 +104,6 @@ task('deploy:migrate', function () {
     run('php {{release_path}}/yii migrate --interactive=0');
 });
 
-desc('Creating symlink to release');
-task('deploy:symlink', function () {
-    // remove older public directory
-    run('rm {{public_path}} -rf');
-
-    // create custom symlink
-    run("cd {{deploy_path}} && {{bin/symlink}} {{release_path}} {{public_path}}");
-    run("cd {{deploy_path}} && rm release"); // Remove release link.
-});
-
 // Use 'dep deploy'
 desc('Deploy your project');
 task('deploy', [
@@ -136,20 +126,6 @@ task('deploy', [
     'cleanup',
     'success',
 ]);
-
-// Use 'dep local'
-desc('Local deploy (Docker preferred)');
-task('local', function () {
-    run('supervisorctl stop all');
-
-    run('composer install');
-    run('npm install');
-
-    run('php yii migrate --interactive=0');
-    run('npm run build');
-
-    run('supervisorctl start all');
-})->local();
 
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');

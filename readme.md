@@ -62,12 +62,6 @@ To deploy the last '**master**' commit of the project use following command:
 or 
 `vendor/bin/dep deploy` (by Composer)
 
-Also, for local deploy functions (like npm build, composer install etc) use:
- 
-`dep local` 
-or
-`vendor/bin/dep local`
-
 ### Modules
 If you want to create a new application module, just simple run `php yii make/module Name` 
 or `php yii make/api Name` if API-preconfigured module is necessary
