@@ -109,7 +109,7 @@ task('deploy:symlink', function () {
 
     // create custom symlink
     run("cd {{deploy_path}} && {{bin/symlink}} {{release_path}} {{public_path}}");
-    run("cd {{deploy_path}} && rm current"); // Remove release link.
+    run("cd {{deploy_path}} && rm release"); // Remove release link.
 })->desc('Creating symlink to release');
 
 // Use 'dep deploy'
