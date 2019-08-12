@@ -3,6 +3,7 @@
   "description": "Custom Yii 2 application boilerplate",
   "type": "project",
   "license": "MIT",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Artem Manchenkov",
@@ -26,7 +27,7 @@
     "php": ">=7.2",
     "ext-pcntl": "*",
     "ext-json": "*",
-    "yiisoft/yii2": "^2.0",
+    "yiisoft/yii2": "^2.0.24",
     "yiisoft/yii2-twig": "^2.2",
     "yiisoft/yii2-swiftmailer": "^2.1",
     "tebazil/yii2-db-seeder": "^0.0.0",

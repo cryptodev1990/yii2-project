@@ -18,7 +18,7 @@
 - Carbon - [github](https://github.com/briannesbitt/carbon)
 - Stringy - [github](https://github.com/danielstjules/Stringy)
 - Arrayzy - [github](https://github.com/bocharsky-bw/Arrayzy)
-- Deployer - [github](https://github.com/deployphp/deployer)
+- Deployer - [github](https://github.com/deployphp/deployer) (requires `acl` on the server)
 - Laravel mix - [website](https://laravel-mix.com)
 
 ### Installation

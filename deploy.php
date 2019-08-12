@@ -7,6 +7,19 @@
 
 namespace Deployer;
 
+/**
+ * To run 'sudo' commands, you need to put this line into the file /etc/sudoers.d/USERNAME
+ *
+ * USERNAME ALL=NOPASSWD:ALL
+ *
+ * Or you can enable TTY for ask password
+ *
+ * run(..., ['tty' => true])
+ *
+ * Also, check that you have Github permissions by executing from your server:
+ * ssh git@github.com
+ */
+
 // Include configuration files
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/vendor/deployer/deployer/recipe/common.php';
@@ -44,7 +57,7 @@ set('allow_anonymous_stats', false);
 set('application', env('DEPLOY_APPLICATION'));
 set('ssh_multiplexing', true);
 set('keep_releases', 2);
-set('git_tty', true);
+set('git_tty', false);
 
 /**
  * Shared files/dirs between deploys
