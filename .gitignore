@@ -18,5 +18,6 @@ composer.lock
 
 # Project files
 .env
+.env.deploy
 /node_modules
 /package-lock.json

@@ -79,33 +79,40 @@ set('writable_dirs', ['runtime']);
 /**
  * Tasks
  */
-desc('Stop supervisor service');
 task('supervisor:stop', function () {
     run('sudo supervisorctl stop all');
-});
+})->desc('Stop supervisor service');
 
-desc('Start supervisor service');
 task('supervisor:start', function () {
     run('sudo supervisorctl start all');
-});
+})->desc('Start supervisor service');
 
-desc('Install NPM packages');
 task('npm:install', function () {
     run('cd {{release_path}} && npm install');
-});
+})->desc('Install NPM packages');
 
-desc('Build NPM assets');
 task('npm:build', function () {
     run('cd {{release_path}} && npm run production');
-});
+})->desc('Build NPM assets');
 
-desc('Apply database migrations');
 task('deploy:migrate', function () {
     run('php {{release_path}}/yii migrate --interactive=0');
-});
+})->desc('Apply database migrations');
+
+task('deploy:env', function () {
+    upload('.env.deploy', '{{deploy_path}}/shared/.env');
+})->desc('Deploy ENV production config');
+
+task('deploy:symlink', function () {
+    // remove older public directory
+    run('rm {{public_path}} -rf');
+
+    // create custom symlink
+    run("cd {{deploy_path}} && {{bin/symlink}} {{release_path}} {{public_path}}");
+    run("cd {{deploy_path}} && rm current"); // Remove release link.
+})->desc('Creating symlink to release');
 
 // Use 'dep deploy'
-desc('Deploy your project');
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
@@ -113,6 +120,7 @@ task('deploy', [
     'deploy:lock',
     'deploy:release',
     'deploy:update_code',
+    'deploy:env',
     'deploy:shared',
     'deploy:writable',
     'deploy:vendors',
@@ -125,7 +133,7 @@ task('deploy', [
     'supervisor:start',
     'cleanup',
     'success',
-]);
+])->desc('Deploy your project');
 
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
