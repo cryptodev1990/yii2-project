@@ -46,7 +46,7 @@ task('npm:build', function () {
 );
 
 task('yii:migrate', function () {
-    run('php {{release_path}}/yii migrate --interactive=0');
+    run('{{bin/php}} {{release_path}}/yii migrate --interactive=0');
 })->desc(
     'Apply database migrations'
 );
