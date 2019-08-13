@@ -1,14 +1,14 @@
 {% extends '@mails/html.twig' %}
 
 {% block content %}
-    <h1>{{ t('mail', 'auth/registration-complete') }}</h1>
+    <h1>{{ t('mail', 'auth.registration-complete') }}</h1>
 
-    <p>{{ t('mail', 'auth/credentials') }}</p>
+    <p>{{ t('mail', 'auth.credentials') }}</p>
 
     <ul>
-        <li>{{ t('mail', 'auth/email') }}: <b>{{ email }}</b></li>
-        <li>{{ t('mail', 'auth/password') }}: <b>{{ password }}</b></li>
+        <li>{{ t('mail', 'auth.email') }}: <b>{{ email }}</b></li>
+        <li>{{ t('mail', 'auth.password') }}: <b>{{ password }}</b></li>
     </ul>
 
-    <a href="{{ link }}">{{ t('mail', 'auth/complete-registration-button') }}</a>
+    <a href="{{ link }}">{{ t('mail', 'auth.complete-registration-button') }}</a>
 {% endblock %}

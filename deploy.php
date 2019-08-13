@@ -13,7 +13,10 @@ require __DIR__ . '/config/deploy/tasks.php';
 /**
  * Deploy common API
  *
- * dep deploy [options] [--] [stage | host]
+ * dep [task] [options] [stage]
+ *
+ * dep deploy production
+ * dep deploy stage
  * dep deploy --branch=master
  * dep deploy --parallel
  * dep deploy --file=file.php

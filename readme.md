@@ -50,11 +50,9 @@ You only have to adjust the specific section in the `.env` file to start using i
 Variables description:
 - **DEPLOY_REPOSITORY**: Git repository project URL
 - **DEPLOY_HOST**: Remote host address to deploy
-- **DEPLOY_APPLICATION_NAME**: Project directory name
 - **DEPLOY_USER**: Remote connection user
-- **DEPLOY_ROOT_PATH**: Base upload directory on the server, example: `~/www/{{hostname}}`
-- **DEPLOY_PROJECT_PATH**: Base working directory for project (contains releases, symlinks, etc), example: `{{root_path}}/{{application}}`
-- **DEPLOY_PUBLIC_PATH**: Public directory contains web-accessible files, example: `{{root_path}}/public_html` 
+- **DEPLOY_PATH**: Base upload directory on the server, example: `~/www/{{hostname}}`
+- **DEPLOY_PUBLIC_PATH**: Public directory contains web-accessible files, example: `{{deploy_path}}/public_html` 
 
 To deploy the last '**master**' commit of the project use following command: 
 
