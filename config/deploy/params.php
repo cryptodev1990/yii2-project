@@ -23,7 +23,6 @@ $env->load();
 /**
  * Project settings
  */
-set('application', env('DEPLOY_APPLICATION'));
 set('repository', env('DEPLOY_REPOSITORY'));
 set('hostname', env('DEPLOY_HOST'));
 set('user', env('DEPLOY_USER'));
