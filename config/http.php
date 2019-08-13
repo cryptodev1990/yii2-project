@@ -87,6 +87,12 @@ return [
             /**
              * Social Auth component
              * Default: Facebook, Google, VK, Github
+             *
+             * APIs:
+             * Google - https://console.developers.google.com/apis/credentials
+             * Facebook - https://developers.facebook.com/apps/
+             * VK - https://vk.com/apps?act=manage
+             * GitHub - https://github.com/settings/developers
              */
             'authClientCollection' => [
                 'class' => yii\authclient\Collection::class,
