@@ -49,7 +49,7 @@ mix
     .copy('resources/assets/static', 'public/assets/static')
 
     // JavaScript files
-    .js('resources/assets/js/index.js', 'js/app.js')
+    .js('resources/assets/js/app.js', 'js/app.js')
 
     // Styles
     .sass('resources/assets/scss/style.scss', 'css/app.css');

@@ -17,8 +17,10 @@
 
 {% include '@layouts/blocks/notifications.twig' %}
 
-{% block content %}
-{% endblock %}
+<div id="app">
+    {% block content %}
+    {% endblock %}
+</div>
 
 <script src="{{ asset('/assets/js/app.js') }}"></script>
 {{ this.endBody() }}

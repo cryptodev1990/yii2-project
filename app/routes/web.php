@@ -22,5 +22,8 @@ return [
         Router::any('auth/set-password', 'password/set-password')->name('set-password'),
         Router::get('social-auth/<authclient>', 'sign/social-auth')->name('social.client'),
     ]),
+
+    // Example Vue.js component route
+    Router::get('api/get-text', 'api/example/load-text'),
 ];
 
