@@ -7,7 +7,7 @@
 
 namespace app\forms\auth;
 
-use app\core\interfaces\Sender;
+use app\core\interfaces\Mailer;
 use app\mail\auth\ResetPasswordMail;
 use app\models\auth\User;
 use yii\base\Model;
@@ -19,6 +19,11 @@ class ResetPasswordForm extends Model
      * @var string
      */
     public $email;
+
+    /**
+     * @var Mailer
+     */
+    protected $mailer;
 
     /**
      * Form validation rules
@@ -44,14 +49,31 @@ class ResetPasswordForm extends Model
         ];
     }
 
-    public function handle(Sender $mailer)
+    /**
+     * ResetPasswordForm constructor with Mailer object injection
+     *
+     * @param Mailer $mailer
+     * @param array $config
+     */
+    public function __construct(Mailer $mailer, $config = [])
+    {
+        parent::__construct($config);
+
+        $this->mailer = $mailer;
+    }
+
+    /**
+     * Send reset password email
+     * @return bool
+     */
+    public function handle()
     {
         $user = User::findIdentityByEmail($this->email);
 
         if ($user) {
             $resetPasswordEmail = new ResetPasswordMail(['user' => $user]);
 
-            return $mailer->send($resetPasswordEmail);
+            return $this->mailer->send($resetPasswordEmail);
         } else {
             return false;
         }

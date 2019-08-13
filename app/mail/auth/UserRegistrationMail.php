@@ -15,6 +15,7 @@ class UserRegistrationMail extends BaseObject implements Mailable
     public $email;
     public $password;
     public $token;
+    public $isActive;
 
     /**
      * Returns a prepared data to compose mail view (use in `send()` method)
@@ -25,6 +26,7 @@ class UserRegistrationMail extends BaseObject implements Mailable
         return [
             'email' => $this->email,
             'password' => $this->password,
+            'isActive' => $this->isActive,
             'link' => url(['/auth/activate-user', 'token' => $this->token], true),
         ];
     }

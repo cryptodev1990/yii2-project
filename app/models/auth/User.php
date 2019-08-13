@@ -235,6 +235,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Updates user password
+     *
      * @param string $newPassword
      *
      * @return bool
@@ -249,6 +251,19 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Activates user account
+     * @return bool
+     * @throws Exception
+     */
+    public function activate()
+    {
+        $this->is_active = true;
+        $this->generateToken();
+
+        return $this->save();
+    }
+
+    /**
      * Log current user in the system
      *
      * @param bool $currentSession
@@ -257,13 +272,15 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function login(bool $currentSession = false)
     {
-        // log user in for current session time or 1 month (see params.php)
-        user()->login(
-            $this,
-            $currentSession
-                ? 0
-                : config('user.loginSessionTime')
-        );
+        if (user()->isGuest || user()->id !== $this->id) {
+            // log user in for current session time or 1 month (see params.php)
+            user()->login(
+                $this,
+                $currentSession
+                    ? 0
+                    : config('user.loginSessionTime')
+            );
+        }
 
         // redirect to last/home page
         return response()->redirect(

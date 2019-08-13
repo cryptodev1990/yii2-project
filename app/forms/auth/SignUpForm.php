@@ -7,7 +7,8 @@
 
 namespace app\forms\auth;
 
-use app\core\interfaces\Sender;
+use app\core\interfaces\Mailer;
+use app\mail\auth\UserRegistrationMail;
 use app\models\auth\User;
 use yii\base\Exception;
 use yii\base\Model;
@@ -25,6 +26,12 @@ class SignUpForm extends Model
      */
     public $firstName;
     public $lastName;
+    public $isActive = false;
+
+    /**
+     * @var Mailer
+     */
+    protected $mailer;
 
     /**
      * Form validation rules
@@ -40,6 +47,7 @@ class SignUpForm extends Model
             ['email', 'email'],
 
             ['password', 'string', 'min' => 8, 'max' => 32],
+            ['isActive', 'boolean'],
         ];
     }
 
@@ -58,8 +66,22 @@ class SignUpForm extends Model
     }
 
     /**
+     * SignUpForm constructor with Mailer object injection
+     *
+     * @param Mailer $mailer
+     * @param array $config
+     */
+    public function __construct(Mailer $mailer, $config = [])
+    {
+        parent::__construct($config);
+
+        $this->mailer = $mailer;
+    }
+
+    /**
      * @return User|null
      * @throws Exception
+     * @throws \Exception
      */
     public function handle()
     {
@@ -68,13 +90,29 @@ class SignUpForm extends Model
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
-            'is_active' => false,
+            'is_active' => $this->isActive,
         ]);
 
         $user->password = $this->password;
         $user->generateToken();
 
         if ($user->save()) {
+            // create a welcome email
+            $registrationEmail = new UserRegistrationMail([
+                'email' => $this->email,
+                'password' => $this->password,
+                'token' => $user->token,
+                'isActive' => $user->is_active,
+            ]);
+
+            $this->mailer->send($registrationEmail);
+
+            // assign base RBAC role
+            auth()->assign(
+                auth()->getRole('user'),
+                $user->id
+            );
+
             return $user;
         } else {
             return null;

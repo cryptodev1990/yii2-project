@@ -62,7 +62,7 @@ class LoginForm extends Model
      */
     public function handle()
     {
-        $user = User::findOne(['email' => $this->email]);
+        $user = User::findIdentityByEmail($this->email);
 
         if ($user) {
             if ($user->is_active) {

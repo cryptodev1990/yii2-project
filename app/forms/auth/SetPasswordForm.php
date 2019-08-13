@@ -50,9 +50,6 @@ class SetPasswordForm extends Model
      */
     public function handle(User $user)
     {
-        $user->password = $this->password;
-        $user->generateToken();
-
-        return $user->save();
+        return $user->updatePassword($this->password);
     }
 }

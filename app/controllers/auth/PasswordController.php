@@ -7,7 +7,7 @@
 
 namespace app\controllers\auth;
 
-use app\core\interfaces\Sender;
+use app\core\interfaces\Mailer;
 use app\extensions\http\Controller;
 use app\forms\auth\ResetPasswordForm;
 use app\forms\auth\SetPasswordForm;
@@ -20,18 +20,18 @@ class PasswordController extends Controller
     /**
      * Request a reset password link by user email
      *
-     * @param Sender $mailer
+     * @param Mailer $mailer
      *
      * @return string
      */
-    public function actionResetPassword(Sender $mailer)
+    public function actionResetPassword(Mailer $mailer)
     {
-        $form = new ResetPasswordForm();
+        $form = new ResetPasswordForm($mailer);
         $messageSent = false;
 
         if (request()->isPost && $form->load(request()->post())) {
             if ($form->validate()) {
-                $messageSent = $form->handle($mailer);
+                $messageSent = $form->handle();
             }
         }
 

@@ -5,7 +5,7 @@
  * manchenkoff.me © 2019
  */
 
-use app\core\interfaces\Sender;
+use app\core\interfaces\Mailer;
 use app\core\interfaces\Storage;
 use app\core\services\MailService;
 use app\core\services\StorageService;
@@ -23,6 +23,6 @@ return [
             'storagePath' => alias('@storage'),
         ],
 
-        Sender::class => MailService::class,
+        Mailer::class => MailService::class,
     ],
 ];

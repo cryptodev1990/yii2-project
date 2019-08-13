@@ -10,5 +10,7 @@
         <li>{{ t('mail', 'auth.password') }}: <b>{{ password }}</b></li>
     </ul>
 
-    <a href="{{ link }}">{{ t('mail', 'auth.complete-registration-button') }}</a>
+    {% if not isActive %}
+        <a href="{{ link }}">{{ t('mail', 'auth.complete-registration-button') }}</a>
+    {% endif %}
 {% endblock %}

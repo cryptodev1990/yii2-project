@@ -24,7 +24,7 @@ class SeedController extends Command
     public function actions()
     {
         return [
-            // your seeders
+            // application seeders
             'user' => UserSeeder::class,
             'rbac' => RbacSeeder::class,
         ];

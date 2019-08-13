@@ -8,17 +8,14 @@
 namespace app\controllers\auth;
 
 use app\core\filters\AccessFilter;
-use app\core\interfaces\ACL;
-use app\core\interfaces\Sender;
+use app\core\interfaces\Mailer;
 use app\extensions\http\Controller;
 use app\forms\auth\LoginForm;
 use app\forms\auth\SignUpForm;
-use app\mail\auth\UserRegistrationMail;
 use app\models\auth\AuthClient;
 use app\models\auth\User;
-use Exception;
 use yii\authclient\AuthAction;
-use yii\authclient\ClientInterface;
+use yii\base\Exception;
 use yii\web\Response;
 
 class SignController extends Controller
@@ -45,7 +42,7 @@ class SignController extends Controller
         return [
             'social-auth' => [
                 'class' => AuthAction::class,
-                'successCallback' => [$this, 'handleSocialAuth'],
+                'successCallback' => [AuthClient::class, 'onAuthSuccess'],
             ],
         ];
     }
@@ -75,19 +72,12 @@ class SignController extends Controller
      */
     public function actionLogin()
     {
-        // create a new form for authentication
         $form = new LoginForm();
 
-        // check data from POST request
-        if (request()->isPost && $form->load(request()->post())) {
-            // form validation
-            if ($form->validate()) {
-                // try to load and authorize user
-                $user = $form->handle();
-
-                if ($user) {
-                    return $user->login();
-                }
+        if ($form->load(request()->post()) && $form->validate()) {
+            // try to load and authorize user
+            if ($user = $form->handle()) {
+                return $user->login();
             }
         }
 
@@ -97,46 +87,24 @@ class SignController extends Controller
     /**
      * "Sign up" user action
      *
-     * @param Sender $mailer
+     * @param Mailer $mailer
      *
      * @return string|\yii\console\Response|Response
-     * @throws \yii\base\Exception
      * @throws Exception
      */
-    public function actionSignUp(Sender $mailer)
+    public function actionSignUp(Mailer $mailer)
     {
-        // create a new form for user registration
-        $form = new SignUpForm();
+        $form = new SignUpForm($mailer);
 
-        // check loading data from request
-        if (request()->isPost && $form->load(request()->post())) {
-            // form validation
-            if ($form->validate()) {
-                // try to register a user
-                if ($user = $form->handle()) {
-                    // create an activation email
-                    $registrationEmail = new UserRegistrationMail([
-                        'email' => $form->email,
-                        'password' => $form->password,
-                        'token' => $user->token,
-                    ]);
-
-                    $mailer->send($registrationEmail);
-
-                    // assign base RBAC role
-                    auth()->assign(
-                        auth()->getRole('user'),
-                        $user->id
-                    );
-
-                    return $user->login(true);
-                } else {
-                    // set error if register wasn't success
-                    session()->addFlash(
-                        'errors',
-                        t('errors', 'auth.register-error')
-                    );
-                }
+        if ($form->load(request()->post()) && $form->validate()) {
+            // try to register a user
+            if ($user = $form->handle()) {
+                return $user->login(true);
+            } else {
+                session()->addFlash(
+                    'errors',
+                    t('errors', 'auth.register-error')
+                );
             }
         }
 
@@ -149,7 +117,7 @@ class SignController extends Controller
      * @param string $token
      *
      * @return Response
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function actionActivate(string $token)
     {
@@ -162,11 +130,7 @@ class SignController extends Controller
                 user()->logout();
             }
 
-            // activate founded user account
-            $user->is_active = true;
-            $user->generateToken();
-
-            if ($user->save()) {
+            if ($user->activate()) {
                 // login as the user and show registration page
                 $user->login();
 
@@ -174,7 +138,7 @@ class SignController extends Controller
             }
         }
 
-        return $this->redirect(['/']);
+        return $this->goHome();
     }
 
     /**
@@ -186,104 +150,5 @@ class SignController extends Controller
         user()->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Handler for social auth clients
-     *
-     * @param ClientInterface $client
-     *
-     * @return Response|null
-     * @throws \yii\base\Exception
-     * @throws Exception
-     */
-    public function handleSocialAuth(ClientInterface $client)
-    {
-        // get information about user from external service
-        $userData = AuthClient::parseUserDetails($client);
-
-        // search existing auth client item
-        $authClient = AuthClient::findOne([
-            'source' => $client->getId(),
-            'source_id' => $userData['id'],
-        ]);
-
-        // if guest - try to login/register
-        if (user()->isGuest) {
-            if ($authClient) {
-                // login if exists
-                return $authClient->user->login();
-            } else {
-                // find existing user
-                $user = User::findOne(['email' => $userData['email']]);
-
-                if ($user) {
-                    // email already registered without social networks
-                    session()->addFlash(
-                        'errors', t('errors', 'auth.user-already-exists')
-                    );
-                } else {
-                    $user = new User([
-                        'first_name' => $userData['first_name'],
-                        'last_name' => $userData['last_name'],
-                        'email' => $userData['email'],
-                        'is_active' => true,
-                    ]);
-
-                    $user->password = app()->security->generateRandomString(8);
-                    $user->generateToken();
-
-                    app()->db->beginTransaction();
-
-                    if ($user->save()) {
-                        // assign base RBAC role
-                        auth()->assign(
-                            auth()->getRole('user'),
-                            $user->id
-                        );
-
-                        // create new auth client
-                        $authClient = new AuthClient([
-                            'user_id' => $user->id,
-                            'source' => $client->getId(),
-                            'source_id' => (string)$userData['id'],
-                        ]);
-
-                        if ($authClient->save()) {
-                            app()->db->transaction->commit();
-
-                            return $user->login();
-                        } else {
-                            // some error from auth client
-                            session()->addFlash(
-                                'errors', t('errors', 'auth.auth-client-error')
-                            );
-
-                            return $this->redirect(['/login']);
-                        }
-                    } else {
-                        // some error from user
-                        session()->addFlash(
-                            'errors', t('errors', 'auth.auth-client-error')
-                        );
-
-                        return $this->redirect(['/login']);
-                    }
-                }
-            }
-        } else {
-            // append new auth client data to the existing user
-            if (!$authClient) {
-                $authClient = new AuthClient([
-                    'user_id' => user()->id,
-                    'source' => $client->getId(),
-                    'source_id' => (string)$userData['id'],
-                ]);
-
-                $authClient->save();
-            }
-        }
-
-        return null;
     }
 }

@@ -9,7 +9,7 @@ namespace app\core\interfaces;
 
 use app\extensions\mail\Mailable;
 
-interface Sender
+interface Mailer
 {
     /**
      * Method for build and send composed mail object
