@@ -41,7 +41,8 @@
     "manchenkov/yii2-helpers": "^1.0",
     "manchenkov/php-helpers": "^1.0",
     "manchenkov/yii2-recaptcha3": "^1.0",
-    "manchenkov/yii2-components": "^1.0"
+    "manchenkov/yii2-components": "^1.0",
+    "manchenkov/yii2-maker": "^1.0"
   },
   "require-dev": {
     "deployer/deployer": "^6.4",

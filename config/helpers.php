@@ -7,7 +7,7 @@
 
 /**
  * Returns SeoHelper component of $app
- * @return \manchenkov\yii\http\Seo|null
+ * @return manchenkov\yii\http\Seo|null
  */
 function seo()
 {

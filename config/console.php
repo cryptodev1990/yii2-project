@@ -40,7 +40,7 @@ return [
             'docroot' => '@public',
         ],
         'make' => [
-            'class' => app\extensions\maker\commands\MakeController::class,
+            'class' => manchenkov\yii\maker\commands\MakeController::class,
         ],
     ],
 
