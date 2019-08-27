@@ -9,7 +9,7 @@ namespace app\controllers\auth;
 
 use app\core\filters\AccessFilter;
 use app\core\interfaces\Mailer;
-use app\extensions\http\Controller;
+use manchenkov\yii\http\Controller;
 use app\forms\auth\LoginForm;
 use app\forms\auth\SignUpForm;
 use app\models\auth\AuthClient;

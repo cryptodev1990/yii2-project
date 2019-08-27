@@ -17,6 +17,8 @@ class ControllerAction extends MakeAction
      *
      * @param string $name
      * @param bool $isResource
+     *
+     * @return int|void
      */
     public function run(string $name, bool $isResource = false)
     {

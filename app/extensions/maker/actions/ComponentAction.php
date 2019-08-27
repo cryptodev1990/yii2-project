@@ -16,6 +16,8 @@ class ComponentAction extends MakeAction
      * Generates a new app Component class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

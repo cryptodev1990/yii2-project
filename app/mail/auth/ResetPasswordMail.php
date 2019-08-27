@@ -7,7 +7,7 @@
 
 namespace app\mail\auth;
 
-use app\extensions\mail\Mailable;
+use manchenkov\yii\mail\Mailable;
 use app\models\auth\User;
 use yii\base\BaseObject;
 

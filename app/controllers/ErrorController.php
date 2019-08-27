@@ -7,7 +7,7 @@
 
 namespace app\controllers;
 
-use app\extensions\http\Controller;
+use manchenkov\yii\http\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;

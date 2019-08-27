@@ -16,6 +16,8 @@ class BehaviorAction extends MakeAction
      * Generates a new Behavior component class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

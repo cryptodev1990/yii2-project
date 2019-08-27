@@ -16,6 +16,8 @@ class FilterAction extends MakeAction
      * Generates a new request Filter class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

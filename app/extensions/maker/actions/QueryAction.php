@@ -16,6 +16,8 @@ class QueryAction extends MakeAction
      * Generates a new ActiveQuery class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

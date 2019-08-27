@@ -5,7 +5,7 @@
  * manchenkoff.me © 2019
  */
 
-use app\extensions\http\routing\Route;
+use manchenkov\yii\http\routing\Route;
 
 return [
 

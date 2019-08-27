@@ -16,6 +16,8 @@ class WorkerAction extends MakeAction
      * Generates a new console Worker controller class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

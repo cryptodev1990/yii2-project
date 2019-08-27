@@ -7,7 +7,7 @@
 
 namespace app\database\seeders;
 
-use app\extensions\console\Command;
+use manchenkov\yii\console\Command;
 use app\models\auth\User;
 use Exception;
 use yii\base\Action;

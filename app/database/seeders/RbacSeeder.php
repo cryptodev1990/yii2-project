@@ -3,7 +3,7 @@
 namespace app\database\seeders;
 
 use app\core\rules\ConfirmedRule;
-use app\extensions\console\Command;
+use manchenkov\yii\console\Command;
 use Exception;
 use yii\base\Action;
 use yii\rbac\ManagerInterface;

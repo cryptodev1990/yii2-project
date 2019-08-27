@@ -16,6 +16,8 @@ class CommandAction extends MakeAction
      * Generates a new console Command controller class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

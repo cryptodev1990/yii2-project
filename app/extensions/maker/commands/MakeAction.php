@@ -7,8 +7,10 @@
 
 namespace app\extensions\maker\commands;
 
+use Exception;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
+use yii\console\ExitCode;
 
 /**
  * Class MakeAction
@@ -58,11 +60,25 @@ abstract class MakeAction extends Action
         return;
     }
 
+    /**
+     * Runs controller process method
+     *
+     * @param array $replacement
+     * @param array $filesMap
+     *
+     * @return int|void
+     */
     public function process(array $replacement, array $filesMap)
     {
         $this->controller->replacement = $replacement;
         $this->controller->filesMap = $filesMap;
 
-        return $this->controller->process();
+        try {
+            return $this->controller->process();
+        } catch (Exception $exception) {
+            $this->controller->error($exception->getMessage());
+
+            return ExitCode::OK;
+        }
     }
 }

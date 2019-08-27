@@ -7,7 +7,7 @@
 
 namespace app\core\interfaces;
 
-use app\extensions\mail\Mailable;
+use manchenkov\yii\mail\Mailable;
 
 interface Mailer
 {

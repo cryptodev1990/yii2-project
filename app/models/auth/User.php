@@ -7,8 +7,8 @@
 
 namespace app\models\auth;
 
-use app\extensions\database\ActiveRecord;
-use app\extensions\database\traits\SoftDelete;
+use manchenkov\yii\database\ActiveRecord;
+use manchenkov\yii\database\traits\SoftDelete;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
@@ -33,6 +33,7 @@ use yii\web\Response;
  * @property string $data [json]
  *
  * @property string $password
+ * @property string $authKey
  * @property-read AuthClient[] $authClients
  */
 class User extends ActiveRecord implements IdentityInterface

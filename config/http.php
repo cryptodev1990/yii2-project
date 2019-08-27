@@ -62,7 +62,7 @@ return [
              * Web Request component
              */
             'request' => [
-                'class' => app\extensions\http\Request::class,
+                'class' => manchenkov\yii\http\Request::class,
                 'baseUrl' => '',
                 'cookieValidationKey' => env('SESSION_KEY'),
                 'csrfParam' => '_csrf',
@@ -158,7 +158,7 @@ return [
              * SEO helper component
              */
             'seo' => [
-                'class' => app\extensions\http\Seo::class,
+                'class' => manchenkov\yii\http\Seo::class,
                 'config' => require __DIR__ . '/seo.php',
             ],
         ]

@@ -7,7 +7,7 @@
 
 namespace app\extensions\maker\commands;
 
-use app\extensions\console\Command;
+use manchenkov\yii\console\Command;
 use app\extensions\maker\actions\ApiAction;
 use app\extensions\maker\actions\BehaviorAction;
 use app\extensions\maker\actions\CommandAction;

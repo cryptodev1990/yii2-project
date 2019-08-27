@@ -7,7 +7,7 @@
 
 namespace app\controllers;
 
-use app\extensions\http\Controller;
+use manchenkov\yii\http\Controller;
 
 class SiteController extends Controller
 {

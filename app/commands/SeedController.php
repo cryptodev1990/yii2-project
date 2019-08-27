@@ -9,7 +9,7 @@ namespace app\commands;
 
 use app\database\seeders\RbacSeeder;
 use app\database\seeders\UserSeeder;
-use app\extensions\console\Command;
+use manchenkov\yii\console\Command;
 
 /**
  * Seeder for load fake or prepared data into a database

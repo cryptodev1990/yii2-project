@@ -16,6 +16,8 @@ class ServiceAction extends MakeAction
      * Generates a new Service class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

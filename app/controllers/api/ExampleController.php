@@ -2,7 +2,7 @@
 
 namespace app\controllers\api;
 
-use app\extensions\http\Controller;
+use manchenkov\yii\http\Controller;
 use yii\base\Exception;
 use yii\web\Response;
 

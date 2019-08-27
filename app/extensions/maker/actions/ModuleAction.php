@@ -16,6 +16,8 @@ class ModuleAction extends MakeAction
      * Generates a new application module
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

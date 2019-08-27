@@ -15,6 +15,8 @@ class MigrationAction extends MakeAction
      * Generates a new database migration
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

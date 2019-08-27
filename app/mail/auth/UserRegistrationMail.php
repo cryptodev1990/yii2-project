@@ -7,7 +7,7 @@
 
 namespace app\mail\auth;
 
-use app\extensions\mail\Mailable;
+use manchenkov\yii\mail\Mailable;
 use yii\base\BaseObject;
 
 class UserRegistrationMail extends BaseObject implements Mailable

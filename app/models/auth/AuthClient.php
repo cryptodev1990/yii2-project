@@ -7,7 +7,7 @@
 
 namespace app\models\auth;
 
-use app\extensions\database\ActiveRecord;
+use manchenkov\yii\database\ActiveRecord;
 use app\forms\auth\SignUpForm;
 use Exception;
 use Yii;

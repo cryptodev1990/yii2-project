@@ -16,6 +16,8 @@ class FormAction extends MakeAction
      * Generates a Form model class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

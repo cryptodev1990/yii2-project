@@ -16,6 +16,8 @@ class MailAction extends MakeAction
      * Generates a new ActiveRecord class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

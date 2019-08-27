@@ -8,6 +8,8 @@
 namespace app\extensions\maker\actions;
 
 use app\extensions\maker\commands\MakeAction;
+use yii\base\InvalidRouteException;
+use yii\console\Exception;
 use yii\helpers\StringHelper;
 
 class ResourceAction extends MakeAction
@@ -16,6 +18,9 @@ class ResourceAction extends MakeAction
      * Generates files for a new resource: migration, model, controller
      *
      * @param string $name
+     *
+     * @throws InvalidRouteException
+     * @throws Exception
      */
     public function run(string $name)
     {

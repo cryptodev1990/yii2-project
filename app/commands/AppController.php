@@ -7,7 +7,7 @@
 
 namespace app\commands;
 
-use app\extensions\console\Command;
+use manchenkov\yii\console\Command;
 use yii\base\InvalidRouteException;
 use yii\console\Exception;
 

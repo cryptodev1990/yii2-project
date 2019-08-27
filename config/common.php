@@ -47,7 +47,7 @@ return [
      * Application router settings
      */
     'urlManager' => [
-        'class' => app\extensions\http\routing\RouteManager::class,
+        'class' => manchenkov\yii\http\routing\RouteManager::class,
         'routesDirectory' => dirname(__DIR__) . '/app/routes',
     ],
 

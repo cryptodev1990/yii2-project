@@ -8,7 +8,7 @@
 namespace app\controllers\auth;
 
 use app\core\interfaces\Mailer;
-use app\extensions\http\Controller;
+use manchenkov\yii\http\Controller;
 use app\forms\auth\ResetPasswordForm;
 use app\forms\auth\SetPasswordForm;
 use app\models\auth\User;

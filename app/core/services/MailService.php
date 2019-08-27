@@ -3,7 +3,7 @@
 namespace app\core\services;
 
 use app\core\interfaces\Mailer;
-use app\extensions\mail\Mailable;
+use manchenkov\yii\mail\Mailable;
 use yii\base\BaseObject;
 
 class MailService extends BaseObject implements Mailer

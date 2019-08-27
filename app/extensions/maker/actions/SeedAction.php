@@ -16,6 +16,8 @@ class SeedAction extends MakeAction
      * Generates a new database Seeder class
      *
      * @param string $name
+     *
+     * @return int|void
      */
     public function run(string $name)
     {

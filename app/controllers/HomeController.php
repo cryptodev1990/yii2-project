@@ -8,7 +8,7 @@
 namespace app\controllers;
 
 use app\core\filters\AccessFilter;
-use app\extensions\http\Controller;
+use manchenkov\yii\http\Controller;
 
 /**
  * Class HomeController for provide user personal account management
