@@ -65,18 +65,18 @@ class ResourceRule extends CompositeUrlRule
     {
         return [
             // GET controller => controller/index
-            Router::get("", "index"),
+            Route::get("", "index"),
             // POST controller => controller/store
-            Router::post("", "store"),
+            Route::post("", "store"),
 
             // GET controller/<id> => controller/view
-            Router::get("<{$this->token}>", "view"),
+            Route::get("<{$this->token}>", "view"),
             // GET controller/<id>/edit => controller/edit
-            Router::get("<{$this->token}>/edit", "edit"),
+            Route::get("<{$this->token}>/edit", "edit"),
             // POST controller/<id> => controller/update
-            Router::post("<{$this->token}>", "update"),
+            Route::post("<{$this->token}>", "update"),
             // DELETE controller/<id> => controller/delete
-            Router::delete("<{$this->token}>", "delete"),
+            Route::delete("<{$this->token}>", "delete"),
         ];
     }
 
