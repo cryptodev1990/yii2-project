@@ -15,7 +15,6 @@ return [
     'label.sign-up' => 'Sign up',
     'label.profile' => 'Profile',
     'label.social-login' => 'Sign in with',
-    'label.OR' => 'OR',
     'label.continue' => 'Continue',
     'label.reset-password' => 'Reset password',
     'label.email-password-sent' => 'Letter with a reset password link was sent to Your E-mail address',

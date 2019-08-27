@@ -1,21 +1,35 @@
-<div class="container">
-    <header class="navbar py-2 bg-gray">
-        <section class="navbar-section">
-            <a href="{{ path(['/']) }}" class="btn btn-link">{{ t('ui', 'label.home') }}</a>
-        </section>
-        <section class="navbar-center">
-            <a href="{{ path(app.homeUrl) }}" class="img-link">
-                <img src="{{ seo().logo }}" class="img-brand" alt="{{ seo().name }}">
-            </a>
-        </section>
-        <section class="navbar-section">
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li>
+                <a href="{{ path(['/']) }}">{{ t('ui', 'label.home') }}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="uk-navbar-center">
+        <a href="{{ path(app.homeUrl) }}" class="uk-navbar-item uk-logo">
+            <img src="{{ seo().logo }}" class="img-brand" alt="{{ seo().name }}">
+        </a>
+    </div>
+
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
             {% if user().isGuest %}
-                <a href="{{ path(['@login']) }}" class="btn btn-link">{{ t('ui', 'label.login') }}</a>
-                <a href="{{ path(['@sign-up']) }}" class="btn btn-primary">{{ t('ui', 'label.sign-up') }}</a>
+                <li>
+                    <a href="{{ path(['@login']) }}">{{ t('ui', 'label.login') }}</a>
+                </li>
+                <div class="uk-navbar-item">
+                    <a href="{{ path(['@sign-up']) }}" class="uk-button uk-button-primary">{{ t('ui', 'label.sign-up') }}</a>
+                </div>
             {% else %}
-                <a href="{{ path(['@me']) }}" class="btn btn-link">{{ t('ui', 'label.profile') }}</a>
-                <a href="{{ path(['@logout']) }}" class="btn btn-link">{{ t('ui', 'label.logout') }}</a>
+                <li>
+                    <a href="{{ path(['@me']) }}">{{ t('ui', 'label.profile') }}</a>
+                </li>
+                <li>
+                    <a href="{{ path(['@logout']) }}">{{ t('ui', 'label.logout') }}</a>
+                </li>
             {% endif %}
-        </section>
-    </header>
-</div>
+        </ul>
+    </div>
+</nav>

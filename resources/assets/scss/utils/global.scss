@@ -3,10 +3,3 @@
  * artyom@manchenkoff.me
  * manchenkoff.me © 2019
  */
-
-// disable link outline
-a, .btn {
-  &:focus {
-    box-shadow: none;
-  }
-}

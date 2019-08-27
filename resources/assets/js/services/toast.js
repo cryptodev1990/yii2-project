@@ -4,8 +4,7 @@
  * manchenkoff.me © 2019
  */
 
-import 'izitoast/dist/css/iziToast.min.css';
-import iZtoast from 'izitoast';
+import UIKit from 'uikit';
 
 /**
  * Service to show toasts
@@ -16,11 +15,10 @@ export default class Toast {
      * @param message
      */
     static error(message) {
-        return iZtoast.error({
+        return UIKit.notification({
             message: message,
-            position: 'topCenter',
-            animateInside: false,
-            pauseOnHover: false,
+            status: 'danger',
+            pos: 'top-center',
             timeout: 3500,
         });
     }
@@ -30,11 +28,10 @@ export default class Toast {
      * @param message
      */
     static success(message) {
-        return iZtoast.success({
+        return UIKit.notification({
             message: message,
-            position: 'topCenter',
-            animateInside: false,
-            pauseOnHover: false,
+            status: 'success',
+            pos: 'top-center',
             timeout: 3500,
         });
     }

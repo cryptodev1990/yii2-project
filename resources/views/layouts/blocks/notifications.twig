@@ -1,5 +1,6 @@
 {% if session().hasFlash('errors') %}
-    <div class="toast toast-error toast-rectangle">
+    <div class="uk-alert-danger" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
         <ul>
             {% for error in session().getFlash('errors') %}
                 <li>{{ error }}</li>
@@ -9,7 +10,8 @@
 {% endif %}
 
 {% if session().hasFlash('messages') %}
-    <div class="toast toast-success toast-rectangle">
+    <div class="uk-alert-success" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
         <ul>
             {% for message in session().getFlash('messages') %}
                 <li>{{ message }}</li>

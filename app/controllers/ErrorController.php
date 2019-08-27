@@ -32,7 +32,7 @@ class ErrorController extends Controller
                 compact('error')
             );
         } else {
-            return $this->redirect('/');
+            return $this->goHome();
         }
     }
 }

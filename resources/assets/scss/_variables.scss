@@ -4,5 +4,11 @@
  * manchenkoff.me © 2019
  */
 
-// Override variables
-$primary-color: #4285F4;
+// Theme variables
+$navbar-nav-item-height: 60px !default;
+
+$button-success-background: #32d296 !default;
+$button-success-hover-background: darken($button-success-background, 5%) !default;
+
+$button-warning-background: #faa05a !default;
+$button-warning-hover-background: darken($button-warning-background, 5%) !default;

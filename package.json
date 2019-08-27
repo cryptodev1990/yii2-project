@@ -31,11 +31,10 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "izitoast": "^1.4.0",
-    "spectre.css": "^0.5.8",
+    "moment": "^2.24.0",
     "sweetalert": "^2.1.2",
+    "uikit": "^3.1.7",
     "vue": "^2.6.10",
-    "vue-axios": "^2.1.4",
-    "moment": "^2.24.0"
+    "vue-axios": "^2.1.4"
   }
 }

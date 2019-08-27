@@ -1,10 +1,18 @@
+// Custom variables and overwrites
 @import "variables";
 
-// Spectre.css framework
-@import "~spectre.css/src/spectre";
+// UIKit theme
+@import "~uikit/src/scss/variables-theme.scss";
+@import "~uikit/src/scss/mixins-theme.scss";
+
+// Custom mixins
+@import "mixins";
+
+// UIKit framework
+@import "~uikit/src/scss/uikit-theme.scss";
 
 // Utilities and fixes
 @import "utils/import";
 
-// Main application directory imports
+// Main theme styles imports
 @import "app/import";

@@ -15,7 +15,6 @@ return [
     'label.sign-up' => 'Регистрация',
     'label.profile' => 'Профиль',
     'label.social-login' => 'Войти с помощью',
-    'label.OR' => 'ИЛИ',
     'label.continue' => 'Продолжить',
     'label.reset-password' => 'Восстановление пароля',
     'label.email-password-sent' => 'Письмо с инструкцией по сбросу пароля отправлено вам на E-mail',

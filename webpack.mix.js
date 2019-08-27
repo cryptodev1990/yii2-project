@@ -47,9 +47,5 @@ const mix = require('./resources/assets/mix/main');
 
 mix
     .copy('resources/assets/static', 'public/assets/static')
-
-    // JavaScript files
     .js('resources/assets/js/app.js', 'js/app.js')
-
-    // Styles
     .sass('resources/assets/scss/style.scss', 'css/app.css');

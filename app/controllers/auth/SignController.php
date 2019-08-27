@@ -134,7 +134,11 @@ class SignController extends Controller
                 // login as the user and show registration page
                 $user->login();
 
-                return view('activated');
+                return view('@views/site/notification', [
+                    'icon' => 'done',
+                    'title' => t('ui', 'title.registration-completed'),
+                    'message' => t('ui', 'label.user-is-activated'),
+                ]);
             }
         }
 

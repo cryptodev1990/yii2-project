@@ -1,0 +1,17 @@
+{% extends '@layouts/clean.twig' %}
+
+{% block content %}
+    <div class="uk-section-large uk-text-center">
+        <div class="uk-h2">
+            <i class="material-icons md-64">
+                {{ icon }}
+            </i>
+        </div>
+        <p class="uk-heading-small">
+            {{ title }}
+        </p>
+        <p class="uk-h2">
+            {{ message }}
+        </p>
+    </div>
+{% endblock %}

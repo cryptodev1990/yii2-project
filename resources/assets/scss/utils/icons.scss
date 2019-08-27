@@ -18,3 +18,10 @@
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/* Rules for using icons in UIKit forms */
+.material-icons.uk-form-icon {
+  margin-left: 8px;
+  margin-top: 2px;
+  line-height: inherit;
+}

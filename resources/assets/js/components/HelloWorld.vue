@@ -5,11 +5,11 @@
   -->
 
 <template>
-    <div class="container">
-        <div class="text-center m-4">
+    <div class="uk-container">
+        <div class="uk-text-center uk-margin">
             <h2>{{ word }}</h2>
         </div>
-        <button class="btn btn-success" :class="{'loading': word === '...'}" @click="loadText">
+        <button class="uk-button uk-button-success uk-margin-large-top" :class="{'loading': word === '...'}" @click="loadText">
             Get Random Word
         </button>
     </div>
@@ -44,6 +44,8 @@
                             })
                             .catch(() => {
                                 this.word = 'Ooops! Something went wrong';
+
+                                toast.error('Error notification example')
                             })
                     } else {
                         swal("As you wish...", {

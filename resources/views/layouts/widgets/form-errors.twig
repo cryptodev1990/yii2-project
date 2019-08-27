@@ -4,13 +4,15 @@
 #}
 
 {% if form.errors %}
-    <div class="form-group text-left">
-        <div class="card bg-gray">
-            <ul class="text-error">
-                {% for error in form_errors(form) %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
+    <div class="uk-margin uk-text-left">
+        <div class="uk-card">
+            <div class="uk-alert-danger" uk-alert>
+                <ul>
+                    {% for error in form_errors(form) %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 {% endif %}

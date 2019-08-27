@@ -27,15 +27,18 @@ class PasswordController extends Controller
     public function actionResetPassword(Mailer $mailer)
     {
         $form = new ResetPasswordForm($mailer);
-        $messageSent = false;
 
-        if (request()->isPost && $form->load(request()->post())) {
-            if ($form->validate()) {
-                $messageSent = $form->handle();
+        if ($form->load(request()->post())) {
+            if ($form->validate() && $form->handle()) {
+                return view('@views/site/notification', [
+                    'icon' => 'email',
+                    'title' => t('ui', 'title.great'),
+                    'message' => t('ui', 'label.email-password-sent'),
+                ]);
             }
         }
 
-        return view('reset-password', compact('form', 'messageSent'));
+        return view('reset-password', compact('form'));
     }
 
     /**
@@ -49,20 +52,23 @@ class PasswordController extends Controller
     public function actionSetPassword(string $token)
     {
         $user = User::findIdentityByAccessToken($token);
-        $passwordChanged = false;
 
         if ($user) {
             $form = new SetPasswordForm();
 
-            if (request()->isPost && $form->load(request()->post())) {
-                if ($form->validate()) {
-                    $passwordChanged = $form->handle($user);
+            if ($form->load(request()->post())) {
+                if ($form->validate() && $form->handle($user)) {
+                    return view('@views/site/notification', [
+                        'icon' => 'done',
+                        'title' => t('ui', 'title.great'),
+                        'message' => t('ui', 'label.email-password-changed'),
+                    ]);
                 }
             }
 
-            return view('set-password', compact('form', 'passwordChanged', 'token'));
+            return view('set-password', compact('form', 'token'));
         }
 
-        return $this->redirect(['/']);
+        return $this->goHome();
     }
 }

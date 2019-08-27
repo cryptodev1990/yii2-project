@@ -18,6 +18,7 @@ $aliases = [
 
     '@public' => $root . '/public',
     '@resources' => $root . '/resources',
+    '@views' => '@resources/views',
     '@assets' => '@public/assets',
     '@storage' => '@public/storage',
     '@runtime' => $root . '/runtime',

@@ -1,0 +1,25 @@
+/*!
+ * Created by Artyom Manchenkov
+ * artyom@manchenkoff.me
+ * manchenkoff.me © 2019
+ */
+
+.uk-button-success {
+  @extend .uk-button-primary;
+
+  background-color: $button-success-background;
+
+  &:hover {
+    background-color: $button-success-hover-background;
+  }
+}
+
+.uk-button-warning {
+  @extend .uk-button-primary;
+
+  background-color: $button-warning-background;
+
+  &:hover {
+    background-color: $button-warning-hover-background;
+  }
+}
