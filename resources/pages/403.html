@@ -1,58 +1,45 @@
-<!--
-  ~ Created by Artyom Manchenkov
-  ~ artyom@manchenkoff.me
-  ~ manchenkoff.me © 2019
-  -->
-
 <!doctype html>
-<html lang="ru">
+<html lang="ru" class="uk-height-1-1">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>403 - Доступ запрещен</title>
-    <link rel="stylesheet" href="/assets/css/app.css?v=1565712549">
+    <link rel="stylesheet" href="/assets/css/app.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="bg-gray">
+<body class="uk-background-muted uk-height-1-1">
 
 
-<div class="container">
-    <header class="navbar py-2 bg-gray">
-        <section class="navbar-section">
-            <a href="/" class="btn btn-link">Главная</a>
-        </section>
-        <section class="navbar-center">
-            <a href="/" class="img-link">
-                <img src="/assets/static/icons/logo.png?v=1565712549" class="img-brand" alt="Lime">
-            </a>
-        </section>
-        <section class="navbar-section">
-            <a href="/login" class="btn btn-link">Вход</a>
-            <a href="/sign-up" class="btn btn-primary">Регистрация</a>
-        </section>
-    </header>
-</div>
-
-
-<div class="empty error-empty">
-    <div class="empty-icon">
-        <i class="material-icons md-64">visibility</i>
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+    <div class="uk-navbar-center">
+        <a href="/" class="uk-navbar-item uk-logo">
+            <img src="/assets/static/icons/logo.png" class="img-brand" alt="Lime">
+        </a>
     </div>
+</nav>
 
-    <div class="mt-2 pt-2">
-        <p class="empty-title h1 mt-2">
-            Ой!
-        </p>
 
-        <p class="empty-subtitle">
-            Кажется вам сюда нельзя...
-        </p>
+<div id="app">
+    <div class="uk-section-large uk-text-center">
+        <div class="uk-h2">
+            <i class="material-icons md-64">visibility</i>
+        </div>
 
-        <p class="h1">🤷‍♂️</p>
+        <div class="uk-margin-top uk-padding uk-padding-remove-horizontal">
+            <p class="uk-heading-small">
+                Ой!
+            </p>
+
+            <p class="uk-h2">
+                Кажется вам сюда нельзя...
+            </p>
+
+            <p class="uk-h1">🤷‍♂️</p>
+        </div>
     </div>
 </div>
 
-<script src="/assets/js/app.js?v=1565712549"></script>
+<script src="/assets/js/app.js"></script>
 
 </body>
 </html>
