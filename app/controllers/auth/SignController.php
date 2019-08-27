@@ -59,6 +59,11 @@ class SignController extends Controller
                 'roles' => ['?'],
             ],
             [
+                'actions' => ['activate'],
+                'allow' => true,
+                'roles' => ['?', '@'],
+            ],
+            [
                 'actions' => ['logout'],
                 'allow' => true,
                 'roles' => ['@'],
@@ -132,7 +137,7 @@ class SignController extends Controller
 
             if ($user->activate()) {
                 // login as the user and show registration page
-                $user->login();
+                user()->login($user);
 
                 return view('@views/site/notification', [
                     'icon' => 'done',
