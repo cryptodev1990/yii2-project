@@ -36,7 +36,7 @@ task('commit', [
     'deploy:unlock',
     'cleanup',
     'success',
-]);
+])->desc('Initial project upload');
 
 // Use 'dep deploy' - deploy project release
 task('deploy', [
