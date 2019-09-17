@@ -24,7 +24,7 @@ class m190530_201116_social_auth extends Migration
         $this->addForeignKey(
             'fk-auth-user_id-user-id',
             'auth_client', 'user_id',
-            'auth_user', 'id',
+            'user', 'id',
             'CASCADE', 'CASCADE'
         );
     }

@@ -7,7 +7,7 @@ paths:
   envs: tests/_envs
 settings:
   colors: true
-  bootstrap: ../_bootstrap.php
+bootstrap: _bootstrap.php
 extensions:
   enabled:
     - Codeception\Extension\RunFailed

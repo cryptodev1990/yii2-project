@@ -50,14 +50,6 @@ class User extends ActiveRecord implements IdentityInterface
     private $homeUrl = ['/me'];
 
     /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'auth_user';
-    }
-
-    /**
      * Model behaviors array
      * @return array
      */
@@ -297,6 +289,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getAuthClients()
     {
-        return $this->hasMany(AuthClient::class, ['user_id' => 'id']);
+        return $this->hasMany(AuthClient::class);
     }
 }

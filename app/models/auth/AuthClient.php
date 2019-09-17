@@ -46,7 +46,7 @@ class AuthClient extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->belongsTo(User::class, ['id' => 'user_id']);
+        return $this->belongsTo(User::class);
     }
 
     /**

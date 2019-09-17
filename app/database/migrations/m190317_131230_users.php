@@ -11,7 +11,7 @@ class m190317_131230_users extends Migration
      */
     public function up()
     {
-        $this->createTable('auth_user', [
+        $this->createTable('user', [
             'id' => $this->primaryKey(),
 
             // base data (auth)
