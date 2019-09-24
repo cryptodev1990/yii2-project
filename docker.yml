@@ -1,22 +1,16 @@
-version: '3.2'
+version: '3.7'
 services:
-  # Apache
-  www:
-    container_name: yii_server
-    build:
-      context: ./server
+  php:
+    image: manchenkoff/apache-php-xdebug
     ports:
       - 80:80
       - 443:443
-    environment:
-      XDEBUG_CONFIG: remote_host=host.docker.internal
-      PHP_IDE_CONFIG: serverName=localhost
     volumes:
-      - ./:/var/www
+      - ./:/var/www/app/:cached
+    environment:
+      PHP_IDE_CONFIG: serverName=localhost
 
-  # MySQL
   db:
-    container_name: yii_database
     image: mysql
     ports:
       - 3306:3306

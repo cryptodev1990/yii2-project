@@ -1,19 +1,21 @@
-{% extends '@layouts/clean.twig' %}
+<?php
 
-{# form -> SetPasswordForm #}
-{# token -> string #}
+use yii\web\View;
 
-{% block content %}
+/**
+ * @var View $this
+ */
+
+?>
+
     <div class="uk-container">
         <div class="uk-align-center uk-width-xlarge uk-section-large">
             <h1 class="uk-text-center uk-margin-medium-bottom">
-                {{ t('ui', 'label.reset-password') }}
+                <?= t('ui', 'label.reset-password') ?>
             </h1>
 
-            <form action="{{ path(['@set-password'], {'token': token}) }}" method="post">
-                {{ csrf() | raw }}
-
-                {{ this.render('/layouts/widgets/form-errors', {'form': form}) | raw }}
+            <form action="<?= url(['@set-password', 'token' => $token])?>" method="post">
+                { csrf() | raw }
 
                 <div class="uk-margin">
                     <div class="uk-inline uk-display-block">
@@ -30,10 +32,9 @@
 
                 <div class="uk-margin uk-text-center">
                     <button type="submit" class="uk-button uk-button-primary uk-margin-top">
-                        {{ t('ui', 'label.continue') }}
+                        <?= t('ui', 'label.continue') ?>
                     </button>
                 </div>
             </form>
         </div>
-    </div>
-{% endblock %}
+    </div>¬

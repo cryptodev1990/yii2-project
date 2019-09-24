@@ -17,9 +17,6 @@ return [
 
     'controllerNamespace' => 'app\controllers',
 
-    // disables default view layout (for Twig @extends support)
-    'layout' => false,
-
     'basePath' => '@app',
     'vendorPath' => '@vendor',
     'viewPath' => '@resources/views',
@@ -139,20 +136,7 @@ return [
             /**
              * Assets file manager
              */
-            'assetManager' => [
-                'bundles' => false,
-            ],
-
-            /**
-             * Application view renderer component
-             */
-            'view' => [
-                'class' => yii\web\View::class,
-                'defaultExtension' => 'twig',
-                'renderers' => [
-                    'twig' => require __DIR__ . '/twig.php',
-                ],
-            ],
+            'assetManager' => ['bundles' => false],
 
             /**
              * SEO helper component
