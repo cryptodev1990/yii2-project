@@ -1,9 +1,11 @@
 <?php
 
+use app\forms\auth\SignUpForm;
 use yii\web\View;
 
 /**
  * @var View $this
+ * @var SignUpForm $form
  */
 
 ?>
@@ -15,17 +17,17 @@ use yii\web\View;
         </h1>
 
         <form action="<?= url(['@sign-up']) ?>" method="post">
-            { csrf() | raw }
+            <?= csrf() ?>
 
             <div class="uk-margin">
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">alternate_email</span>
                     <input type="text"
-                           class="uk-input {{ form.errors.email ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'email') }}"
+                           class="uk-input <?= $form->hasErrors('email') ? 'uk-form-danger' : '' ?>"
+                           placeholder="<?= $form->getAttributeLabel('email') ?>"
                            id="input-login"
-                           name="{{ form_field(form, 'email') }}"
-                           value="{{ form.email }}"
+                           name="<?= $form->formName() ?>[email]"
+                           value="<?= $form->email ?>"
                            autocomplete="off">
                 </div>
             </div>
@@ -34,11 +36,11 @@ use yii\web\View;
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">lock</span>
                     <input type="password"
-                           class="uk-input {{ form.errors.password ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'password') }}"
+                           class="uk-input <?= $form->hasErrors('password') ? 'uk-form-danger' : '' ?>"
+                           placeholder="<?= $form->getAttributeLabel('password') ?>"
                            id="input-password"
-                           name="{{ form_field(form, 'password') }}"
-                           value="{{ form.password }}"
+                           name="<?= $form->formName() ?>[password]"
+                           value="<?= $form->password ?>"
                            autocomplete="off">
                 </div>
             </div>
@@ -47,11 +49,11 @@ use yii\web\View;
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">person</span>
                     <input type="text"
-                           class="uk-input {{ form.errors.firstName ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'firstName') }}"
+                           class="uk-input <?= $form->hasErrors('firstName') ? 'uk-form-danger' : '' ?>"
+                           placeholder="<?= $form->getAttributeLabel('firstName') ?>"
                            id="input-firstname"
-                           name="{{ form_field(form, 'firstName') }}"
-                           value="{{ form.firstName }}"
+                           name="<?= $form->formName() ?>[firstName]"
+                           value="<?= $form->firstName ?>"
                            autocomplete="off">
                 </div>
             </div>
@@ -60,11 +62,11 @@ use yii\web\View;
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">person</span>
                     <input type="text"
-                           class="uk-input {{ form.errors.lastName ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'lastName') }}"
+                           class="uk-input <?= $form->hasErrors('lastName') ? 'uk-form-danger' : '' ?>"
+                           placeholder="<?= $form->getAttributeLabel('lastName') ?>"
                            id="input-lastname"
-                           name="{{ form_field(form, 'lastName') }}"
-                           value="{{ form.lastName }}"
+                           name="<?= $form->formName() ?>[lastName]"
+                           value="<?= $form->lastName ?>"
                            autocomplete="off">
                 </div>
             </div>

@@ -1,9 +1,11 @@
 <?php
 
+use app\forms\auth\ResetPasswordForm;
 use yii\web\View;
 
 /**
  * @var View $this
+ * @var ResetPasswordForm $form
  */
 
 ?>
@@ -14,18 +16,18 @@ use yii\web\View;
             <?= t('ui', 'label.reset-password') ?>
         </h1>
 
-        <form action="{{ path(['@reset-password']) }}" method="post">
-            { csrf() | raw }
+        <form action="<?= url(['@reset-password']) ?>" method="post">
+            <?= csrf() ?>
 
             <div class="uk-margin">
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">alternate_email</span>
                     <input type="text"
-                           class="uk-input {{ form.errors.email ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'email') }}"
+                           class="uk-input <?= $form->hasErrors('email') ? 'uk-form-danger' : '' ?>"
+                           placeholder="<?= $form->getAttributeLabel('email') ?>"
                            id="input-login"
-                           name="{{ form_field(form, 'email') }}"
-                           value="{{ form.email }}"
+                           name="<?= $form->formName() ?>[email]"
+                           value="<?= $form->email ?>"
                            autocomplete="off">
                 </div>
             </div>

@@ -1,9 +1,12 @@
 <?php
 
+use app\forms\auth\LoginForm;
+use manchenkov\yii\recaptcha\ReCaptchaWidget;
 use yii\web\View;
 
 /**
  * @var View $this
+ * @var LoginForm $form
  */
 
 ?>
@@ -16,17 +19,17 @@ use yii\web\View;
         <div class="uk-divider-icon uk-margin-medium"></div>
 
         <form action="<?= url(['@login']) ?>" method="post">
-            { csrf() | raw }
+            <?= csrf() ?>
 
             <div class="uk-margin">
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">alternate_email</span>
                     <input type="text"
-                           class="uk-input {{ form.errors.email ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'email') }}"
+                           class="uk-input <?= $form->hasErrors('email') ? 'uk-form-danger' : ''  ?>"
+                           placeholder="<?= $form->getAttributeLabel('email') ?>"
                            id="input-login"
-                           name="{{ form_field(form, 'email') }}"
-                           value="{{ form.email }}"
+                           name="<?= $form->formName() ?>[email]"
+                           value="<?= $form->email ?>"
                            autocomplete="off">
                 </div>
             </div>
@@ -35,11 +38,11 @@ use yii\web\View;
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">lock</span>
                     <input type="password"
-                           class="uk-input {{ form.errors.password ? 'uk-form-danger' : '' }}"
-                           placeholder="{{ form_label(form, 'password') }}"
+                           class="uk-input <?= $form->hasErrors('password') ? 'uk-form-danger' : ''  ?>"
+                           placeholder="<?= $form->getAttributeLabel('password') ?>"
                            id="input-password"
-                           name="{{ form_field(form, 'password') }}"
-                           value="{{ form.password }}"
+                           name="<?= $form->formName() ?>[password]"
+                           value="<?= $form->password ?>"
                            autocomplete="off">
                 </div>
                 <div class="uk-margin-small">
@@ -49,7 +52,11 @@ use yii\web\View;
                 </div>
             </div>
 
-            { reCaptcha(form, 'captcha', 'login') | raw }
+            <?= ReCaptchaWidget::widget([
+                'model' => $form,
+                'action' => 'captcha',
+                'attribute' => 'email',
+            ]) ?>
 
             <div class="uk-margin-medium-top uk-text-center">
                 <button type="submit" class="uk-button uk-button-primary">

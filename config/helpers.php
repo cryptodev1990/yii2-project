@@ -5,6 +5,8 @@
  * manchenkoff.me © 2019
  */
 
+use yii\helpers\Html;
+
 /**
  * Returns SeoHelper component of $app
  * @return manchenkov\yii\http\Seo|null
@@ -32,4 +34,15 @@ function asset(string $filename)
         : $filename;
 
     return url($filename);
+}
+
+/**
+ * Helper to generate HTML form CSRF input field
+ * @return string
+ */
+function csrf()
+{
+    [$param, $token] = [request()->csrfParam, request()->csrfToken];
+
+    return Html::input('hidden', $param, $token);
 }
