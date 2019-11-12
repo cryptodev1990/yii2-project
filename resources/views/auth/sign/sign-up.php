@@ -30,6 +30,11 @@ use yii\web\View;
                            value="<?= $form->email ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('email')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('email') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin">
@@ -43,6 +48,11 @@ use yii\web\View;
                            value="<?= $form->password ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('password')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('password') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin">
@@ -56,6 +66,11 @@ use yii\web\View;
                            value="<?= $form->firstName ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('firstName')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('firstName') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin">
@@ -69,6 +84,11 @@ use yii\web\View;
                            value="<?= $form->lastName ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('lastName')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('lastName') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin uk-text-center">

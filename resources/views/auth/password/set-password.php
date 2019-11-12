@@ -31,6 +31,11 @@ use yii\web\View;
                            value="<?= $form->password ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('password')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('password') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin uk-text-center">

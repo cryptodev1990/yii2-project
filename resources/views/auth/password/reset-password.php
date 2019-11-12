@@ -30,6 +30,11 @@ use yii\web\View;
                            value="<?= $form->email ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('email')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('email') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin uk-text-center">

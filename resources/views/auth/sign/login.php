@@ -25,26 +25,37 @@ use yii\web\View;
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">alternate_email</span>
                     <input type="text"
-                           class="uk-input <?= $form->hasErrors('email') ? 'uk-form-danger' : ''  ?>"
+                           class="uk-input <?= $form->hasErrors('email') ? 'uk-form-danger' : '' ?>"
                            placeholder="<?= $form->getAttributeLabel('email') ?>"
                            id="input-login"
                            name="<?= $form->formName() ?>[email]"
                            value="<?= $form->email ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('email')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('email') ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="uk-margin">
                 <div class="uk-inline uk-display-block">
                     <span class="uk-form-icon material-icons">lock</span>
                     <input type="password"
-                           class="uk-input <?= $form->hasErrors('password') ? 'uk-form-danger' : ''  ?>"
+                           class="uk-input <?= $form->hasErrors('password') ? 'uk-form-danger' : '' ?>"
                            placeholder="<?= $form->getAttributeLabel('password') ?>"
                            id="input-password"
                            name="<?= $form->formName() ?>[password]"
                            value="<?= $form->password ?>"
                            autocomplete="off">
                 </div>
+                <?php if ($form->hasErrors('password')) : ?>
+                    <div class="uk-text-danger">
+                        <?= $form->getFirstError('password') ?>
+                    </div>
+                <?php endif; ?>
+
                 <div class="uk-margin-small">
                     <a href="<?= url(['@reset-password']) ?>" class="uk-link-text">
                         <?= t('ui', 'label.reset-password') ?>
@@ -54,8 +65,8 @@ use yii\web\View;
 
             <?= ReCaptchaWidget::widget([
                 'model' => $form,
-                'action' => 'captcha',
-                'attribute' => 'email',
+                'action' => 'login',
+                'attribute' => 'captcha',
             ]) ?>
 
             <div class="uk-margin-medium-top uk-text-center">
