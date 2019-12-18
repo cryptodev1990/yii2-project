@@ -2,8 +2,7 @@
 
 ### Main features
 - **.env** configuration support with type casting
-- **Docker** support with 'one click to start'
-- **Twig** is a default renderer
+- **Docker** support
 - **Simple** project structure with a more clean view
 - **Webpack 4** based on [Laravel mix](https://laravel-mix.com), just run ```npm run dev```
 - **Code Generator** for controllers, models, etc (like Laravel artisan) (```php yii make``` for details)
