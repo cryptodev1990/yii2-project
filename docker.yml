@@ -2,7 +2,7 @@ version: '3.7'
 services:
   php:
     image: manchenkoff/apache-php-xdebug
-    container_name: app
+    container_name: yii2_app
     networks:
       - application
     ports:
@@ -15,7 +15,7 @@ services:
 
   db:
     image: mysql
-    container_name: db
+    container_name: yii2_db
     networks:
       - application
     ports:
