@@ -11,7 +11,6 @@
 - **Deploy** project to the remote host with one command ```dep deploy``` (see [Deployer](https://github.com/deployphp/deployer) extension)
 
 ### Extensions installed
-- Twig - [github](https://github.com/yiisoft/yii2-twig)
 - DB Seeder - [github](https://github.com/tebazil/yii2-db-seeder)
 - DotEnv - [github](https://github.com/vlucas/phpdotenv)
 - Carbon - [github](https://github.com/briannesbitt/carbon)
