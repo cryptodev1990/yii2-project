@@ -2,21 +2,30 @@ version: '3.7'
 services:
   php:
     image: manchenkoff/apache-php-xdebug
+    container_name: app
+    networks:
+      - application
     ports:
       - 80:80
       - 443:443
     volumes:
       - ./:/var/www/app/:cached
-    environment:
-      PHP_IDE_CONFIG: serverName=localhost
+    depends_on:
+      - db
 
   db:
     image: mysql
+    container_name: db
+    networks:
+      - application
     ports:
       - 3306:3306
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dev
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - ./runtime/database:/var/lib/mysql
+
+networks:
+  application:
