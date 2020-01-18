@@ -22,17 +22,11 @@
       "cp .env.example .env"
     ]
   },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://asset-packagist.org"
-    }
-  ],
   "require": {
     "php": ">=7.2",
     "ext-pcntl": "*",
     "ext-json": "*",
-    "yiisoft/yii2": "^2.0.24",
+    "yiisoft/yii2": "^2.0",
     "yiisoft/yii2-swiftmailer": "^2.1",
     "tebazil/yii2-db-seeder": "^0.0.0",
     "yiisoft/yii2-authclient": "^2.2.4",
