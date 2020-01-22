@@ -12,11 +12,9 @@ Thumbs.db
 
 # Composer files & vendor dir
 composer.phar
-composer.lock
 /vendor
 /runtime
 
 # Project files
 .env
 /node_modules
-/package-lock.json
