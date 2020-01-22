@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\forms\auth;
 
@@ -37,7 +34,7 @@ class SignUpForm extends Model
      * Form validation rules
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['email', 'password', 'firstName', 'lastName'], 'required'],
@@ -55,7 +52,7 @@ class SignUpForm extends Model
      * Attributes translation
      * @return array
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'email' => t('models', 'label.email'),
@@ -83,7 +80,7 @@ class SignUpForm extends Model
      * @throws Exception
      * @throws \Exception
      */
-    public function handle()
+    public function handle(): ?User
     {
         // create a new user record
         $user = new User([

@@ -1,17 +1,14 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\controllers\auth;
 
 use app\core\interfaces\Mailer;
-use manchenkov\yii\http\Controller;
 use app\forms\auth\ResetPasswordForm;
 use app\forms\auth\SetPasswordForm;
 use app\models\auth\User;
+use manchenkov\yii\http\Controller;
 use yii\base\Exception;
 use yii\web\Response;
 
@@ -24,7 +21,7 @@ class PasswordController extends Controller
      *
      * @return string
      */
-    public function actionResetPassword(Mailer $mailer)
+    public function actionResetPassword(Mailer $mailer): string
     {
         $form = new ResetPasswordForm($mailer);
 

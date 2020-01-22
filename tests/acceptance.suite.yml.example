@@ -8,12 +8,12 @@ actor: AcceptanceTester
 modules:
   enabled:
     - PhpBrowser:
-        url: http://test.dev.local
+        url: http://dev.local
     - \Helper\Acceptance
     - Yii2:
         part: orm
         transaction: false
-        entryScript: index-test.php
+        entryScript: index.php
         cleanup: false
-        configFile: config/test/http.php
+        configFile: config/http.php
   step_decorators: ~

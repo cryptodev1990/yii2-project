@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\database\seeders;
 
 use app\core\rules\ConfirmedRule;
-use manchenkov\yii\console\Command;
 use Exception;
+use manchenkov\yii\console\Command;
 use yii\base\Action;
 use yii\rbac\ManagerInterface;
 
@@ -20,7 +22,7 @@ class RbacSeeder extends Action
      * Creates basic RBAC configuration
      * @throws Exception
      */
-    public function run()
+    public function run(): void
     {
         $rbac = app()->authManager;
 
@@ -36,7 +38,7 @@ class RbacSeeder extends Action
      * @throws \yii\base\Exception
      * @throws Exception
      */
-    public function baseRoles(ManagerInterface $manager)
+    public function baseRoles(ManagerInterface $manager): void
     {
         $roleAdmin = $manager->createRole('admin');
         $roleUser = $manager->createRole('user');
@@ -54,7 +56,7 @@ class RbacSeeder extends Action
      *
      * @throws Exception
      */
-    public function confirmedRule(ManagerInterface $manager)
+    public function confirmedRule(ManagerInterface $manager): void
     {
         // add custom rule to the RBAC
         $userConfirmedRule = new ConfirmedRule();

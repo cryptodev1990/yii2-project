@@ -1,18 +1,15 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\models\auth;
 
+use manchenkov\yii\database\ActiveQuery;
 use manchenkov\yii\database\ActiveRecord;
 use manchenkov\yii\database\traits\SoftDelete;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveQuery;
 use yii\web\IdentityInterface;
 use yii\web\Response;
 
@@ -53,7 +50,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Model behaviors array
      * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             TimestampBehavior::class,
@@ -64,7 +61,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Model basic validation rules
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['email', 'password', 'first_name', 'last_name'], 'required'],
@@ -80,7 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Model attributes labels' translation
      * @return array
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => '#',
@@ -100,7 +97,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    public static function findIdentity($id): ?User
     {
         return self::findOne($id);
     }
@@ -108,7 +105,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public static function findIdentityByAccessToken($token, $type = null): ?User
     {
         return self::findOne(['token' => $token]);
     }
@@ -120,7 +117,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @return User|null
      */
-    public static function findIdentityByEmail(string $email)
+    public static function findIdentityByEmail(string $email): ?User
     {
         return self::findOne(['email' => $email]);
     }
@@ -150,7 +147,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @return bool
      */
-    public static function loginAs(int $id)
+    public static function loginAs(int $id): bool
     {
         $user = self::findOne($id);
 
@@ -164,7 +161,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->getPrimaryKey();
     }
@@ -172,7 +169,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function getAuthKey()
+    public function getAuthKey(): string
     {
         return $this->token;
     }
@@ -180,7 +177,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): bool
     {
         return $this->token == $authKey;
     }
@@ -189,7 +186,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Returns a user password hash
      * @return string
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password_hash;
     }
@@ -201,7 +198,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @throws Exception
      */
-    public function setPassword(string $value)
+    public function setPassword(string $value): void
     {
         $this->password_hash = app()->security->generatePasswordHash($value);
     }
@@ -213,7 +210,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @return bool
      */
-    public function validatePassword(string $password)
+    public function validatePassword(string $password): bool
     {
         return app()->security->validatePassword($password, $this->password_hash);
     }
@@ -222,7 +219,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Generates a new token for current user
      * @throws Exception
      */
-    public function generateToken()
+    public function generateToken(): void
     {
         $this->token = app()->security->generateRandomString();
     }
@@ -235,7 +232,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return bool
      * @throws Exception
      */
-    public function updatePassword(string $newPassword)
+    public function updatePassword(string $newPassword): bool
     {
         $this->password = $newPassword;
         $this->generateToken();
@@ -248,7 +245,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return bool
      * @throws Exception
      */
-    public function activate()
+    public function activate(): bool
     {
         $this->is_active = true;
         $this->generateToken();
@@ -287,7 +284,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Returns all of the current user social auth clients
      * @return ActiveQuery
      */
-    public function getAuthClients()
+    public function getAuthClients(): ActiveQuery
     {
         return $this->hasMany(AuthClient::class);
     }

@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\controllers;
 
@@ -19,7 +16,7 @@ class HomeController extends Controller
     /**
      * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -32,7 +29,7 @@ class HomeController extends Controller
     /**
      * @return array
      */
-    private function accessRules()
+    private function accessRules(): array
     {
         return [
             [
@@ -42,7 +39,10 @@ class HomeController extends Controller
         ];
     }
 
-    public function actionMe()
+    /**
+     * @return string
+     */
+    public function actionMe(): string
     {
         return view('home');
     }

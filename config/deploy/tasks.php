@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
 
 namespace Deployer;
 
@@ -30,7 +25,7 @@ task('supervisor:start', function () {
 );
 
 task('npm:install', function () {
-    within('{{release_path}}', function() {
+    within('{{release_path}}', function () {
         run('npm install');
     });
 })->desc(
@@ -38,7 +33,7 @@ task('npm:install', function () {
 );
 
 task('npm:build', function () {
-    within('{{release_path}}', function() {
+    within('{{release_path}}', function () {
         run('npm run production');
     });
 })->desc(

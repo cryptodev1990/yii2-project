@@ -1,18 +1,15 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\models\auth;
 
-use manchenkov\yii\database\ActiveRecord;
 use app\forms\auth\SignUpForm;
 use Exception;
+use manchenkov\yii\database\ActiveQuery;
+use manchenkov\yii\database\ActiveRecord;
 use Yii;
 use yii\authclient\ClientInterface;
-use yii\db\ActiveQuery;
 use yii\web\Response;
 
 /**
@@ -32,7 +29,7 @@ class AuthClient extends ActiveRecord
      * Data validation rules
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['user_id', 'integer'],
@@ -44,7 +41,7 @@ class AuthClient extends ActiveRecord
      * Returns user of current client
      * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->belongsTo(User::class);
     }
@@ -56,7 +53,7 @@ class AuthClient extends ActiveRecord
      *
      * @return array
      */
-    public static function parseUserDetails(ClientInterface $client)
+    public static function parseUserDetails(ClientInterface $client): array
     {
         // required values
         $details = [
@@ -83,7 +80,7 @@ class AuthClient extends ActiveRecord
                 break;
             case 'facebook':
             case 'github':
-                list($details['first_name'], $details['last_name']) = explode(' ', $data['name']);
+                [$details['first_name'], $details['last_name']] = explode(' ', $data['name']);
                 break;
             case 'vkontakte':
                 $details['first_name'] = $data['first_name'];
@@ -103,7 +100,7 @@ class AuthClient extends ActiveRecord
      * @throws \yii\base\Exception
      * @throws Exception
      */
-    public static function onAuthSuccess(ClientInterface $client)
+    public static function onAuthSuccess(ClientInterface $client): ?Response
     {
         // get information about user from external service
         $userData = self::parseUserDetails($client);

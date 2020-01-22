@@ -9,5 +9,5 @@ modules:
     - \Helper\Unit
     - Yii2:
         part: [orm, email]
-        configFile: config/test/console.php
+        configFile: config/console.php
   step_decorators: ~

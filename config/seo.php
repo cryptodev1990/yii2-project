@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by Artem Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
 
 return [
     // basic data

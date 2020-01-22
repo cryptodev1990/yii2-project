@@ -1,9 +1,3 @@
-<!--
-  - Created by Artyom Manchenkov
-  - artyom@manchenkoff.me
-  - manchenkoff.me © 2019
-  -->
-
 <template>
     <div class="uk-container">
         <div class="uk-text-center uk-margin">
@@ -57,6 +51,3 @@
         }
     }
 </script>
-
-<style>
-</style>

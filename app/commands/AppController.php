@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\commands;
 
@@ -24,7 +21,7 @@ class AppController extends Command
      *
      * @param array $actions
      */
-    private function runSequence(array $actions)
+    private function runSequence(array $actions): void
     {
         foreach ($actions as $action) {
             $command = $action[0];
@@ -43,7 +40,7 @@ class AppController extends Command
     /**
      * Loads basic application environment and data
      */
-    public function actionInit()
+    public function actionInit(): void
     {
         // base commands to init application on a new hosting
         $this->runSequence([
@@ -56,7 +53,7 @@ class AppController extends Command
     /**
      * Resets and prepares application for use
      */
-    public function actionReset()
+    public function actionReset(): void
     {
         // commands to reset current configurations and data removing
         $this->runSequence([

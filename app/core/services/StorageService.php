@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\core\services;
 
@@ -82,7 +79,7 @@ class StorageService implements Storage
      *
      * @throws ErrorException
      */
-    public function deleteDirectory(string $path)
+    public function deleteDirectory(string $path): void
     {
         $dir = $this->basePath($path);
 

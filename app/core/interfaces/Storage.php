@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\core\interfaces;
 
@@ -31,7 +28,7 @@ interface Storage
      *
      * @throws ErrorException
      */
-    public function deleteDirectory(string $path);
+    public function deleteDirectory(string $path): void;
 
     /**
      * Clears directory content (re-creation)

@@ -1,14 +1,11 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\mail\auth;
 
-use manchenkov\yii\mail\Mailable;
 use app\models\auth\User;
+use manchenkov\yii\mail\Mailable;
 use yii\base\BaseObject;
 
 class ResetPasswordMail extends BaseObject implements Mailable

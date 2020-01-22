@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\forms\auth;
 
@@ -29,7 +26,7 @@ class ResetPasswordForm extends Model
      * Form validation rules
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['email', 'required'],
@@ -42,7 +39,7 @@ class ResetPasswordForm extends Model
      * Attributes translation
      * @return array
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'email' => t('models', 'label.email'),
@@ -66,7 +63,7 @@ class ResetPasswordForm extends Model
      * Send reset password email
      * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $user = User::findIdentityByEmail($this->email);
 

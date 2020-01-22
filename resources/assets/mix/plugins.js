@@ -1,9 +1,3 @@
-/*
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
-
 const CleanWebpackPlugin = require('clean-webpack-plugin/dist/clean-webpack-plugin');
 
 // SVG inline encoding

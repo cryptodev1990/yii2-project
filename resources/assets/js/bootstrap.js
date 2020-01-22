@@ -1,9 +1,3 @@
-/*
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
-
 import Vue from 'vue'
 import VueAxios from 'vue-axios'
 import axios from 'axios'

@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\core\interfaces;
 
@@ -21,5 +18,5 @@ interface Mailer
      *
      * @return bool
      */
-    public function send(Mailable $mail);
+    public function send(Mailable $mail): bool;
 }

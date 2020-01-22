@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\core\services;
 
 use app\core\interfaces\Mailer;
@@ -18,7 +20,7 @@ class MailService extends BaseObject implements Mailer
      *
      * @return bool
      */
-    public function send(Mailable $mail)
+    public function send(Mailable $mail): bool
     {
         $message = app()->mailer
             ->compose(

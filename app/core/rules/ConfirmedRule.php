@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\core\rules;
 
@@ -24,7 +21,7 @@ class ConfirmedRule extends Rule
      *
      * @return bool
      */
-    public function execute($user, $item, $params)
+    public function execute($user, $item, $params): bool
     {
         $model = User::findOne($user);
 

@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\controllers;
 
@@ -11,7 +8,10 @@ use manchenkov\yii\http\Controller;
 
 class SiteController extends Controller
 {
-    public function actionIndex()
+    /**
+     * @return string
+     */
+    public function actionIndex(): string
     {
         seo()->title = 'Home page';
 

@@ -10,5 +10,5 @@ modules:
   enabled:
     - \Helper\Functional
     - Yii2:
-        configFile: config/test/http.php
+        configFile: config/http.php
   step_decorators: ~

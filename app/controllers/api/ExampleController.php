@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\controllers\api;
 
 use manchenkov\yii\http\Controller;
@@ -13,7 +15,7 @@ class ExampleController extends Controller
      * @return Response
      * @throws Exception
      */
-    public function actionLoadText()
+    public function actionLoadText(): Response
     {
         return $this->asJson(
             app()->security->generateRandomString()

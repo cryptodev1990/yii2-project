@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\database\seeders;
 
-use manchenkov\yii\console\Command;
 use app\models\auth\User;
 use Exception;
+use manchenkov\yii\console\Command;
 use yii\base\Action;
 
 /**
@@ -24,7 +21,7 @@ class UserSeeder extends Action
      * Creates a default admin user
      * @throws \yii\base\Exception
      */
-    public function run()
+    public function run(): void
     {
         $admin = new User([
             'email' => config('email.admin'),

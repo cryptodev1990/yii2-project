@@ -1,9 +1,6 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
+
+declare(strict_types=1);
 
 namespace app\forms\auth;
 
@@ -23,7 +20,7 @@ class SetPasswordForm extends Model
      * Form validation rules
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['password', 'required'],
@@ -35,7 +32,7 @@ class SetPasswordForm extends Model
      * Attributes translation
      * @return array
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'password' => t('models', 'label.new-password'),
@@ -48,7 +45,7 @@ class SetPasswordForm extends Model
      * @return bool
      * @throws Exception
      */
-    public function handle(User $user)
+    public function handle(User $user): bool
     {
         return $user->updatePassword($this->password);
     }
