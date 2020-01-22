@@ -26,7 +26,7 @@ class ConfirmedRule extends Rule
         $model = User::findOne($user);
 
         if ($model) {
-            return $model->is_active;
+            return (bool)$model->is_active;
         }
 
         return false;
