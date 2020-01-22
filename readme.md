@@ -24,7 +24,7 @@ For install project environment follow the instructions below
 
 ##### Composer install
 ```
-composer create-project manchenkoff/yii2-project new-app-name
+composer create-project manchenkov/yii2-project new-app-name
 ```
 
 ##### Docker
