@@ -2452,16 +2452,16 @@
         },
         {
             "name": "manchenkov/yii2-maker",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/manchenkoff/yii2-maker.git",
-                "reference": "9430f96aaff357bf213a8d29de5bb095d7f4476f"
+                "reference": "532e36cd7516f9f44a82352e955fb4330108b0d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manchenkoff/yii2-maker/zipball/9430f96aaff357bf213a8d29de5bb095d7f4476f",
-                "reference": "9430f96aaff357bf213a8d29de5bb095d7f4476f",
+                "url": "https://api.github.com/repos/manchenkoff/yii2-maker/zipball/532e36cd7516f9f44a82352e955fb4330108b0d7",
+                "reference": "532e36cd7516f9f44a82352e955fb4330108b0d7",
                 "shasum": ""
             },
             "require": {
@@ -2485,7 +2485,7 @@
                 }
             ],
             "description": "Code generation tool for Yii 2 project",
-            "time": "2020-01-22T22:56:49+00:00"
+            "time": "2020-01-23T19:43:02+00:00"
         },
         {
             "name": "myclabs/deep-copy",
