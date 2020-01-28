@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\core\interfaces;
 
-use manchenkov\yii\mail\Mailable;
+use app\core\contracts\MailInterface;
 
 interface Mailer
 {
@@ -14,9 +14,9 @@ interface Mailer
      * Set mailer properties: `from`, `to`, `subject`, `view`, `data`
      * Use to send: `send()`
      *
-     * @param Mailable $mail
+     * @param MailInterface $mail
      *
      * @return bool
      */
-    public function send(Mailable $mail): bool;
+    public function send(MailInterface $mail): bool;
 }

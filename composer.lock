@@ -585,20 +585,22 @@
         },
         {
             "name": "manchenkov/yii2-components",
-            "version": "1.0.11",
+            "version": "1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/manchenkoff/yii2-components.git",
-                "reference": "c99952f9e646d2ae5e6cbfb68c1812c04174263f"
+                "reference": "24cf1cc0a9f88a0fd8ec2f2ca9b74ad1aefb497b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manchenkoff/yii2-components/zipball/c99952f9e646d2ae5e6cbfb68c1812c04174263f",
-                "reference": "c99952f9e646d2ae5e6cbfb68c1812c04174263f",
+                "url": "https://api.github.com/repos/manchenkoff/yii2-components/zipball/24cf1cc0a9f88a0fd8ec2f2ca9b74ad1aefb497b",
+                "reference": "24cf1cc0a9f88a0fd8ec2f2ca9b74ad1aefb497b",
                 "shasum": ""
             },
             "require": {
                 "bocharsky-bw/arrayzy": "^0.6.1",
+                "ext-json": "*",
+                "ext-pcntl": "*",
                 "manchenkov/yii2-helpers": "^1.0"
             },
             "type": "yii2-extension",
@@ -618,7 +620,7 @@
                 }
             ],
             "description": "Improved components for Yii 2 project",
-            "time": "2020-01-22T21:55:57+00:00"
+            "time": "2020-01-28T23:49:07+00:00"
         },
         {
             "name": "manchenkov/yii2-helpers",

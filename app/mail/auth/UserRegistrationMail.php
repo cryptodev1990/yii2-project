@@ -4,21 +4,17 @@ declare(strict_types=1);
 
 namespace app\mail\auth;
 
-use manchenkov\yii\mail\Mailable;
+use app\core\contracts\MailInterface;
 use yii\base\BaseObject;
 
-class UserRegistrationMail extends BaseObject implements Mailable
+class UserRegistrationMail extends BaseObject implements MailInterface
 {
     public $email;
     public $password;
     public $token;
     public $isActive;
 
-    /**
-     * Returns a prepared data to compose mail view (use in `send()` method)
-     * @return array
-     */
-    public function data(): array
+    public function getData(): array
     {
         return [
             'email' => $this->email,
@@ -28,22 +24,22 @@ class UserRegistrationMail extends BaseObject implements Mailable
         ];
     }
 
-    public function from(): array
+    public function getFrom(): array
     {
         return [config('email.no-reply') => app()->name];
     }
 
-    public function to(): string
+    public function getTo(): string
     {
         return $this->email;
     }
 
-    public function subject(): string
+    public function getSubject(): string
     {
         return t('mail', 'auth.subject');
     }
 
-    public function view(): string
+    public function getView(): string
     {
         return 'auth/user-registration';
     }

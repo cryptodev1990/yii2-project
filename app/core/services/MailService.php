@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace app\core\services;
 
+use app\core\contracts\MailInterface;
 use app\core\interfaces\Mailer;
-use manchenkov\yii\mail\Mailable;
 use yii\base\BaseObject;
 
 class MailService extends BaseObject implements Mailer
@@ -16,20 +16,20 @@ class MailService extends BaseObject implements Mailer
      * Set mailer properties: `from`, `to`, `subject`, `view`, `data`
      * Use to send: `send()`
      *
-     * @param Mailable $mail
+     * @param MailInterface $mail
      *
      * @return bool
      */
-    public function send(Mailable $mail): bool
+    public function send(MailInterface $mail): bool
     {
         $message = app()->mailer
             ->compose(
-                $mail->view(),
-                $mail->data()
+                $mail->getView(),
+                $mail->getData()
             )
-            ->setSubject($mail->subject())
-            ->setFrom($mail->from())
-            ->setTo($mail->to());
+            ->setSubject($mail->getSubject())
+            ->setFrom($mail->getFrom())
+            ->setTo($mail->getTo());
 
         return $message->send();
     }

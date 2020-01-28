@@ -4,44 +4,40 @@ declare(strict_types=1);
 
 namespace app\mail\auth;
 
+use app\core\contracts\MailInterface;
 use app\models\auth\User;
-use manchenkov\yii\mail\Mailable;
 use yii\base\BaseObject;
 
-class ResetPasswordMail extends BaseObject implements Mailable
+class ResetPasswordMail extends BaseObject implements MailInterface
 {
     /**
      * @var User
      */
     public $user;
 
-    /**
-     * Returns a prepared data to compose mail view (use in `send()` method)
-     * @return array
-     */
-    function data(): array
+    function getData(): array
     {
         return [
             'link' => url(['/auth/set-password', 'token' => $this->user->token], true),
         ];
     }
 
-    public function from(): array
+    public function getFrom(): array
     {
         return [config('email.no-reply') => app()->name];
     }
 
-    public function to(): string
+    public function getTo(): string
     {
         return $this->user->email;
     }
 
-    public function subject(): string
+    public function getSubject(): string
     {
         return t('mail', 'auth.reset.subject');
     }
 
-    public function view(): string
+    public function getView(): string
     {
         return 'auth/reset-password';
     }
