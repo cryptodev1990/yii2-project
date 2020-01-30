@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace app\forms\auth;
 
 use app\models\auth\User;
+use manchenkov\yii\data\Form;
 use manchenkov\yii\recaptcha\ReCaptchaValidator;
-use yii\base\Model;
 
-class LoginForm extends Model
+class LoginForm extends Form
 {
     /**
      * User email value

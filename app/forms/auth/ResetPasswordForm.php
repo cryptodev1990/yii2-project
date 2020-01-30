@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace app\forms\auth;
 
-use app\core\interfaces\Mailer;
+use app\core\interfaces\MailerInterface;
 use app\mail\auth\ResetPasswordMail;
 use app\models\auth\User;
-use yii\base\Model;
+use manchenkov\yii\data\Form;
 
-class ResetPasswordForm extends Model
+class ResetPasswordForm extends Form
 {
     /**
      * User e-mail
@@ -18,7 +18,7 @@ class ResetPasswordForm extends Model
     public $email;
 
     /**
-     * @var Mailer
+     * @var MailerInterface
      */
     protected $mailer;
 
@@ -49,10 +49,10 @@ class ResetPasswordForm extends Model
     /**
      * ResetPasswordForm constructor with Mailer object injection
      *
-     * @param Mailer $mailer
+     * @param MailerInterface $mailer
      * @param array $config
      */
-    public function __construct(Mailer $mailer, $config = [])
+    public function __construct(MailerInterface $mailer, $config = [])
     {
         parent::__construct($config);
 

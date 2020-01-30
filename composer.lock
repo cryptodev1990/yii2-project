@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcd2fe06f3e4d5a5bf54bd816bf98d38",
+    "content-hash": "431e47cdfc1ec1621b29705c5fb4c180",
     "packages": [
         {
             "name": "bocharsky-bw/arrayzy",
@@ -585,16 +585,16 @@
         },
         {
             "name": "manchenkov/yii2-components",
-            "version": "1.0.13",
+            "version": "1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/manchenkoff/yii2-components.git",
-                "reference": "24cf1cc0a9f88a0fd8ec2f2ca9b74ad1aefb497b"
+                "reference": "25c078410da054f75e34bdc5e3281c1bb227977b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manchenkoff/yii2-components/zipball/24cf1cc0a9f88a0fd8ec2f2ca9b74ad1aefb497b",
-                "reference": "24cf1cc0a9f88a0fd8ec2f2ca9b74ad1aefb497b",
+                "url": "https://api.github.com/repos/manchenkoff/yii2-components/zipball/25c078410da054f75e34bdc5e3281c1bb227977b",
+                "reference": "25c078410da054f75e34bdc5e3281c1bb227977b",
                 "shasum": ""
             },
             "require": {
@@ -620,7 +620,7 @@
                 }
             ],
             "description": "Improved components for Yii 2 project",
-            "time": "2020-01-28T23:49:07+00:00"
+            "time": "2020-01-29T23:53:26+00:00"
         },
         {
             "name": "manchenkov/yii2-helpers",

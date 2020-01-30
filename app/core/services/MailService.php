@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace app\core\services;
 
-use app\core\contracts\MailInterface;
-use app\core\interfaces\Mailer;
+use app\core\interfaces\MailInterface;
+use app\core\interfaces\MailerInterface;
 use yii\base\BaseObject;
 
-class MailService extends BaseObject implements Mailer
+class MailService extends BaseObject implements MailerInterface
 {
     /**
      * Method for build and send composed mail object

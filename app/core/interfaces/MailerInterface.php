@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace app\core\interfaces;
 
-use app\core\contracts\MailInterface;
-
-interface Mailer
+interface MailerInterface
 {
     /**
      * Method for build and send composed mail object

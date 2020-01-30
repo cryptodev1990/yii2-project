@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace app\forms\auth;
 
 use app\models\auth\User;
+use manchenkov\yii\data\Form;
 use yii\base\Exception;
-use yii\base\Model;
 
-class SetPasswordForm extends Model
+class SetPasswordForm extends Form
 {
     /**
      * New password string value

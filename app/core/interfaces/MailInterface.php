@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\core\contracts;
+namespace app\core\interfaces;
 
 interface MailInterface
 {

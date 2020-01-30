@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\core\services;
 
-use app\core\interfaces\Storage;
+use app\core\interfaces\StorageInterface;
 use SplFileInfo;
 use yii\base\ErrorException;
 use yii\base\Exception;
@@ -15,7 +15,7 @@ use yii\web\UploadedFile;
  * Class StorageService for manage files and directories in 'public' folder
  * @package App\Core\Services
  */
-class StorageService implements Storage
+class StorageService implements StorageInterface
 {
     /**
      * Main web application root
@@ -23,7 +23,7 @@ class StorageService implements Storage
     public $publicPath;
 
     /**
-     * Storage path alias string
+     * StorageInterface path alias string
      */
     public $storagePath;
 

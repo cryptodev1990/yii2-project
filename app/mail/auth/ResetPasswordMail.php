@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\mail\auth;
 
-use app\core\contracts\MailInterface;
+use app\core\interfaces\MailInterface;
 use app\models\auth\User;
 use yii\base\BaseObject;
 

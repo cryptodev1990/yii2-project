@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace app\models\auth;
 
+use app\core\services\auth\UserDetailsParser;
 use app\forms\auth\SignUpForm;
 use Exception;
 use manchenkov\yii\database\ActiveQuery;
 use manchenkov\yii\database\ActiveRecord;
-use Yii;
 use yii\authclient\ClientInterface;
 use yii\web\Response;
 
@@ -47,51 +47,6 @@ class AuthClient extends ActiveRecord
     }
 
     /**
-     * Returns structured information about the user from external services
-     *
-     * @param ClientInterface $client
-     *
-     * @return array
-     */
-    public static function parseUserDetails(ClientInterface $client): array
-    {
-        // required values
-        $details = [
-            'id' => '',
-            'first_name' => '',
-            'last_name' => '',
-            'email' => '',
-        ];
-
-        // get data from response
-        $data = $client->getUserAttributes();
-        // get external service name
-        $service = $client->getName();
-
-        // set user's data: external id, email
-        $details['id'] = $data['id'];
-        $details['email'] = $data['email'];
-
-        // see docs for details about response key names
-        switch ($service) {
-            case 'google':
-                $details['first_name'] = $data['given_name'];
-                $details['last_name'] = $data['family_name'];
-                break;
-            case 'facebook':
-            case 'github':
-                [$details['first_name'], $details['last_name']] = explode(' ', $data['name']);
-                break;
-            case 'vkontakte':
-                $details['first_name'] = $data['first_name'];
-                $details['last_name'] = $data['last_name'];
-                break;
-        }
-
-        return $details;
-    }
-
-    /**
      * Handler for social auth clients
      *
      * @param ClientInterface $client
@@ -103,13 +58,16 @@ class AuthClient extends ActiveRecord
     public static function onAuthSuccess(ClientInterface $client): ?Response
     {
         // get information about user from external service
-        $userData = self::parseUserDetails($client);
+        $userDetailsParser = new UserDetailsParser($client);
+        $userData = $userDetailsParser->parseUserDetails();
 
         // search existing auth client item
-        $authClient = self::findOne([
-            'source' => $client->getId(),
-            'source_id' => $userData['id'],
-        ]);
+        $authClient = self::findOne(
+            [
+                'source' => $client->getId(),
+                'source_id' => $userData->getId(),
+            ]
+        );
 
         // if guest - try to login/register
         if (user()->isGuest) {
@@ -119,22 +77,25 @@ class AuthClient extends ActiveRecord
             }
 
             // find existing user
-            $user = User::findIdentityByEmail($userData['email']);
+            $user = User::findIdentityByEmail($userData->getEmail());
 
             if (!$user) {
-                $signUpForm = Yii::createObject([
-                    'class' => SignUpForm::class,
-                    'email' => $userData['email'],
-                    'firstName' => $userData['first_name'],
-                    'lastName' => $userData['last_name'],
-                    'password' => app()->security->generateRandomString(8),
-                    'isActive' => true,
-                ]);
+                $signUpForm = invoke(
+                    SignUpForm::class,
+                    [
+                        'email' => $userData->getEmail(),
+                        'firstName' => $userData->getFirstName(),
+                        'lastName' => $userData->getLastName(),
+                        'password' => app()->security->generateRandomString(8),
+                        'isActive' => true,
+                    ]
+                );
 
                 if (!$user = $signUpForm->handle()) {
                     // some error from user
                     session()->addFlash(
-                        'errors', t('errors', 'auth.auth-client-error')
+                        'errors',
+                        t('errors', 'auth.auth-client-error')
                     );
 
                     return response()->redirect(['sign-up']);
@@ -142,11 +103,13 @@ class AuthClient extends ActiveRecord
             }
 
             // create new auth client
-            $authClient = new self([
-                'user_id' => $user->id,
-                'source' => $client->getId(),
-                'source_id' => (string)$userData['id'],
-            ]);
+            $authClient = new self(
+                [
+                    'user_id' => $user->id,
+                    'source' => $client->getId(),
+                    'source_id' => (string) $userData->getId(),
+                ]
+            );
 
             $authClient->save();
 
@@ -154,11 +117,13 @@ class AuthClient extends ActiveRecord
         } else {
             // append new auth client data to the existing user
             if (!$authClient) {
-                $authClient = new AuthClient([
-                    'user_id' => user()->id,
-                    'source' => $client->getId(),
-                    'source_id' => (string)$userData['id'],
-                ]);
+                $authClient = new AuthClient(
+                    [
+                        'user_id' => user()->id,
+                        'source' => $client->getId(),
+                        'source_id' => (string) $userData->getId(),
+                    ]
+                );
 
                 $authClient->save();
             }

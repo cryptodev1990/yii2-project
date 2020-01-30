@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\controllers\auth;
 
-use app\core\interfaces\Mailer;
+use app\core\interfaces\MailerInterface;
 use app\forms\auth\ResetPasswordForm;
 use app\forms\auth\SetPasswordForm;
 use app\models\auth\User;
@@ -17,21 +17,23 @@ class PasswordController extends Controller
     /**
      * Request a reset password link by user email
      *
-     * @param Mailer $mailer
+     * @param MailerInterface $mailer
      *
      * @return string
      */
-    public function actionResetPassword(Mailer $mailer): string
+    public function actionResetPassword(MailerInterface $mailer): string
     {
         $form = new ResetPasswordForm($mailer);
 
         if ($form->load(request()->post())) {
-            if ($form->validate() && $form->handle()) {
-                return view('@views/site/notification', [
+            if ($form->handle()) {
+                $context = [
                     'icon' => 'email',
                     'title' => t('ui', 'title.great'),
                     'message' => t('ui', 'label.email-password-sent'),
-                ]);
+                ];
+
+                return view('@views/site/notification', $context);
             }
         }
 
@@ -54,12 +56,15 @@ class PasswordController extends Controller
             $form = new SetPasswordForm();
 
             if ($form->load(request()->post())) {
-                if ($form->validate() && $form->handle($user)) {
-                    return view('@views/site/notification', [
-                        'icon' => 'done',
-                        'title' => t('ui', 'title.great'),
-                        'message' => t('ui', 'label.email-password-changed'),
-                    ]);
+                if ($form->handle($user)) {
+                    return view(
+                        '@views/site/notification',
+                        [
+                            'icon' => 'done',
+                            'title' => t('ui', 'title.great'),
+                            'message' => t('ui', 'label.email-password-changed'),
+                        ]
+                    );
                 }
             }
 

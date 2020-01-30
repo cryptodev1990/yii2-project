@@ -9,7 +9,7 @@ use yii\base\ErrorException;
 use yii\base\Exception;
 use yii\web\UploadedFile;
 
-interface Storage
+interface StorageInterface
 {
     /**
      * Creates new directory at relative $path

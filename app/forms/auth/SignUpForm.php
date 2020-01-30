@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace app\forms\auth;
 
-use app\core\interfaces\Mailer;
+use app\core\interfaces\MailerInterface;
 use app\mail\auth\UserRegistrationMail;
 use app\models\auth\User;
+use manchenkov\yii\data\Form;
 use yii\base\Exception;
-use yii\base\Model;
 
-class SignUpForm extends Model
+class SignUpForm extends Form
 {
     /**
      * User credentials
@@ -26,7 +26,7 @@ class SignUpForm extends Model
     public $isActive = false;
 
     /**
-     * @var Mailer
+     * @var MailerInterface
      */
     protected $mailer;
 
@@ -65,10 +65,10 @@ class SignUpForm extends Model
     /**
      * SignUpForm constructor with Mailer object injection
      *
-     * @param Mailer $mailer
+     * @param MailerInterface $mailer
      * @param array $config
      */
-    public function __construct(Mailer $mailer, $config = [])
+    public function __construct(MailerInterface $mailer, $config = [])
     {
         parent::__construct($config);
 

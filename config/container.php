@@ -1,7 +1,7 @@
 <?php
 
-use app\core\interfaces\Mailer;
-use app\core\interfaces\Storage;
+use app\core\interfaces\MailerInterface;
+use app\core\interfaces\StorageInterface;
 use app\core\services\MailService;
 use app\core\services\StorageService;
 
@@ -12,12 +12,12 @@ return [
     'definitions' => [
         //'SomeClassInterface::class' => 'SomeClassImplementation::class',
 
-        Storage::class => [
+        StorageInterface::class => [
             'class' => StorageService::class,
             'publicPath' => alias('@public'),
             'storagePath' => alias('@storage'),
         ],
 
-        Mailer::class => MailService::class,
+        MailerInterface::class => MailService::class,
     ],
 ];

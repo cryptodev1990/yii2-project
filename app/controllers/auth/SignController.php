@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace app\controllers\auth;
 
 use app\core\filters\AccessFilter;
-use app\core\interfaces\Mailer;
+use app\core\interfaces\MailerInterface;
 use app\forms\auth\LoginForm;
 use app\forms\auth\SignUpForm;
 use app\models\auth\AuthClient;
@@ -76,7 +76,7 @@ class SignController extends Controller
     {
         $form = new LoginForm();
 
-        if ($form->load(request()->post()) && $form->validate()) {
+        if ($form->load(request()->post())) {
             // try to load and authorize user
             if ($user = $form->handle()) {
                 return $user->login();
@@ -89,16 +89,16 @@ class SignController extends Controller
     /**
      * "Sign up" user action
      *
-     * @param Mailer $mailer
+     * @param MailerInterface $mailer
      *
      * @return string|\yii\console\Response|Response
      * @throws Exception
      */
-    public function actionSignUp(Mailer $mailer)
+    public function actionSignUp(MailerInterface $mailer)
     {
         $form = new SignUpForm($mailer);
 
-        if ($form->load(request()->post()) && $form->validate()) {
+        if ($form->load(request()->post())) {
             // try to register a user
             if ($user = $form->handle()) {
                 return $user->login(true);
