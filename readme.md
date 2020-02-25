@@ -30,6 +30,10 @@ composer create-project manchenkov/yii2-project new-app-name
 ##### Docker
 Deploy with *docker.yml* by command `docker-compose up -f docker.yml` or you can create `Run configuration` with your IDE (ex. PhpStorm)
 
+##### Makefile
+
+Use `make` command to see details
+
 ##### MAMP/LAMP etc
 Set up Apache document root to the ```public``` or root application directory
 

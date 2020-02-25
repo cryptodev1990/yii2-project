@@ -2,7 +2,6 @@ version: '3.7'
 services:
   php:
     image: manchenkoff/php-xdebug
-    container_name: app
     networks:
       - application
     ports:
@@ -15,7 +14,6 @@ services:
 
   db:
     image: mysql
-    container_name: db
     networks:
       - application
     ports:
@@ -24,8 +22,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
-    volumes:
-      - ./runtime/database:/var/lib/mysql
 
 networks:
   application:
