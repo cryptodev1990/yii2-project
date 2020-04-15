@@ -8,7 +8,6 @@ use app\core\interfaces\MailerInterface;
 use app\mail\auth\UserRegistrationMail;
 use app\models\auth\User;
 use manchenkov\yii\data\Form;
-use yii\base\Exception;
 
 class SignUpForm extends Form
 {
@@ -75,34 +74,12 @@ class SignUpForm extends Form
         $this->mailer = $mailer;
     }
 
-    /**
-     * @return User|null
-     * @throws Exception
-     * @throws \Exception
-     */
     public function handle(): ?User
     {
-        // create a new user record
-        $user = new User([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'email' => $this->email,
-            'is_active' => $this->isActive,
-        ]);
-
-        $user->password = $this->password;
-        $user->generateToken();
+        $user = $this->createUser();
 
         if ($user->save()) {
-            // create a welcome email
-            $registrationEmail = new UserRegistrationMail([
-                'email' => $this->email,
-                'password' => $this->password,
-                'token' => $user->token,
-                'isActive' => $user->is_active,
-            ]);
-
-            $this->mailer->send($registrationEmail);
+            $this->sendWelcomeEmail($user);
 
             // assign base RBAC role
             auth()->assign(
@@ -114,5 +91,36 @@ class SignUpForm extends Form
         } else {
             return null;
         }
+    }
+
+    private function createUser(): User
+    {
+        $user = new User(
+            [
+                'first_name' => $this->firstName,
+                'last_name' => $this->lastName,
+                'email' => $this->email,
+                'is_active' => $this->isActive,
+            ]
+        );
+
+        $user->password = $this->password;
+        $user->generateToken();
+
+        return $user;
+    }
+
+    private function sendWelcomeEmail(User $user): void
+    {
+        $registrationEmail = new UserRegistrationMail(
+            [
+                'email' => $this->email,
+                'password' => $this->password,
+                'token' => $user->token,
+                'isActive' => $user->is_active,
+            ]
+        );
+
+        $this->mailer->send($registrationEmail);
     }
 }
