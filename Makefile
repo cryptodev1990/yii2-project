@@ -45,6 +45,7 @@ post-build:
 	@sleep 20
 	$(COMPOSE_COMMAND) -c 'php yii cache/flush-all'
 	$(COMPOSE_COMMAND) -c 'php yii app/init'
+	@npm i
 	@npm run dev
 
 login:
