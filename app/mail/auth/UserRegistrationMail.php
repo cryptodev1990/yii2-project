@@ -9,10 +9,10 @@ use yii\base\BaseObject;
 
 class UserRegistrationMail extends BaseObject implements MailInterface
 {
-    public $email;
-    public $password;
-    public $token;
-    public $isActive;
+    public string $email;
+    public string $password;
+    public string $token;
+    public bool $isActive;
 
     public function getData(): array
     {

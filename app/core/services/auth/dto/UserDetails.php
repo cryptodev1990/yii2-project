@@ -14,17 +14,17 @@ class UserDetails
     /**
      * @var string
      */
-    private $firstName;
+    private string $firstName;
 
     /**
      * @var string
      */
-    private $lastName;
+    private string $lastName;
 
     /**
      * @var string
      */
-    private $email;
+    private string $email;
 
     /**
      * @return string|int

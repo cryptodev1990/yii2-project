@@ -20,12 +20,27 @@ class StorageService implements StorageInterface
     /**
      * Main web application root
      */
-    public $publicPath;
+    public string $publicPath;
 
     /**
      * StorageInterface path alias string
      */
-    public $storagePath;
+    public string $storagePath;
+
+    /**
+     * Creates new directory at relative $path
+     *
+     * @param string $path
+     *
+     * @return bool
+     * @throws Exception
+     */
+    public function createDirectory(string $path): bool
+    {
+        $dir = $this->basePath($path);
+
+        return FileHelper::createDirectory($dir);
+    }
 
     /**
      * Returns base root directory of storage (and append $path if was sent)
@@ -55,21 +70,6 @@ class StorageService implements StorageInterface
         }
 
         return $root;
-    }
-
-    /**
-     * Creates new directory at relative $path
-     *
-     * @param string $path
-     *
-     * @return bool
-     * @throws Exception
-     */
-    public function createDirectory(string $path): bool
-    {
-        $dir = $this->basePath($path);
-
-        return FileHelper::createDirectory($dir);
     }
 
     /**

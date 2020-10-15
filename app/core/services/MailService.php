@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace app\core\services;
 
-use app\core\interfaces\MailInterface;
 use app\core\interfaces\MailerInterface;
+use app\core\interfaces\MailInterface;
 use yii\base\BaseObject;
 
 class MailService extends BaseObject implements MailerInterface

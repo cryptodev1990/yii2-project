@@ -17,6 +17,21 @@ use yii\console\Exception;
 class AppController extends Command
 {
     /**
+     * Loads basic application environment and data
+     */
+    public function actionInit(): void
+    {
+        // base commands to init application on a new hosting
+        $this->runSequence(
+            [
+                ['migrate', ['interactive' => 0]],
+                ['seed/user'],
+                ['seed/rbac'],
+            ]
+        );
+    }
+
+    /**
      * Executes Application actions array
      *
      * @param array $actions
@@ -38,27 +53,16 @@ class AppController extends Command
     }
 
     /**
-     * Loads basic application environment and data
-     */
-    public function actionInit(): void
-    {
-        // base commands to init application on a new hosting
-        $this->runSequence([
-            ['migrate', ['interactive' => 0]],
-            ['seed/user'],
-            ['seed/rbac'],
-        ]);
-    }
-
-    /**
      * Resets and prepares application for use
      */
     public function actionReset(): void
     {
         // commands to reset current configurations and data removing
-        $this->runSequence([
-            ['migrate/fresh', ['interactive' => 0]],
-            ['app/init'],
-        ]);
+        $this->runSequence(
+            [
+                ['migrate/fresh', ['interactive' => 0]],
+                ['app/init'],
+            ]
+        );
     }
 }

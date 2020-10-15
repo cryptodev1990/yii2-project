@@ -1,9 +1,3 @@
-/*
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
-
 const mix = require('./resources/assets/mix/main');
 
 /**

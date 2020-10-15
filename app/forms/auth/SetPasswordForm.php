@@ -12,9 +12,9 @@ class SetPasswordForm extends Form
 {
     /**
      * New password string value
-     * @var string
+     * @var string|null
      */
-    public $password;
+    public ?string $password = null;
 
     /**
      * Form validation rules

@@ -44,55 +44,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Default URL after success login
      * @var array
      */
-    private $homeUrl = ['/me'];
-
-    /**
-     * Model behaviors array
-     * @return array
-     */
-    public function behaviors(): array
-    {
-        return [
-            TimestampBehavior::class,
-        ];
-    }
-
-    /**
-     * Model basic validation rules
-     * @return array
-     */
-    public function rules(): array
-    {
-        return [
-            [['email', 'password', 'first_name', 'last_name'], 'required'],
-            [['password', 'token', 'first_name', 'last_name'], 'string'],
-            ['email', 'email'],
-            ['is_active', 'boolean'],
-            [['created_at', 'updated_at', 'deleted_at'], 'integer'],
-            ['data', 'safe'] // json field
-        ];
-    }
-
-    /**
-     * Model attributes labels' translation
-     * @return array
-     */
-    public function attributeLabels(): array
-    {
-        return [
-            'id' => '#',
-            'email' => t('models', 'label.email'),
-            'password' => t('models', 'label.password'),
-            'token' => t('models', 'label.token'),
-            'is_active' => t('models', 'label.is_active'),
-            'first_name' => t('models', 'label.first_name'),
-            'last_name' => t('models', 'label.last_name'),
-            'created_at' => t('models', 'label.registered_at'),
-            'updated_at' => t('models', 'label.updated_at'),
-            'deleted_at' => t('models', 'label.deleted_at'),
-            'data' => t('models', 'label.data'),
-        ];
-    }
+    private array $homeUrl = ['/me'];
 
     /**
      * @inheritdoc
@@ -141,6 +93,33 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Log current user in the system
+     *
+     * @param bool $currentSession
+     *
+     * @return \yii\console\Response|Response
+     */
+    public function login(bool $currentSession = false)
+    {
+        if (user()->isGuest || user()->id !== $this->id) {
+            // log user in for current session time or 1 month (see params.php)
+            user()->login(
+                $this,
+                $currentSession
+                    ? 0
+                    : config('user.loginSessionTime')
+            );
+        }
+
+        // redirect to last/home page
+        return response()->redirect(
+            user()->returnUrl == app()->homeUrl
+                ? url($this->homeUrl)
+                : user()->returnUrl
+        );
+    }
+
+    /**
      * Simple login as user with passed $id without redirect
      *
      * @param int $id
@@ -156,6 +135,54 @@ class User extends ActiveRecord implements IdentityInterface
         } else {
             throw new InvalidArgumentException(t('errors', 'user.not-found'));
         }
+    }
+
+    /**
+     * Model behaviors array
+     * @return array
+     */
+    public function behaviors(): array
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
+    /**
+     * Model basic validation rules
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [
+            [['email', 'password', 'first_name', 'last_name'], 'required'],
+            [['password', 'token', 'first_name', 'last_name'], 'string'],
+            ['email', 'email'],
+            ['is_active', 'boolean'],
+            [['created_at', 'updated_at', 'deleted_at'], 'integer'],
+            ['data', 'safe'] // json field
+        ];
+    }
+
+    /**
+     * Model attributes labels' translation
+     * @return array
+     */
+    public function attributeLabels(): array
+    {
+        return [
+            'id' => '#',
+            'email' => t('models', 'label.email'),
+            'password' => t('models', 'label.password'),
+            'token' => t('models', 'label.token'),
+            'is_active' => t('models', 'label.is_active'),
+            'first_name' => t('models', 'label.first_name'),
+            'last_name' => t('models', 'label.last_name'),
+            'created_at' => t('models', 'label.registered_at'),
+            'updated_at' => t('models', 'label.updated_at'),
+            'deleted_at' => t('models', 'label.deleted_at'),
+            'data' => t('models', 'label.data'),
+        ];
     }
 
     /**
@@ -216,15 +243,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates a new token for current user
-     * @throws Exception
-     */
-    public function generateToken(): void
-    {
-        $this->token = app()->security->generateRandomString();
-    }
-
-    /**
      * Updates user password
      *
      * @param string $newPassword
@@ -241,6 +259,15 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Generates a new token for current user
+     * @throws Exception
+     */
+    public function generateToken(): void
+    {
+        $this->token = app()->security->generateRandomString();
+    }
+
+    /**
      * Activates user account
      * @return bool
      * @throws Exception
@@ -251,33 +278,6 @@ class User extends ActiveRecord implements IdentityInterface
         $this->generateToken();
 
         return $this->save();
-    }
-
-    /**
-     * Log current user in the system
-     *
-     * @param bool $currentSession
-     *
-     * @return \yii\console\Response|Response
-     */
-    public function login(bool $currentSession = false)
-    {
-        if (user()->isGuest || user()->id !== $this->id) {
-            // log user in for current session time or 1 month (see params.php)
-            user()->login(
-                $this,
-                $currentSession
-                    ? 0
-                    : config('user.loginSessionTime')
-            );
-        }
-
-        // redirect to last/home page
-        return response()->redirect(
-            user()->returnUrl == app()->homeUrl
-                ? url($this->homeUrl)
-                : user()->returnUrl
-        );
     }
 
     /**

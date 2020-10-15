@@ -67,7 +67,6 @@ return [
      * Application components
      */
     'components' => yii\helpers\ArrayHelper::merge(
-    // common application components
         require __DIR__ . '/common.php',
 
         // current application components only

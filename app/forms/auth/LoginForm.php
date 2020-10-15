@@ -12,21 +12,21 @@ class LoginForm extends Form
 {
     /**
      * User email value
-     * @var string
+     * @var string|null
      */
-    public $email;
+    public ?string $email = null;
 
     /**
      * User password
-     * @var string
+     * @var string|null
      */
-    public $password;
+    public ?string $password = null;
 
     /**
      * Google reCAPTCHA v3
-     * @var string
+     * @var string|null
      */
-    public $captcha;
+    public ?string $captcha = null;
 
     /**
      * Form validation rules

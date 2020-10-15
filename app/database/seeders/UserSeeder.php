@@ -23,12 +23,14 @@ class UserSeeder extends Action
      */
     public function run(): void
     {
-        $admin = new User([
-            'email' => config('email.admin'),
-            'first_name' => 'super',
-            'last_name' => 'user',
-            'is_active' => true,
-        ]);
+        $admin = new User(
+            [
+                'email' => config('email.admin'),
+                'first_name' => 'super',
+                'last_name' => 'user',
+                'is_active' => true,
+            ]
+        );
 
         $admin->generateToken();
         $admin->password = '123123#';

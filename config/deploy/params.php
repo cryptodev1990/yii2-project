@@ -43,18 +43,27 @@ set('keep_releases', 2);
 /**
  * Shared files/dirs between deploys
  */
-set('shared_files', [
-    '.env',
-]);
+set(
+    'shared_files',
+    [
+        '.env',
+    ]
+);
 
-set('shared_dirs', [
-    'runtime',
-    'public/storage',
-]);
+set(
+    'shared_dirs',
+    [
+        'runtime',
+        'public/storage',
+    ]
+);
 
 /**
  * Writable dirs by web server
  */
-set('writable_dirs', [
-    'runtime',
-]);
+set(
+    'writable_dirs',
+    [
+        'runtime',
+    ]
+);

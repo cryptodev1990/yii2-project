@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by Artyom Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2019
- */
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -16,7 +11,7 @@ $env = Dotenv::create(dirname(__DIR__));
 
 try {
     $env->load();
-} catch (\Exception $error) {
+} catch (Exception $error) {
     alert("App environment initialization failed");
     die();
 }

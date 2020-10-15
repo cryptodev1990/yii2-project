@@ -26,27 +26,6 @@ use yii\web\Response;
 class AuthClient extends ActiveRecord
 {
     /**
-     * Data validation rules
-     * @return array
-     */
-    public function rules(): array
-    {
-        return [
-            ['user_id', 'integer'],
-            [['source', 'source_id'], 'string'],
-        ];
-    }
-
-    /**
-     * Returns user of current client
-     * @return ActiveQuery
-     */
-    public function getUser(): ActiveQuery
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
      * Handler for social auth clients
      *
      * @param ClientInterface $client
@@ -130,6 +109,27 @@ class AuthClient extends ActiveRecord
         }
 
         return user()->loginRequired();
+    }
+
+    /**
+     * Data validation rules
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [
+            ['user_id', 'integer'],
+            [['source', 'source_id'], 'string'],
+        ];
+    }
+
+    /**
+     * Returns user of current client
+     * @return ActiveQuery
+     */
+    public function getUser(): ActiveQuery
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

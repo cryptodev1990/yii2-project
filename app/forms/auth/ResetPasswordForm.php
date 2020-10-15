@@ -13,14 +13,27 @@ class ResetPasswordForm extends Form
 {
     /**
      * User e-mail
-     * @var string
+     * @var string|null
      */
-    public $email;
+    public ?string $email = null;
 
     /**
      * @var MailerInterface
      */
-    protected $mailer;
+    protected MailerInterface $mailer;
+
+    /**
+     * ResetPasswordForm constructor with Mailer object injection
+     *
+     * @param MailerInterface $mailer
+     * @param array $config
+     */
+    public function __construct(MailerInterface $mailer, $config = [])
+    {
+        parent::__construct($config);
+
+        $this->mailer = $mailer;
+    }
 
     /**
      * Form validation rules
@@ -44,19 +57,6 @@ class ResetPasswordForm extends Form
         return [
             'email' => t('models', 'label.email'),
         ];
-    }
-
-    /**
-     * ResetPasswordForm constructor with Mailer object injection
-     *
-     * @param MailerInterface $mailer
-     * @param array $config
-     */
-    public function __construct(MailerInterface $mailer, $config = [])
-    {
-        parent::__construct($config);
-
-        $this->mailer = $mailer;
     }
 
     /**

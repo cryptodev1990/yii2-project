@@ -31,20 +31,6 @@ class SignController extends Controller
     }
 
     /**
-     * Social authentication action with callback
-     * @return array
-     */
-    public function actions(): array
-    {
-        return [
-            'social-auth' => [
-                'class' => AuthAction::class,
-                'successCallback' => [AuthClient::class, 'onAuthSuccess'],
-            ],
-        ];
-    }
-
-    /**
      * @return array
      */
     private function accessRules(): array
@@ -64,6 +50,20 @@ class SignController extends Controller
                 'actions' => ['logout'],
                 'allow' => true,
                 'roles' => ['@'],
+            ],
+        ];
+    }
+
+    /**
+     * Social authentication action with callback
+     * @return array
+     */
+    public function actions(): array
+    {
+        return [
+            'social-auth' => [
+                'class' => AuthAction::class,
+                'successCallback' => [AuthClient::class, 'onAuthSuccess'],
             ],
         ];
     }
@@ -136,11 +136,14 @@ class SignController extends Controller
                 // login as the user and show registration page
                 user()->login($user);
 
-                return view('@views/site/notification', [
-                    'icon' => 'done',
-                    'title' => t('ui', 'title.registration-completed'),
-                    'message' => t('ui', 'label.user-is-activated'),
-                ]);
+                return view(
+                    '@views/site/notification',
+                    [
+                        'icon' => 'done',
+                        'title' => t('ui', 'title.registration-completed'),
+                        'message' => t('ui', 'label.user-is-activated'),
+                    ]
+                );
             }
         }
 

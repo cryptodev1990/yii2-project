@@ -11,23 +11,27 @@ use manchenkov\yii\data\Form;
 
 class SignUpForm extends Form
 {
-    /**
-     * User credentials
-     */
-    public $email;
-    public $password;
+    public ?string $email = null;
+    public ?string $password = null;
+
+    public ?string $firstName = null;
+    public ?string $lastName = null;
+    public bool $isActive = false;
+
+    protected MailerInterface $mailer;
 
     /**
-     * Additional information about user
+     * SignUpForm constructor with Mailer object injection
+     *
+     * @param MailerInterface $mailer
+     * @param array $config
      */
-    public $firstName;
-    public $lastName;
-    public $isActive = false;
+    public function __construct(MailerInterface $mailer, $config = [])
+    {
+        parent::__construct($config);
 
-    /**
-     * @var MailerInterface
-     */
-    protected $mailer;
+        $this->mailer = $mailer;
+    }
 
     /**
      * Form validation rules
@@ -59,19 +63,6 @@ class SignUpForm extends Form
             'firstName' => t('models', 'label.first_name'),
             'lastName' => t('models', 'label.last_name'),
         ];
-    }
-
-    /**
-     * SignUpForm constructor with Mailer object injection
-     *
-     * @param MailerInterface $mailer
-     * @param array $config
-     */
-    public function __construct(MailerInterface $mailer, $config = [])
-    {
-        parent::__construct($config);
-
-        $this->mailer = $mailer;
     }
 
     public function handle(): ?User

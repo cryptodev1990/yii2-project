@@ -9,7 +9,7 @@ use yii\authclient\ClientInterface;
 
 final class UserDetailsParser
 {
-    private $client;
+    private ClientInterface $client;
 
     public function __construct(ClientInterface $client)
     {

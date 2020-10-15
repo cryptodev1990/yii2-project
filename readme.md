@@ -27,23 +27,13 @@ For install project environment follow the instructions below
 composer create-project manchenkov/yii2-project new-app-name
 ```
 
-##### Docker
-Deploy with *docker.yml* by command `docker-compose up -f docker.yml` or you can create `Run configuration` with your IDE (ex. PhpStorm)
-
-##### Makefile
-
-Use `make` command to see details
-
-##### MAMP/LAMP etc
-Set up Apache document root to the ```public``` or root application directory
-
 ##### Environment installation
 - Install project dependencies by `composer install`
 - Node.js dependencies `npm install`
-- Change `.env` settings for database and necessary sections
-- Start your server (Apache, Nginx, MySQL, Docker etc)
-- Use app init command `php yii app/init` (reset - `php yii app/reset`) for apply migrations and seeders
-- Check project available on `http://localhost/`
+- Change `.env` settings for a database and necessary sections 
+- Start your server - make up (run `make` command to see details)
+- Use app init command `make app-init` for apply migrations and seeders and `make app-reset` to reset
+- Check project available on [http://localhost/](http://localhost/)
 
 ### Webpack usage
 Project contains preconfigured webpack (see `webpack.mix.js`). You can use following commands:
@@ -90,7 +80,7 @@ Command                              | Description
 ---                                  | ---
 npm run dev                          | Builds an assets bundle
 npm run prod                         | Builds an assets bundle in production mode (optimized)
-vendor/bin/codecept build          | Builds necessary helper classes for the tests actors
-vendor/bin/codecept run tests      | Starts tests for the whole app
+vendor/bin/codecept build            | Builds necessary helper classes for the tests actors
+vendor/bin/codecept run tests        | Starts tests for the whole app
 supervisorctl stop all               | Stops all of the background workers 
 supervisorctl start all              | Starts all of the background workers

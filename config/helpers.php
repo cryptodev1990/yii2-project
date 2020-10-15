@@ -1,12 +1,13 @@
 <?php
 
+use manchenkov\yii\http\Seo;
 use yii\helpers\Html;
 
 /**
  * Returns SeoHelper component of $app
  * @return manchenkov\yii\http\Seo|null
  */
-function seo()
+function seo(): ?Seo
 {
     return app()->seo ?: null;
 }
@@ -18,7 +19,7 @@ function seo()
  *
  * @return string
  */
-function asset(string $filename)
+function asset(string $filename): string
 {
     $timestamp = @filemtime(
         alias("@public/{$filename}")
@@ -35,7 +36,7 @@ function asset(string $filename)
  * Helper to generate HTML form CSRF input field
  * @return string
  */
-function csrf()
+function csrf(): string
 {
     [$param, $token] = [request()->csrfParam, request()->csrfToken];
 

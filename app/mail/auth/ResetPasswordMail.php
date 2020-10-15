@@ -13,7 +13,7 @@ class ResetPasswordMail extends BaseObject implements MailInterface
     /**
      * @var User
      */
-    public $user;
+    public User $user;
 
     function getData(): array
     {

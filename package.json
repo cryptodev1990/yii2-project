@@ -1,6 +1,6 @@
 {
   "name": "yii2-project",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Yii 2 project with Webpack & Laravel mix integration",
   "scripts": {
     "dev": "npm run development",
@@ -23,18 +23,18 @@
   "devDependencies": {
     "clean-webpack-plugin": "^2.0.2",
     "cross-env": "^5.2.1",
-    "laravel-mix": "^4.1.4",
+    "laravel-mix": "^5.0.7",
     "resolve-url-loader": "^2.3.2",
-    "sass": "^1.25.0",
+    "sass": "^1.27.0",
     "sass-loader": "^7.3.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.1",
     "sweetalert": "^2.1.2",
-    "uikit": "^3.2.7",
-    "vue": "^2.6.11",
+    "uikit": "^3.5.8",
+    "vue": "^2.6.12",
     "vue-axios": "^2.1.5"
   }
 }

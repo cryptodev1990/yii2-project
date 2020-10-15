@@ -1,58 +1,41 @@
-COMPOSE=docker-compose -f docker.yml
-COMPOSE_COMMAND=$(COMPOSE) exec $(CONTAINER) sh
-COLOR_HEADER=\e[92m
-COLOR=\e[93m
-END=\033[0m
-CONTAINER=php
-PROJECT_NAME := Yii 2 Project
+.DEFAULT_GOAL := help
+.PHONY: help up down reload start stop app-init app-reset app-login test
 
-.SILENT: help stop down pre-build build start post-build login test
+DOCKER_COMPOSE_CMD := docker-compose -f docker.yml
+PHP_CMD := $(DOCKER_COMPOSE_CMD) exec "php"
+YII_CMD := $(PHP_CMD) php yii
 
-help:
-	printf "$(COLOR_HEADER)$(PROJECT_NAME) management\n\n" && \
-	printf "$(COLOR)make build$(END)\t Build and start containers\n" && \
-	printf "$(COLOR)make down$(END)\t Remove created containers and networks\n" && \
-	printf "$(COLOR)make test$(END)\t Run Codeception tests\n" && \
-	printf "$(COLOR)make start$(END)\t Start created containers\n" && \
-	printf "$(COLOR)make restart$(END)\t Restart created containers\n" && \
-	printf "$(COLOR)make stop$(END)\t Stop containers without removing\n" && \
-	printf "$(COLOR)make pre-build$(END)\t Remove old artifacts and containers\n" && \
-	printf "$(COLOR)make post-build$(END)\t Run app migrations and build assets\n" && \
-	printf "$(COLOR)make login$(END)\t Attach project container session\n" && \
-	printf "$(COLOR)make prune$(END)\t Remove all unused containers, networks, images, volumes\n"
+help: ## Show this message
+	@echo "Application management"
+	@echo
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-stop:
-	$(COMPOSE) stop
+up: ## Run containers
+	@$(DOCKER_COMPOSE_CMD) up -d
 
-down:
-	$(COMPOSE) down
+down: ## Stop and remove containers
+	@$(DOCKER_COMPOSE_CMD) down
 
-pre-build: down
+reload: ## Reload running container
+	@$(DOCKER_COMPOSE_CMD) up -d
 
-build: pre-build
-	$(COMPOSE) build
-	@make start
-	@make post-build
+start: ## Start docker-compose
+	@$(DOCKER_COMPOSE_CMD) start
 
-start:
-	$(COMPOSE) up -d
+stop: ## Stop docker-compose
+	@$(DOCKER_COMPOSE_CMD) stop
 
-restart:
-	$(COMPOSE) restart
+app-init: ## Run application initialization
+	@$(YII_CMD) app/init
 
-post-build:
-	@echo 'Initializing database...'
-	@sleep 20
-	$(COMPOSE_COMMAND) -c 'php yii cache/flush-all'
-	$(COMPOSE_COMMAND) -c 'php yii app/init'
-	@npm i
-	@npm run dev
+app-reset: ## Reset application data
+	@$(YII_CMD) app/reset
 
-login:
-	$(COMPOSE_COMMAND)
+app-login: ## Login into application console
+	@echo "Running PHP session..."
+	@echo
+	@$(PHP_CMD) sh
 
-test:
-	$(COMPOSE_COMMAND) -c './vendor/bin/codecept run -vvv'
-
-prune: down
-	@docker system prune -af
+test: ## Run application tests
+	@$(PHP_CMD) ./vendor/bin/codecept build
+	@$(PHP_CMD) ./vendor/bin/codecept run

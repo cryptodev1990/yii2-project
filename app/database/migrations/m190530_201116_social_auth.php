@@ -4,36 +4,34 @@ use yii\db\Migration;
 
 class m190530_201116_social_auth extends Migration
 {
-    /**
-     * Setup migration
-     * @return bool|void
-     */
-    public function up()
+    public function up(): void
     {
-        $this->createTable("auth_client", [
-            'id' => $this->primaryKey(),
+        $this->createTable(
+            "auth_client",
+            [
+                'id' => $this->primaryKey(),
 
-            // auth_user id
-            'user_id' => $this->integer()->notNull(),
+                // auth_user id
+                'user_id' => $this->integer()->notNull(),
 
-            // social client data
-            'source' => $this->string()->notNull(),
-            'source_id' => $this->string()->notNull(),
-        ]);
+                // social client data
+                'source' => $this->string()->notNull(),
+                'source_id' => $this->string()->notNull(),
+            ]
+        );
 
         $this->addForeignKey(
             'fk-auth-user_id-user-id',
-            'auth_client', 'user_id',
-            'user', 'id',
-            'CASCADE', 'CASCADE'
+            'auth_client',
+            'user_id',
+            'user',
+            'id',
+            'CASCADE',
+            'CASCADE'
         );
     }
 
-    /**
-     * Rollback migration
-     * @return bool|void
-     */
-    public function down()
+    public function down(): void
     {
         $this->dropForeignKey('fk-auth-user_id-user-id', 'auth_client');
         $this->dropTable('auth_client');
