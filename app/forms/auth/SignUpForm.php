@@ -9,7 +9,7 @@ use app\mail\auth\UserRegistrationMail;
 use app\models\auth\User;
 use manchenkov\yii\data\Form;
 
-class SignUpForm extends Form
+final class SignUpForm extends Form
 {
     public ?string $email = null;
     public ?string $password = null;

@@ -10,6 +10,7 @@ use manchenkov\yii\database\traits\SoftDelete;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
+use yii\console\Response as ConsoleResponse;
 use yii\web\IdentityInterface;
 use yii\web\Response;
 
@@ -33,7 +34,7 @@ use yii\web\Response;
  * @property string $authKey
  * @property-read AuthClient[] $authClients
  */
-class User extends ActiveRecord implements IdentityInterface
+final class User extends ActiveRecord implements IdentityInterface
 {
     /**
      * Soft delete ActiveRecord trait
@@ -79,7 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @param int $id
      *
-     * @return bool|\yii\console\Response|Response
+     * @return Response|ConsoleResponse
      */
     public static function loginById(int $id)
     {
@@ -87,9 +88,9 @@ class User extends ActiveRecord implements IdentityInterface
 
         if ($user) {
             return $user->login();
-        } else {
-            throw new InvalidArgumentException(t('errors', 'user.not-found'));
         }
+
+        throw new InvalidArgumentException(t('errors', 'user.not-found'));
     }
 
     /**
@@ -97,13 +98,13 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @param bool $currentSession
      *
-     * @return \yii\console\Response|Response
+     * @return ConsoleResponse|Response
      */
     public function login(bool $currentSession = false)
     {
-        if (user()->isGuest || user()->id !== $this->id) {
+        if (app()->user->isGuest || app()->user->id !== $this->id) {
             // log user in for current session time or 1 month (see params.php)
-            user()->login(
+            app()->user->login(
                 $this,
                 $currentSession
                     ? 0
@@ -113,9 +114,9 @@ class User extends ActiveRecord implements IdentityInterface
 
         // redirect to last/home page
         return response()->redirect(
-            user()->returnUrl == app()->homeUrl
+            app()->user->returnUrl == app()->homeUrl
                 ? url($this->homeUrl)
-                : user()->returnUrl
+                : app()->user->returnUrl
         );
     }
 
@@ -131,10 +132,10 @@ class User extends ActiveRecord implements IdentityInterface
         $user = self::findOne($id);
 
         if ($user) {
-            return user()->login($user);
-        } else {
-            throw new InvalidArgumentException(t('errors', 'user.not-found'));
+            return app()->user->login($user);
         }
+
+        throw new InvalidArgumentException(t('errors', 'user.not-found'));
     }
 
     /**
@@ -206,7 +207,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey): bool
     {
-        return $this->token == $authKey;
+        return $this->token === $authKey;
     }
 
     /**

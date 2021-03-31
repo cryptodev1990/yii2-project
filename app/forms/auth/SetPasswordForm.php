@@ -8,7 +8,7 @@ use app\models\auth\User;
 use manchenkov\yii\data\Form;
 use yii\base\Exception;
 
-class SetPasswordForm extends Form
+final class SetPasswordForm extends Form
 {
     /**
      * New password string value

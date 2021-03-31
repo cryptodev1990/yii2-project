@@ -7,7 +7,7 @@ namespace app\mail\auth;
 use app\core\interfaces\MailInterface;
 use yii\base\BaseObject;
 
-class UserRegistrationMail extends BaseObject implements MailInterface
+final class UserRegistrationMail extends BaseObject implements MailInterface
 {
     public string $email;
     public string $password;

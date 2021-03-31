@@ -6,7 +6,7 @@ namespace app\database\seeders;
 
 use app\core\rules\ConfirmedRule;
 use Exception;
-use manchenkov\yii\console\Command;
+use manchenkov\yii\console\command\Command;
 use yii\base\Action;
 use yii\rbac\ManagerInterface;
 
@@ -16,7 +16,7 @@ use yii\rbac\ManagerInterface;
  *
  * @property-read Command $controller
  */
-class RbacSeeder extends Action
+final class RbacSeeder extends Action
 {
     /**
      * Creates basic RBAC configuration

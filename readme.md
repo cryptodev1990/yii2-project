@@ -6,7 +6,7 @@
 - **Simple** project structure with a more clean view
 - **Webpack 4** based on [Laravel mix](https://laravel-mix.com), just run ```npm run dev```
 - **Code Generator** for controllers, models, etc (like Laravel artisan) (```php yii make``` for details)
-- **Dependency injection** in controller actions, **helper** functions, **extended** components etc (like `ActiveCollection`)
+- **Helper** functions, **extended** components etc (like `ActiveCollection`)
 - **RBAC** configuration ready to scale 
 - **Deploy** project to the remote host with one command ```dep deploy``` (see [Deployer](https://github.com/deployphp/deployer) extension)
 

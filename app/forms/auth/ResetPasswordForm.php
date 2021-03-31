@@ -9,7 +9,7 @@ use app\mail\auth\ResetPasswordMail;
 use app\models\auth\User;
 use manchenkov\yii\data\Form;
 
-class ResetPasswordForm extends Form
+final class ResetPasswordForm extends Form
 {
     /**
      * User e-mail

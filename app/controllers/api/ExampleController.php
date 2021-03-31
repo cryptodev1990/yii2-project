@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace app\controllers\api;
 
-use manchenkov\yii\http\Controller;
 use yii\base\Exception;
+use yii\web\Controller;
 use yii\web\Response;
 
-class ExampleController extends Controller
+final class ExampleController extends Controller
 {
     /**
      * Returns random string

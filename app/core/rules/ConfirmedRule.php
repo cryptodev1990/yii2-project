@@ -8,7 +8,7 @@ use app\models\auth\User;
 use yii\rbac\Item;
 use yii\rbac\Rule;
 
-class ConfirmedRule extends Rule
+final class ConfirmedRule extends Rule
 {
     public $name = 'isActive';
 
@@ -25,10 +25,6 @@ class ConfirmedRule extends Rule
     {
         $model = User::findOne($user);
 
-        if ($model) {
-            return (bool) $model->is_active;
-        }
-
-        return false;
+        return $model->is_active ?? false;
     }
 }

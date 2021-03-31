@@ -8,7 +8,7 @@ use app\core\interfaces\MailerInterface;
 use app\core\interfaces\MailInterface;
 use yii\base\BaseObject;
 
-class MailService extends BaseObject implements MailerInterface
+final class MailService extends BaseObject implements MailerInterface
 {
     /**
      * Method for build and send composed mail object

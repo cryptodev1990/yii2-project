@@ -6,7 +6,7 @@ namespace app\database\seeders;
 
 use app\models\auth\User;
 use Exception;
-use manchenkov\yii\console\Command;
+use manchenkov\yii\console\command\Command;
 use yii\base\Action;
 
 /**
@@ -15,7 +15,7 @@ use yii\base\Action;
  *
  * @property-read Command $controller
  */
-class UserSeeder extends Action
+final class UserSeeder extends Action
 {
     /**
      * Creates a default admin user

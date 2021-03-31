@@ -10,12 +10,12 @@ use app\forms\auth\LoginForm;
 use app\forms\auth\SignUpForm;
 use app\models\auth\AuthClient;
 use app\models\auth\User;
-use manchenkov\yii\http\Controller;
 use yii\authclient\AuthAction;
 use yii\base\Exception;
+use yii\web\Controller;
 use yii\web\Response;
 
-class SignController extends Controller
+final class SignController extends Controller
 {
     /**
      * @return array
@@ -76,11 +76,9 @@ class SignController extends Controller
     {
         $form = new LoginForm();
 
-        if ($form->load(request()->post())) {
-            // try to load and authorize user
-            if ($user = $form->handle()) {
-                return $user->login();
-            }
+        // try to load and authorize user
+        if ($form->load(request()->post()) && $user = $form->handle()) {
+            return $user->login();
         }
 
         return view('login', compact('form'));
@@ -102,12 +100,12 @@ class SignController extends Controller
             // try to register a user
             if ($user = $form->handle()) {
                 return $user->login(true);
-            } else {
-                session()->addFlash(
-                    'errors',
-                    t('errors', 'auth.register-error')
-                );
             }
+
+            app()->session->addFlash(
+                'errors',
+                t('errors', 'auth.register-error')
+            );
         }
 
         return view('sign-up', compact('form'));
@@ -128,13 +126,13 @@ class SignController extends Controller
 
         if ($user) {
             // log out current user
-            if (!user()->isGuest) {
-                user()->logout();
+            if (!app()->user->isGuest) {
+                app()->user->logout();
             }
 
             if ($user->activate()) {
                 // login as the user and show registration page
-                user()->login($user);
+                app()->user->login($user);
 
                 return view(
                     '@views/site/notification',
@@ -156,7 +154,7 @@ class SignController extends Controller
      */
     public function actionLogout(): Response
     {
-        user()->logout();
+        app()->user->logout();
 
         return $this->goHome();
     }

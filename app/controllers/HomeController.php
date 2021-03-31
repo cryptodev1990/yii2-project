@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace app\controllers;
 
 use app\core\filters\AccessFilter;
-use manchenkov\yii\http\Controller;
+use yii\web\Controller;
 
 /**
  * Class HomeController for provide user personal account management
  * @package App\Controllers\Auth
  */
-class HomeController extends Controller
+final class HomeController extends Controller
 {
     /**
      * @return array

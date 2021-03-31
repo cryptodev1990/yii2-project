@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\commands;
 
-use manchenkov\yii\console\Command;
+use manchenkov\yii\console\command\Command;
 use yii\base\InvalidRouteException;
 use yii\console\Exception;
 
@@ -14,7 +14,7 @@ use yii\console\Exception;
  *
  * @package App\Commands
  */
-class AppController extends Command
+final class AppController extends Command
 {
     /**
      * Loads basic application environment and data
