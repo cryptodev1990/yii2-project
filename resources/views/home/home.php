@@ -11,13 +11,13 @@ use yii\web\View;
 <h1>Home</h1>
 
 <ul>
-    <?php if (user()->can('admin')) : ?>
+    <?php if (app()->user->can('admin')) : ?>
         <li>Role: admin</li>
     <?php else : ?>
         <li>Role: user</li>
     <?php endif ?>
 
-    <?php if (user()->can('confirmed')) : ?>
+    <?php if (app()->user->can('confirmed')) : ?>
         <li>Status: active</li>
     <?php else : ?>
         <li>Status: inactive</li>

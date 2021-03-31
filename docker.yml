@@ -11,6 +11,8 @@ services:
       - ./:/var/www/app/:cached
     depends_on:
       - db
+    env_file:
+      - .env
 
   db:
     image: mysql

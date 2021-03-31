@@ -8,7 +8,7 @@ use app\models\auth\User;
 use manchenkov\yii\data\Form;
 use manchenkov\yii\recaptcha\ReCaptchaValidator;
 
-class LoginForm extends Form
+final class LoginForm extends Form
 {
     /**
      * User email value

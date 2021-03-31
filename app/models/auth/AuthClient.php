@@ -9,6 +9,7 @@ use app\forms\auth\SignUpForm;
 use Exception;
 use manchenkov\yii\database\ActiveQuery;
 use manchenkov\yii\database\ActiveRecord;
+use Yii;
 use yii\authclient\ClientInterface;
 use yii\web\Response;
 
@@ -23,7 +24,7 @@ use yii\web\Response;
  *
  * @property-read User $user
  */
-class AuthClient extends ActiveRecord
+final class AuthClient extends ActiveRecord
 {
     /**
      * Handler for social auth clients
@@ -49,7 +50,7 @@ class AuthClient extends ActiveRecord
         );
 
         // if guest - try to login/register
-        if (user()->isGuest) {
+        if (app()->user->isGuest) {
             // login if exists
             if ($authClient) {
                 return $authClient->user->login();
@@ -59,7 +60,7 @@ class AuthClient extends ActiveRecord
             $user = User::findIdentityByEmail($userData->getEmail());
 
             if (!$user) {
-                $signUpForm = invoke(
+                $signUpForm = Yii::createObject(
                     SignUpForm::class,
                     [
                         'email' => $userData->getEmail(),
@@ -72,7 +73,7 @@ class AuthClient extends ActiveRecord
 
                 if (!$user = $signUpForm->handle()) {
                     // some error from user
-                    session()->addFlash(
+                    app()->session->addFlash(
                         'errors',
                         t('errors', 'auth.auth-client-error')
                     );
@@ -93,22 +94,22 @@ class AuthClient extends ActiveRecord
             $authClient->save();
 
             return $user->login();
-        } else {
-            // append new auth client data to the existing user
-            if (!$authClient) {
-                $authClient = new AuthClient(
-                    [
-                        'user_id' => user()->id,
-                        'source' => $client->getId(),
-                        'source_id' => (string) $userData->getId(),
-                    ]
-                );
-
-                $authClient->save();
-            }
         }
 
-        return user()->loginRequired();
+        // append new auth client data to the existing user
+        if (!$authClient) {
+            $authClient = new AuthClient(
+                [
+                    'user_id' => app()->user->id,
+                    'source' => $client->getId(),
+                    'source_id' => (string) $userData->getId(),
+                ]
+            );
+
+            $authClient->save();
+        }
+
+        return app()->user->loginRequired();
     }
 
     /**

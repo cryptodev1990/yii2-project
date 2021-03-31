@@ -1,11 +1,11 @@
 <?php
 
-use manchenkov\yii\http\Seo;
+use app\core\components\Seo;
 use yii\helpers\Html;
 
 /**
  * Returns SeoHelper component of $app
- * @return manchenkov\yii\http\Seo|null
+ * @return Seo|null
  */
 function seo(): ?Seo
 {

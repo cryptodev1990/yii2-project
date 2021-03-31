@@ -25,7 +25,7 @@ use yii\web\View;
 
     <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
-            <?php if (user()->isGuest) : ?>
+            <?php if (app()->user->isGuest) : ?>
                 <li>
                     <a href="<?= url(['@login']) ?>"><?= t('ui', 'label.login') ?></a>
                 </li>

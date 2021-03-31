@@ -8,14 +8,14 @@ use app\core\interfaces\MailInterface;
 use app\models\auth\User;
 use yii\base\BaseObject;
 
-class ResetPasswordMail extends BaseObject implements MailInterface
+final class ResetPasswordMail extends BaseObject implements MailInterface
 {
     /**
      * @var User
      */
     public User $user;
 
-    function getData(): array
+    public function getData(): array
     {
         return [
             'link' => url(['/auth/set-password', 'token' => $this->user->token], true),

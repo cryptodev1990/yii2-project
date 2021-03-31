@@ -13,7 +13,7 @@ use yii\web\User;
  * Custom AccessFilter to manage redirects if user access was denied
  * @package App\Core\Filters
  */
-class AccessFilter extends AccessControl
+final class AccessFilter extends AccessControl
 {
     /**
      * Handles redirect

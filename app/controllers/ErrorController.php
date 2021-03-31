@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
-use manchenkov\yii\http\Controller;
+use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -12,7 +12,7 @@ use yii\web\Response;
 /**
  * Class ErrorController to handle runtime errors
  */
-class ErrorController extends Controller
+final class ErrorController extends Controller
 {
     /**
      * @return string|Response
@@ -28,8 +28,8 @@ class ErrorController extends Controller
                     : '500',
                 compact('error')
             );
-        } else {
-            return $this->goHome();
         }
+
+        return $this->goHome();
     }
 }

@@ -15,7 +15,7 @@ use yii\web\UploadedFile;
  * Class StorageService for manage files and directories in 'public' folder
  * @package App\Core\Services
  */
-class StorageService implements StorageInterface
+final class StorageService implements StorageInterface
 {
     /**
      * Main web application root
