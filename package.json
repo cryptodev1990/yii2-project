@@ -30,7 +30,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "moment": "^2.29.2",
     "sweetalert": "^2.1.2",
     "uikit": "^3.5.8",
